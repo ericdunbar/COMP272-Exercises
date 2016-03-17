@@ -15,9 +15,9 @@ import javax.swing.Timer;
 public class ChooseDataStructure {
 
 	// x2.txt has a few million lines; x.txt has 200 lines
-	static String theFileName = "C:\\Users\\erdun\\workspace\\Exercise 1.1\\src\\x2.txt";
-	static int numTimesToRead = 2;
-	static int theModulo = 1;
+	static String theFileName = "C:\\Users\\erdun\\git\\Chapter1ExercisesCleaned\\src\\x.txt";
+	static int numTimesToRead = 2000;
+	static int theModulo = 100;
 	static int numLinesToPrint = 2;
 
 	/**

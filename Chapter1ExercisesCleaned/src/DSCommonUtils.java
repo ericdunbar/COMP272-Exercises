@@ -8,6 +8,13 @@ import java.util.ArrayList;
  */
 public class DSCommonUtils {
 
+	public static String theFileNameZ = "C:\\Users\\erdun\\git\\Chapter1ExercisesCleaned\\src\\z.txt";
+	public static String theFileNameY = "C:\\Users\\erdun\\git\\Chapter1ExercisesCleaned\\src\\y.txt";
+	public static String theFileNameX = "C:\\Users\\erdun\\git\\Chapter1ExercisesCleaned\\src\\x.txt";
+	public static String theFileNameX2 = "C:\\Users\\erdun\\git\\Chapter1ExercisesCleaned\\src\\x2.txt";
+	public static String theFileNameX3 = "C:\\Users\\erdun\\git\\Chapter1ExercisesCleaned\\src\\x3.txt";
+
+	
 	public static ArrayList<String> theOne = new ArrayList<String>();
 	public static ArrayList<String> theTwo = new ArrayList<String>();
 	public static ArrayList<String> theThree = new ArrayList<String>();
