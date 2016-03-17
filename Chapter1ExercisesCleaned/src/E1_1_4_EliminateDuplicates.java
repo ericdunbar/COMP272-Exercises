@@ -1,4 +1,8 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -12,6 +16,40 @@ import java.util.Arrays;
 public class E1_1_4_EliminateDuplicates {
 
 	public static void main(String[] args) {
+
+		try {
+			FileReader theFReader;
+			theFReader = new FileReader(DSCommonUtils.theFileNameX3);
+			BufferedReader theBReader = new BufferedReader(theFReader);
+
+			ArrayList<String> theSortedArray = new ArrayList();
+			String theInput;
+
+			int currentPosition = 0;
+			int counter = 0;
+
+			System.out.println("I'm here");
+//			theSortedArray.add((String) theBReader.readLine());
+
+			while (((theInput = (String) theBReader.readLine()) != null)) {
+
+				int comparisonResult = Arrays.binarySearch(theSortedArray.toArray(), theInput);
+				if (comparisonResult < 0) {
+					System.out.println(comparisonResult + ", " + theInput);
+					theSortedArray.add(-comparisonResult - 1, theInput);
+				}
+				counter++;
+			}
+			for (int i = 0; i < theSortedArray.size(); i++) {
+				System.out.println(theSortedArray.get(i));
+			}
+
+			theBReader.close();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 }
@@ -30,13 +68,15 @@ class SortedArray {
 		return true;
 	}
 
-/**
- * Binary search using String array
- * 
- * @param theLocalArray An array of Strings
- * @param key The search key
- * @return Position of key or -(position) where it would insert
- */
+	/**
+	 * Binary search using String array
+	 * 
+	 * @param theLocalArray
+	 *            An array of Strings
+	 * @param key
+	 *            The search key
+	 * @return Position of key or -(position) where it would insert
+	 */
 	public static int binarySearch(String[] theLocalArray, String key) {
 		// @formatter:off
 		/*
@@ -83,6 +123,7 @@ http://stackoverflow.com/questions/3170412/why-is-132-1
 			}
 		}
 
+		// how does it handle a value that's lower than the smallest value?
 		return -(min + 1); // it's got to be greater than the low point
 	}
 
