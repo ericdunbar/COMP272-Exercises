@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * Provide utilties for unit 1 of Data Structures by Pat Morin
+ * Provide utilities for unit 1 of Data Structures by Pat Morin
  * 
  * @author Eric Dunbar
  *
@@ -25,6 +25,8 @@ public class DSCommonUtils {
 	public static ArrayList<String> theEight = new ArrayList<String>();
 	public static ArrayList<String> theNine = new ArrayList<String>();
 
+
+	
 	public static void generateProblemDesc() {
 		theOne.add("1. Read the input one line at a time and then write the lines out in");
 		theOne.add("reverse order, so that the last input line is printed first, then the");

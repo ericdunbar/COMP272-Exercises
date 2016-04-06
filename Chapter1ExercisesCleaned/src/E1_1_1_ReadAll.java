@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 import javax.swing.Timer;
 
-public class ChooseDataStructure {
+public class E1_1_1_ReadAll {
 
 	// x2.txt has a few million lines; x.txt has 200 lines
 	static String theFileName = "C:\\Users\\erdun\\git\\Chapter1ExercisesCleaned\\src\\x.txt";

@@ -24,7 +24,7 @@ time.
  * @author Eric
  *
  */
-public class E1_1_2 {
+public class E1_1_2Read50 {
 
 	private static void printReverseStringArray(String[] theStrings, int length) {
 		if (length > 0) {
