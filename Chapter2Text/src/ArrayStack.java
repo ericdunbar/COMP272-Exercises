@@ -46,7 +46,7 @@ public class ArrayStack {
 	}
 
 	/**
-	 * Sets the object passed as a parameter. Check boundaries and throw...
+	 * Sets the object passed as a parameter. Check boundaries and throw ...
 	 * 
 	 * @param index
 	 * @param T
@@ -61,6 +61,18 @@ public class ArrayStack {
 	}
 	
 	public void add(int index, Object T){
+		// Check for space
+		if (size() + 1 > a.length) {
+			// Resize
+			resize();
+		}
+		
+		// Add the element, bumping items as needed
+		
+	}
+
+	private void resize() {
+		// TODO Auto-generated method stub
 		
 	}
 }
