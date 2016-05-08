@@ -1,15 +1,23 @@
+import java.lang.reflect.Array;
 
 /**
  * Class: ArrayQueue Purpose: To implement a simple, unoptimized FIFO queue
  * using an array. Source: Open Data Structures, Chapter 2
  * 
- * @author erdun
+ * @author Eric Dunbar
  *
  * @param <T>
  */
 public class ArrayQueue<T> {
 	T[] array; // the backing array
-	int n; // the number of elements in the array
+	int n = 0; // the number of elements in the array
+	Class<T> theType; // added from Factory.java
+
+	public ArrayQueue(Class<T> theQT) {// added from Factory.java
+		TestingSupport.methodInfo("Class<T> " + theQT);
+		theType = theQT;
+		array = this.newArray(1);
+	}
 
 	int size() {
 		return n;
@@ -68,7 +76,7 @@ public class ArrayQueue<T> {
 	public T remove() {
 		return removeLast();
 	}
-	
+
 	public T removeLast() {
 		if (n == 0) {
 			throw new IndexOutOfBoundsException();
@@ -76,8 +84,31 @@ public class ArrayQueue<T> {
 		return remove(n - 1);
 	}
 
+	public T removeFirst() {
+		if (n == 0) {
+			throw new IndexOutOfBoundsException();
+		}
+		return remove(0);
+	}
+
+	
+	// added from Factory.java
+	/**
+	 * Allocate a new array of objects of type T.
+	 * @param n the size of the array to allocate
+	 * @return the array allocated
+	 */
+	@SuppressWarnings({"unchecked"})
+	private T[] newArray(int n) {
+		// Modify protected as the access level
+		// https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
+		TestingSupport.methodInfo(String.format("n = %d", n));
+		return (T[])Array.newInstance(theType, n);
+	}
+
 	public void resize() {
-		T[] b = newArray(max(n * 2, 1));
+		// modified by adding code from Factory.java
+		T[] b = newArray(Math.max(n * 2, 1));
 		for (int i = 0; i < n; i++) {
 			b[i] = array[i];
 		}
