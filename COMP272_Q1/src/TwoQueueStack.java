@@ -10,12 +10,20 @@
  */
 
 /*
- * 1. b. (15 marks total) Implement the stack methods push(x) and pop() using
+ * 1. b. Implement the stack methods push(x) and pop() using
  * two queues (5 marks for each method). Analyze the running time of the push(x)
  * and pop() operations based on this implementation (5 marks).
  */
 
+/*@formatter:off
+ * Citations:
+ * Hirondelle Systems. 2016. Use javadoc liberally. http://www.javapractices.com/topic/TopicAction.do?Id=60
+ * 
+ * @formatter:on
+ */
+
 /**
+ * 
  * A stack that stores objects. To call it use the syntax, new TwoQueueStack
  * <T>(T.class)
  * 
@@ -24,8 +32,8 @@
  * @param <T>
  */
 public class TwoQueueStack<T> {
-	private ArrayQueue queueA;
-	private ArrayQueue queueB;
+	private ArrayQueue qA;
+	private ArrayQueue qB;
 	private Class<T> theType; // added from Factory.java
 
 	public TwoQueueStack(Class<T> theQT) {
@@ -33,14 +41,13 @@ public class TwoQueueStack<T> {
 	}
 
 	public TwoQueueStack() {
-		queueA = new ArrayQueue(theType);
-		queueB = new ArrayQueue(theType);
+		qA = new ArrayQueue(theType);
+		qB = new ArrayQueue(theType);
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		System.out.println("START TwoQueueStack Testing");
+	private static void OneQueueTest(){
+		System.out.println("START One queue only");
+		TestingSupport.setTesting(true);
 		System.out.println();
 
 		ArrayQueue<Integer> mine = new ArrayQueue<Integer>(Integer.class);
@@ -54,10 +61,28 @@ public class TwoQueueStack<T> {
 
 		System.out.println();
 
-		System.out.printf("       removeLast() %5d%n", mine.removeLast());
-		System.out.printf("pop()/removeFirst() %5d%n", mine.removeFirst());
+		mine.removeLast();
+		mine.removeLast();
+		mine.removeFirst();
+		mine.removeFirst();
+		mine.removeLast();
+		mine.removeLast();
+
+		try {
+			mine.removeLast();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		};
+
 
 		System.out.println();
+		System.out.println("END   One queue only");
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		System.out.println("START TwoQueueStack Testing");
+		OneQueueTest();
 		System.out.println("END   TwoQueueStack Testing");
 	}
 }

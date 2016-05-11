@@ -37,6 +37,7 @@ public class ArrayQueue<T> {
 	}
 
 	public void add(int i, T x) {
+		TestingSupport.methodInfo(x.toString());
 		if (n + 1 > array.length)
 			resize();
 		for (int j = n; j > i; j--)
@@ -65,6 +66,7 @@ public class ArrayQueue<T> {
 		n--;
 		if (array.length >= 3 * n)
 			resize();
+		TestingSupport.methodInfo("[" + i + ", " + x.toString() + "]");
 		return x;
 	}
 
@@ -78,32 +80,27 @@ public class ArrayQueue<T> {
 	}
 
 	public T removeLast() {
-		if (n == 0) {
-			throw new IndexOutOfBoundsException();
-		}
 		return remove(n - 1);
 	}
 
 	public T removeFirst() {
-		if (n == 0) {
-			throw new IndexOutOfBoundsException();
-		}
 		return remove(0);
 	}
 
-	
 	// added from Factory.java
 	/**
 	 * Allocate a new array of objects of type T.
-	 * @param n the size of the array to allocate
+	 * 
+	 * @param n
+	 *            the size of the array to allocate
 	 * @return the array allocated
 	 */
-	@SuppressWarnings({"unchecked"})
+	@SuppressWarnings({ "unchecked" })
 	private T[] newArray(int n) {
 		// Modify protected as the access level
 		// https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
 		TestingSupport.methodInfo(String.format("n = %d", n));
-		return (T[])Array.newInstance(theType, n);
+		return (T[]) Array.newInstance(theType, n);
 	}
 
 	public void resize() {
