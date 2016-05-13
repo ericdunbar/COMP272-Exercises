@@ -17,8 +17,8 @@
  * Class: TwoQueueStack.
  * Purpose: A stack of objects.
  * 
- * Details: Its implementation calls for two queues. To call it use the syntax, new
- * TwoQueueStack <T>(T.class)
+ * Details: Its implementation a stack using two queues. To call it use the syntax, new
+ * TwoQueueStack <T>(T.class). This stack implements push(x) and pop().
  * 
  * @author 094360
  * @version 2016.05.04.1
@@ -26,8 +26,8 @@
  * @formatter:on
  */
 public class TwoQueueStack<T> {
-	private ArrayQueue qA;
-	private ArrayQueue qB;
+	private ArrayQueue qUnused;
+	private ArrayQueue qUsed;
 	private Class<T> theType; // added from Factory.java
 
 	public TwoQueueStack(Class<T> theQT) {
@@ -35,12 +35,31 @@ public class TwoQueueStack<T> {
 	}
 
 	public TwoQueueStack() {
-		qA = new ArrayQueue(theType);
-		qB = new ArrayQueue(theType);
+		qUnused = new ArrayQueue(theType);
+		qUsed = new ArrayQueue(theType);
 	}
 
+	
+	public T push(T dataElement){
+		qUnused.add(dataElement);
+		for (int i = 0; i < qUsed.size(); i++) {
+			qUnused.add(qUsed.remove());
+		}
+		ArrayQueue<T> qTemp = qUsed;
+		qUsed = qUnused;
+		qUnused = qTemp;
+		
+		return dataElement;
+	}
+
+	public T pop(){
+		return null;
+	}
+	
 	private static void OneQueueTest() {
 		System.out.println("START One queue only");
+		System.out.println();
+		System.out.println("Demonstration only. No use to final TwoQueueStack class.");
 		TestingSupport.setTesting(true);
 		System.out.println();
 
