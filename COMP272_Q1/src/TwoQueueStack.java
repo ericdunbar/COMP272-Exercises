@@ -1,18 +1,8 @@
 
-/**@formatter:off
- * Class: DoubleQueueStack
- * Purpose: Implements a stack using a pair of queues.
- * 
- * @author Eric Dunbar
- * Date:	4/5/2016
- *
- *@formatter:on
- */
-
 /*
- * 1. b. Implement the stack methods push(x) and pop() using
- * two queues (5 marks for each method). Analyze the running time of the push(x)
- * and pop() operations based on this implementation (5 marks).
+ * 1. b. Implement the stack methods push(x) and pop() using two queues (5 marks
+ * for each method). Analyze the running time of the push(x) and pop()
+ * operations based on this implementation (5 marks).
  */
 
 /*@formatter:off
@@ -23,13 +13,17 @@
  */
 
 /**
+ * @formatter:off
+ * Class: TwoQueueStack.
+ * Purpose: A stack of objects.
  * 
- * A stack that stores objects. To call it use the syntax, new TwoQueueStack
- * <T>(T.class)
+ * Details: Its implementation calls for two queues. To call it use the syntax, new
+ * TwoQueueStack <T>(T.class)
  * 
  * @author 094360
- *
+ * @version 2016.05.04.1
  * @param <T>
+ * @formatter:on
  */
 public class TwoQueueStack<T> {
 	private ArrayQueue qA;
@@ -45,7 +39,7 @@ public class TwoQueueStack<T> {
 		qB = new ArrayQueue(theType);
 	}
 
-	private static void OneQueueTest(){
+	private static void OneQueueTest() {
 		System.out.println("START One queue only");
 		TestingSupport.setTesting(true);
 		System.out.println();
@@ -72,12 +66,13 @@ public class TwoQueueStack<T> {
 			mine.removeLast();
 		} catch (Exception e) {
 			System.out.println(e.toString());
-		};
-
+		}
+		;
 
 		System.out.println();
 		System.out.println("END   One queue only");
 	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
