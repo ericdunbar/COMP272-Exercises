@@ -32,35 +32,59 @@ public class TwoQueueStack<T> {
 
 	public TwoQueueStack(Class<T> theQT) {
 		theType = theQT;
-	}
-
-	public TwoQueueStack() {
 		qUnused = new ArrayQueue(theType);
 		qUsed = new ArrayQueue(theType);
 	}
 
+/*	public TwoQueueStack() {
+		qUnused = new ArrayQueue(theType);
+		qUsed = new ArrayQueue(theType);
+	}
+*/
 	
-	public T push(T dataElement){
+	public T push(T dataElement) {
+		// Last element in needs to be at the tail of the queue (i.e. first out)
+		TestingSupport.methodInfo("(" + dataElement + ")");
 		qUnused.add(dataElement);
-		for (int i = 0; i < qUsed.size(); i++) {
+
+		// Move tail element from one queue to the head of another queue
+		int elementsToRemove = qUsed.size();
+		//Fix: was using qUsed.size() directly but qUsed.size() changes each iteration!
+		for (int i = 0; i < elementsToRemove; i++) {
+			// note: since remove will resize the backing array many times this
+			// is a highly inefficient way of using the backing array
 			qUnused.add(qUsed.remove());
 		}
+
 		ArrayQueue<T> qTemp = qUsed;
+
+		/*
+		 * figure it's faster and uses less memory to copy a pointer to an
+		 * existing ArrayQueue object than to create and allocate the memory for
+		 * a new one
+		 */
 		qUsed = qUnused;
 		qUnused = qTemp;
 		
 		return dataElement;
 	}
 
-	public T pop(){
-		return null;
+	@Override
+	public String toString() {
+		return "TwoQueueStack [qUnused=" + qUnused + ", qUsed=" + qUsed + ", theType=" + theType
+				+ "]";
 	}
-	
+
+	public T pop() {
+		// Check this. Why having to type-cast?
+		return (T) qUsed.remove();
+	}
+
 	private static void OneQueueTest() {
 		System.out.println("START One queue only");
 		System.out.println();
 		System.out.println("Demonstration only. No use to final TwoQueueStack class.");
-		TestingSupport.setTesting(true);
+		TestingSupport.setTesting(false);
 		System.out.println();
 
 		ArrayQueue<Integer> mine = new ArrayQueue<Integer>(Integer.class);
@@ -92,11 +116,35 @@ public class TwoQueueStack<T> {
 		System.out.println("END   One queue only");
 	}
 
+	private static void PushPopTest() {
+		System.out.println("START PushPop Testing");
+		System.out.println();
+		System.out.println("Demonstration of push(x) and pop().");
+		TestingSupport.setTesting(false);
+
+		TwoQueueStack<Integer> demoStack = new TwoQueueStack<>(Integer.class);
+		
+		for (int i = 0; i < 10000; i++) {
+			System.out.println("Round " + i);
+			System.out.println("    " + demoStack.toString());
+			TestingSupport.methodInfo("push(" + demoStack.push(88*i) + ");");
+		}
+		for (int i = 0; i < 11; i++) {
+			try {
+				System.out.println(demoStack.pop());
+			} catch (Exception e) {
+				System.out.println(e.toString());
+			}
+		}
+		System.out.println("END   PushPop Testing");
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 		System.out.println("START TwoQueueStack Testing");
 		OneQueueTest();
+		PushPopTest();
 		System.out.println("END   TwoQueueStack Testing");
 	}
 }

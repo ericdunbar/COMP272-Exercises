@@ -13,6 +13,16 @@ public class ArrayQueue<T> {
 	int n = 0; // the number of elements in the array
 	Class<T> theType; // added from Factory.java
 
+	public String toString(){
+		String toReturn = "{";
+		String comma = "";
+		for (int i = 0; i < n; i++) {
+			toReturn += comma + array[i].toString();
+			comma = ",";
+		}
+		toReturn += "}";
+		return toReturn;
+	}
 	public ArrayQueue(Class<T> theQT) {// added from Factory.java
 		TestingSupport.methodInfo("Class<T> " + theQT);
 		theType = theQT;
@@ -66,7 +76,7 @@ public class ArrayQueue<T> {
 		n--;
 		if (array.length >= 3 * n)
 			resize();
-		TestingSupport.methodInfo("[" + i + ", " + x.toString() + "]");
+		TestingSupport.methodInfo("[i = " + i + ", x = " + x.toString() + "]");
 		return x;
 	}
 
