@@ -149,7 +149,7 @@ public class SLList2<T extends Comparable<T>> {
 	}
 
 	public static void main(String[] args) {
-		Queue<Integer> q = new PriorityQueueSLList<Integer>(Integer.class);
+		Queue<Integer> q = new SLList<Integer>(Integer.class);
 		for (int i = 0; i < 100; i++) {
 			q.add(i);
 		}

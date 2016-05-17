@@ -4,18 +4,54 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /*
- * 2. Swap two adjacent elements in a list by adjusting only the links (and not the data) using...
+ * 1. (25 + 15 = 40 marks) You have learned some fundamental data structure
+ * concepts such as array, queue and priority queue, stack, list and linked
+ * list, sequence, and unordered set, and you understand the concept of
+ * interface or abstract data type that defines the set of operations supported
+ * by a data structure and the semantics, or meaning, of those operations. You
+ * can use the interface of one particular data structure to define or implement
+ * the operations of a different data structure.
+ */
+
+/*
+	@formatter:off
+	
+ * 1. a. Describe the meaning of the essential methods:
  * 
- * a. singly-linked list (6 marks).
+ * add(x),
+ * deleteMin(), and
+ * size()
  * 
+ * that are supported by the priority queue interface (5 marks).
+ *  
+ * Implement those methods using a singly-linked list (5 marks for each method).
+ * 
+ * Analyze the running time of the add(x) and deleteMin() operations based on
+ * this implementation (5 marks).
+ * 
+	@formatter:on
+ */
+
+/*
+ * 1. b. (15 marks total) Implement the stack methods push(x) and pop() using
+ * two queues (5 marks for each method). Analyze the running time of the push(x)
+ * and pop() operations based on this implementation (5 marks).
  */
 
 /**
- * Description: An SLList (singly-linked list) is a sequence of Nodes. Each node u stores a data
- * value u.x and a reference u.next to the next node in the sequence. For the last node w in the
- * sequence, w.next = null
+ * Description:
  * 
- * @Date 15/5/2016
+ * @Date 28/4/2016
+ * @author Eric Dunbar
+ *
+ */
+
+/**
+ * Description: An SLList (singly-linked list) is a sequence of Nodes. Each node
+ * u stores a data value u.x and a reference u.next to the next node in the
+ * sequence. For the last node w in the sequence, w.next = null
+ * 
+ * @Date 30/4/2016
  * @author Eric Dunbar
  * @param <E>
  *
@@ -45,8 +81,9 @@ public class SLList<T extends Comparable<T>> {
 	}
 
 	/*
-	 * For efficiency, an SLList uses variables head and tail to keep track of the first and last
-	 * node in the sequence, as well as an integer n to keep track of the length of the sequence:
+	 * For efficiency, an SLList uses variables head and tail to keep track of
+	 * the first and last node in the sequence, as well as an integer n to keep
+	 * track of the length of the sequence:
 	 */
 
 	Node head; // first node in sequence
@@ -56,15 +93,17 @@ public class SLList<T extends Comparable<T>> {
 	// STACK OPERATIONS
 
 	/*
-	 * An SLList can efficiently implement the Stack operations push() and pop() by adding and
-	 * removing elements at the head of the sequence.
+	 * An SLList can efficiently implement the Stack operations push() and pop()
+	 * by adding and removing elements at the head of the sequence.
 	 * 
-	 * The push() operation simply creates a new node u with data value element, sets u.next to the
-	 * old head of the list and makes u the new HEAD of the list. Finally, it increments n since the
-	 * size of the SLList has increased by one.
+	 * The push() operation simply creates a new node u with data value element,
+	 * sets u.next to the old head of the list and makes u the new HEAD of the
+	 * list. Finally, it increments n since the size of the SLList has increased
+	 * by one.
 	 * 
-	 * Sources: http://crunchify.com/how-to-implement-a-linkedlist-class-from-scratch-in- java/ and
-	 * Morin
+	 * Sources:
+	 * http://crunchify.com/how-to-implement-a-linkedlist-class-from-scratch-in-
+	 * java/ and Morin
 	 */
 
 	public T push(T element) {
@@ -80,10 +119,12 @@ public class SLList<T extends Comparable<T>> {
 	}
 
 	/*
-	 * The pop() operation, after checking that the SLList is not empty, removes the HEAD by setting
-	 * head = head.next and decrementing n. A special case occurs when the last element is being
-	 * removed, in which case tail is set to null.
+	 * The pop() operation, after checking that the SLList is not empty, removes
+	 * the HEAD by setting head = head.next and decrementing n. A special case
+	 * occurs when the last element is being removed, in which case tail is set
+	 * to null.
 	 */
+
 	public T pop() {
 		if (n == 0)
 			return null; // SLList is already empty
@@ -99,7 +140,8 @@ public class SLList<T extends Comparable<T>> {
 	// QUEUE OPERATIONS
 
 	/*
-	 * Removals are done from the HEAD of the list, and are identical to the pop() operation.
+	 * Removals are done from the HEAD of the list, and are identical to the
+	 * pop() operation.
 	 */
 
 	public T remove() {
@@ -107,9 +149,10 @@ public class SLList<T extends Comparable<T>> {
 	}
 
 	/*
-	 * Additions are done at the TAIL of the list. In most cases, this is done by setting tail.next
-	 * = u, where u is the newly created node that contains x. However, a special case occurs when n
-	 * = 0, in which case tail = head = null. In this case, both tail and head are set to u.
+	 * Additions are done at the TAIL of the list. In most cases, this is done
+	 * by setting tail.next = u, where u is the newly created node that contains
+	 * x. However, a special case occurs when n = 0, in which case tail = head =
+	 * null. In this case, both tail and head are set to u.
 	 */
 
 	/**
@@ -134,45 +177,9 @@ public class SLList<T extends Comparable<T>> {
 	}
 
 	/**
-	 * 2. Swap two adjacent elements in a list by adjusting only the links (and not the data)
-	 * using...
-	 * 
-	 * a. singly-linked list (6 marks).
-	 */
-	public void swapWithNextNode(Node swapNextNode) {
-		// throw an exception if list is empty?
-		Node baseNode = new Node();
-		baseNode.next = head;
-
-		for (int i = 0; i < this.size(); i++) {
-			if (baseNode.next == swapNextNode) {
-				if (baseNode.next == tail)
-					return; // throw exception?
-
-				// use variables to improve readability
-				Node nodeIn1 = baseNode.next;
-				Node nodeIn2 = baseNode.next.next;
-				Node nodeIn3 = baseNode.next.next.next; // null if nodeIn2 == tail
-
-				// perform the swap
-				baseNode.next = nodeIn2;
-				nodeIn1.next = nodeIn3;
-				nodeIn2.next = nodeIn1;
-
-				if (nodeIn2 == tail) {
-					tail = nodeIn1; // ensure the tail points to the real tail
-				}
-				return;
-			}
-			baseNode = baseNode.next;
-		}
-
-		// what happens if the node isn't found? Throw an exception?
-	}
-
-	/**
-	 * Search for, removes and returns the smallest element in the singly-linked list. Ties are
-	 * arbitrarily broken by removing the "oldest" or "first in" element.
+	 * Search for, removes and returns the smallest element in the singly-linked
+	 * list. Ties are arbitrarily broken by removing the "oldest" or "first in"
+	 * element.
 	 * 
 	 * @param <T>
 	 * 
@@ -265,7 +272,7 @@ public class SLList<T extends Comparable<T>> {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		PriorityQueueSLList<String> myPriorityQueue = new PriorityQueueSLList<>();
+		SLList<String> myPriorityQueue = new SLList<>();
 
 		System.out.println("Fi".compareTo("Fifth"));
 
