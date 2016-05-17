@@ -303,7 +303,7 @@ public class SLList<T extends Comparable<T>> {
 			System.out.println(idx + ": " + mySwapQueue.getNode(idx).elementData);
 		}
 
-		int j = 11;
+		int j = 10;
 				
 		mySwapQueue.swapWithNextNode(mySwapQueue.getNode(j));
 
