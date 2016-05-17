@@ -1,8 +1,3 @@
-import java.util.AbstractQueue;
-import java.util.EmptyStackException;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
 /*
  * 2. Swap two adjacent elements in a list by adjusting only the links (and not the data) using...
  * 

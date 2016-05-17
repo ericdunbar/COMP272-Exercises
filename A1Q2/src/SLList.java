@@ -1,6 +1,4 @@
-import java.util.AbstractQueue;
 import java.util.EmptyStackException;
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /*
@@ -315,6 +313,7 @@ public class SLList<T extends Comparable<T>> {
 
 	}
 
+	@SuppressWarnings("unused")
 	private static void priorityQueueDemo() {
 		SLList<String> myPriorityQueue = new SLList<>();
 
