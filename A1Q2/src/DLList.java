@@ -1,16 +1,15 @@
 /*
- * 2. Swap two adjacent elements in a list by adjusting only the links (and not the data) using...
+ * 2. Swap two adjacent elements in a list by adjusting only the links (and not the data)
+ * using...
  * 
- * a. doubly-linked list (6 marks).
+ * b. doubly-linked list (6 marks).
  * 
  */
 
 /**
- * Description: An SLList (singly-linked list) is a sequence of Nodes. Each node u stores a data
- * value u.x and a reference u.next to the next node in the sequence. For the last node w in the
- * sequence, w.next = null. A DLList (doubly-linked list) is very similar to an SLList except that
- * each node u in a DLList has references to both the node u:next that follows it and the node
- * u:prev that precedes it.
+ * Description: In a DLList (doubly-linked list) each node u stores a data value, x and
+ * has references to both the node u.next that follows it and the node u.prev that
+ * precedes it.
  * 
  * Source: ODS by PM
  * 
@@ -21,22 +20,38 @@
  */
 public class DLList<T extends Comparable<T>> {
 
-	// Note: future effort... implement PriorityQueue
+	/*
+	 * "CompareTo with Generic Objects!" (Beginning Java Forum at Coderanch). July 31,
+	 * 2013. Accessed May 17, 2016.
+	 * http://www.coderanch.com/t/617025/java/java/compareTo-generic-objects.
+	 * 
+	 * "GC: LinkedList - Java.util.LinkedList (.java) - GrepCode Class Source." 2013.
+	 * Accessed May 17, 2016.
+	 * http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/
+	 * java/util/LinkedList.java#LinkedList.Node.
+	 * 
+	 * "In Java What's the Difference between ?, E, T." - Stack Overflow. April 3, 2011.
+	 * Accessed May 17, 2016.
+	 * http://stackoverflow.com/questions/5526955/in-java-whats-the-difference-between-e-
+	 * t.
+	 * 
+	 * "<T> Cannot Be Resolved to a Type." Java. September 23, 2010. Accessed May 17,
+	 * 2016. http://stackoverflow.com/questions/3777315/t-cannot-be-resolved-to-a-type.
+	 * 
+	 * "What Does the <E> in Java Mean?" Syntax. November 28, 2013. Accessed May 17, 2016.
+	 * http://stackoverflow.com/questions/20255911/what-does-the-e-in-java-mean.
+	 */
 
-	// http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/util/LinkedList.java#LinkedList.Node
-
-	// http://stackoverflow.com/questions/20255911/what-does-the-e-in-java-mean
-
-	// http://stackoverflow.com/questions/5526955/in-java-whats-the-difference-between-e-t
-
-	// http://www.coderanch.com/t/617025/java/java/compareTo-generic-objects
-
-	// http://stackoverflow.com/questions/3777315/t-cannot-be-resolved-to-a-type
-
-	// COMPARABLE solution
-	// *******************************************************************************************
-	// http://stackoverflow.com/questions/25437682/use-a-linked-list-to-implement-a-priority-queue
-	// *******************************************************************************************
+	/*
+	 * ***********************************************************************************
+	 * COMPARABLE solution
+	 * ***********************************************************************************
+	 * "Use a Linked List to Implement a Priority Queue." Java. August 22, 2014. Accessed
+	 * May 17, 2016.
+	 * http://stackoverflow.com/questions/25437682/use-a-linked-list-to-implement-a-
+	 * priority-queue.
+	 * ***********************************************************************************
+	 */
 
 	private class Node {
 		T elementData;
@@ -44,17 +59,19 @@ public class DLList<T extends Comparable<T>> {
 	}
 
 	/*
-	 * Dummy node. This is a node that does not contain any data, but acts as a placeholder so that
-	 * there are no special nodes; every node has both a next and a prev, with dummy acting as the
-	 * node that follows the last node in the list and that precedes the first node in the list. In
-	 * this way, the nodes of the list are (doubly-)linked into a cycle
+	 * Dummy node. This is a node that does not contain any data, but acts as a
+	 * placeholder so that there are no special nodes; every node has both a next and a
+	 * prev, with dummy acting as the node that follows the last node in the list and that
+	 * precedes the first node in the list. In this way, the nodes of the list are
+	 * (doubly-)linked into a cycle.
 	 */
 
-	Node dummy; // first node in sequence
+	Node dummy; // first and last node in sequence
 	int n; // length of sequence
 
 	/**
-	 * Create a doubly-linked list using a dummy node to solve head and tail link problems.
+	 * Create a doubly-linked list using a dummy node to solve head and tail link
+	 * problems.
 	 * 
 	 * Source: ODS by PM
 	 */
@@ -66,11 +83,12 @@ public class DLList<T extends Comparable<T>> {
 	}
 
 	/**
-	 * Finding the node with a particular index in a DLList is easy; we can either start at the head
-	 * of the list (dummy:next) and work forward, or start at the tail of the list (dummy:prev) and
-	 * work backward. This allows us to reach the ith node in O(1 + min{i, n-i}) time.
+	 * To find the node with index in a DLList start at the head of the list (dummy.next)
+	 * and work forward, or start at the tail of the list (dummy.prev) and work backward.
+	 * This reaches the ith node in O(1 + min{i, n-i}) time.
 	 * 
-	 * Source: ODS by PM http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-
+	 * Source: ODS by PM
+	 * http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-
 	 * b14/java/util/LinkedList.java#LinkedList.entry%28int%29
 	 * 
 	 * @param index
@@ -94,31 +112,31 @@ public class DLList<T extends Comparable<T>> {
 	}
 
 	/**
-	 * Return the value of the ith. The running time of this operation is dominated by the time it
-	 * takes to find the ith node, and is therefore O(1 + min{i, n-i}).
+	 * Return the value at the ith index. The running time of this operation is dominated
+	 * by the time it takes to find the ith node, and is therefore O(1 + min{i, n-i}).
 	 * 
 	 * Source: ODS by PM
 	 * 
-	 * @param i
+	 * @param index
 	 * @return
 	 */
-	T get(int i) {
-		return getNode(i).elementData;
+	T get(int index) {
+		return getNode(index).elementData;
 	}
 
 	/**
-	 * First find the ith node, then set its value, and finally return the old value. The running
-	 * time of this operation is dominated by the time it takes to find the ith node, and is
-	 * therefore O(1 + min{i, n-i}).
+	 * First find the ith node, then set its value, and finally return the old value. The
+	 * running time of this operation is dominated by the time it takes to find the ith
+	 * node, and is therefore O(1 + min{i, n-i}).
 	 * 
 	 * Source: ODS by PM
 	 * 
-	 * @param i
+	 * @param index
 	 * @param x
 	 * @return
 	 */
-	T set(int i, T x) {
-		Node u = getNode(i);
+	T set(int index, T x) {
+		Node u = getNode(index);
 		T oldElement = u.elementData;
 		u.elementData = x;
 		return oldElement;
@@ -127,13 +145,16 @@ public class DLList<T extends Comparable<T>> {
 	/*
 	 * ADDING AND REMOVING
 	 * 
-	 * With a reference to node w in a DLList, insert node u before w by setting u.next = w, u.prev
-	 * = w.prev, and then adjusting u.prev.next and u.next.prev. (See Figure 3.3 in ODS) The dummy
-	 * node eliminates the need to worry about w.prev or w.next not existing.
+	 * With a reference to node w in a DLList, insert node u before w by setting u.next =
+	 * w, u.prev = w.prev, and then adjusting u.prev.next and u.next.prev. (See Figure 3.3
+	 * in ODS) The dummy node eliminates the need to worry about w.prev or w.next not
+	 * existing.
 	 * 
 	 * Source: 3.2.1 ODS by PM and
-	 * http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/util/
-	 * LinkedList.java#LinkedList.addBefore%28java.lang.Object%2Cjava.util.LinkedList.Entry%29
+	 * http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/
+	 * util/
+	 * LinkedList.java#LinkedList.addBefore%28java.lang.Object%2Cjava.util.LinkedList.
+	 * Entry%29
 	 */
 
 	/**
@@ -181,13 +202,13 @@ public class DLList<T extends Comparable<T>> {
 
 	// REMOVING
 	/*
-	 * The only expensive part of this operation is finding the ith node using getNode(i), so
-	 * remove(i) runs in O(1 + min{i, n-i}) time.
+	 * The only expensive part of this operation is finding the ith node using getNode(i),
+	 * so remove(i) runs in O(1 + min{i, n-i}) time.
 	 */
 
 	/**
-	 * Adjust pointers at w.next and w.prev so they skip w. The dummy node eliminates the need to
-	 * consider any special cases.
+	 * Adjust pointers at w.next and w.prev so they skip w. The dummy node eliminates the
+	 * need to consider any special cases.
 	 * 
 	 * Source: ODS by PM
 	 * 
@@ -225,14 +246,9 @@ public class DLList<T extends Comparable<T>> {
 
 	// STACK OPERATIONS
 
-	
-
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("START DLL TESTING");
-
-
 
 		System.out.println("END   DLL TESTING");
 	}
