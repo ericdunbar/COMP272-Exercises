@@ -88,8 +88,14 @@ public class DLList<T extends Comparable<T>> {
 	 * This reaches the ith node in O(1 + min{i, n-i}) time.
 	 * 
 	 * Source: ODS by PM
-	 * http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-
-	 * b14/java/util/LinkedList.java#LinkedList.entry%28int%29
+	 * 
+	 * "GC: LinkedList - Java.util.LinkedList (.java) - GrepCode Class Source." GC:
+	 * LinkedList - Java.util.LinkedList (.java) - GrepCode Class Source. 2006. Accessed
+	 * May 17, 2016.
+	 * http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/
+	 * util/LinkedList.java#LinkedList.addBefore(java.lang.Object,java.util.LinkedList.
+	 * Entry).
+	 * 
 	 * 
 	 * @param index
 	 * @return
@@ -151,10 +157,14 @@ public class DLList<T extends Comparable<T>> {
 	 * existing.
 	 * 
 	 * Source: 3.2.1 ODS by PM and
+	 * 
+	 * "GC: LinkedList - Java.util.LinkedList (.java) - GrepCode Class Source." GC:
+	 * LinkedList - Java.util.LinkedList (.java) - GrepCode Class Source. 2006. Accessed
+	 * May 17, 2016.
 	 * http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/
-	 * util/
-	 * LinkedList.java#LinkedList.addBefore%28java.lang.Object%2Cjava.util.LinkedList.
-	 * Entry%29
+	 * util/LinkedList.java#LinkedList.addBefore(java.lang.Object,java.util.LinkedList.
+	 * Entry).
+	 * 
 	 */
 
 	/**
@@ -244,11 +254,85 @@ public class DLList<T extends Comparable<T>> {
 		return n;
 	}
 
-	// STACK OPERATIONS
+	public void swapWithNextNode(Node y) {
+		// TODO: throw error if IndexOutOfBounds
+		// TODO: check to see if Index is > size()-2
+
+		Node after = y.next.next;
+
+		System.out.printf(
+				"-1: %1.2f(0: %1.2f),0: %1.2f,+1: %1.2f(0: %1.2f),+2: %1.2f(+1: %1.2f) %n",
+				y.prev.elementData, y.prev.next.elementData, y.elementData, y.next.elementData,
+				y.next.prev.elementData, y.next.next.elementData, y.next.next.prev.elementData);
+
+		y.prev.next = y.next;
+		y.next.prev = y.prev;
+		y.next.next.prev = y;
+		y.next.next = y;
+		y.prev = y.next;
+		y.next = after;
+
+		System.out.printf(
+				"-1: %1.2f(0: %1.2f),0: %1.2f,+1: %1.2f(0: %1.2f),+2: %1.2f(+1: %1.2f) %n",
+				y.prev.elementData, y.prev.next.elementData, y.elementData, y.next.elementData,
+				y.next.prev.elementData, y.next.next.elementData, y.next.next.prev.elementData);
+		System.out.println();
+	}
+
+	private void displayList() {
+		for (int i = 0; i < this.size(); i++) {
+			System.out.println("i: " + i + " e: " + this.get(i));
+		}
+	}
+
+	/**
+	 * Demonstrate node swapping functionality.
+	 */
+	private static void DLListNodeSwapDemo() {
+		TestingSupport.setTesting(true);
+		DLList<Double> theDLList = new DLList<>();
+
+		for (int i = 0; i < 10; i++) {
+			theDLList.add(i + Math.random());
+		}
+
+		theDLList.displayList();
+		System.out.println();
+		theDLList.swapWithNextNode(theDLList.getNode(9));
+		// error: if node within 2 of end it cannot swap correctly.
+		theDLList.displayList();
+		System.out.println();
+
+		int theDLListsize = theDLList.size();
+		for (int i = 0; i < theDLListsize; i++) {
+			TestingSupport.methodInfo(Double.toString(theDLList.remove(0)));
+		}
+	}
+
+	/**
+	 * Demonstrate basic DLList functionality.
+	 */
+	private static void DLListDemo() {
+		TestingSupport.setTesting(false);
+		DLList<Double> theDLList = new DLList<>();
+
+		for (int i = 0; i < 10; i++) {
+			theDLList.add(i + Math.random());
+			theDLList.add(i * 2, 100 + i + 100 * i + Math.random());
+		}
+
+		int theDLListsize = theDLList.size();
+		for (int i = 0; i < theDLListsize; i++) {
+			TestingSupport.methodInfo(Double.toString(theDLList.remove(0)));
+		}
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("START DLL TESTING");
+
+		DLListDemo();
+		DLListNodeSwapDemo();
 
 		System.out.println("END   DLL TESTING");
 	}
