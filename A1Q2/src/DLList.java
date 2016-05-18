@@ -7,9 +7,8 @@
  */
 
 /**
- * Description: In a DLList (doubly-linked list) each node u stores a data value, x and
- * has references to both the node u.next that follows it and the node u.prev that
- * precedes it.
+ * Description: In a DLList (doubly-linked list) each node u stores a data value, x and has
+ * references to both the node u.next that follows it and the node u.prev that precedes it.
  * 
  * Source: ODS by PM
  * 
@@ -21,22 +20,19 @@
 public class DLList<T extends Comparable<T>> {
 
 	/*
-	 * "CompareTo with Generic Objects!" (Beginning Java Forum at Coderanch). July 31,
-	 * 2013. Accessed May 17, 2016.
-	 * http://www.coderanch.com/t/617025/java/java/compareTo-generic-objects.
+	 * "CompareTo with Generic Objects!" (Beginning Java Forum at Coderanch). July 31, 2013.
+	 * Accessed May 17, 2016. http://www.coderanch.com/t/617025/java/java/compareTo-generic-objects.
 	 * 
-	 * "GC: LinkedList - Java.util.LinkedList (.java) - GrepCode Class Source." 2013.
-	 * Accessed May 17, 2016.
-	 * http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/
+	 * "GC: LinkedList - Java.util.LinkedList (.java) - GrepCode Class Source." 2013. Accessed May
+	 * 17, 2016. http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/
 	 * java/util/LinkedList.java#LinkedList.Node.
 	 * 
-	 * "In Java What's the Difference between ?, E, T." - Stack Overflow. April 3, 2011.
-	 * Accessed May 17, 2016.
-	 * http://stackoverflow.com/questions/5526955/in-java-whats-the-difference-between-e-
-	 * t.
+	 * "In Java What's the Difference between ?, E, T." - Stack Overflow. April 3, 2011. Accessed
+	 * May 17, 2016.
+	 * http://stackoverflow.com/questions/5526955/in-java-whats-the-difference-between-e- t.
 	 * 
-	 * "<T> Cannot Be Resolved to a Type." Java. September 23, 2010. Accessed May 17,
-	 * 2016. http://stackoverflow.com/questions/3777315/t-cannot-be-resolved-to-a-type.
+	 * "<T> Cannot Be Resolved to a Type." Java. September 23, 2010. Accessed May 17, 2016.
+	 * http://stackoverflow.com/questions/3777315/t-cannot-be-resolved-to-a-type.
 	 * 
 	 * "What Does the <E> in Java Mean?" Syntax. November 28, 2013. Accessed May 17, 2016.
 	 * http://stackoverflow.com/questions/20255911/what-does-the-e-in-java-mean.
@@ -46,9 +42,8 @@ public class DLList<T extends Comparable<T>> {
 	 * ***********************************************************************************
 	 * COMPARABLE solution
 	 * ***********************************************************************************
-	 * "Use a Linked List to Implement a Priority Queue." Java. August 22, 2014. Accessed
-	 * May 17, 2016.
-	 * http://stackoverflow.com/questions/25437682/use-a-linked-list-to-implement-a-
+	 * "Use a Linked List to Implement a Priority Queue." Java. August 22, 2014. Accessed May 17,
+	 * 2016. http://stackoverflow.com/questions/25437682/use-a-linked-list-to-implement-a-
 	 * priority-queue.
 	 * ***********************************************************************************
 	 */
@@ -59,19 +54,17 @@ public class DLList<T extends Comparable<T>> {
 	}
 
 	/*
-	 * Dummy node. This is a node that does not contain any data, but acts as a
-	 * placeholder so that there are no special nodes; every node has both a next and a
-	 * prev, with dummy acting as the node that follows the last node in the list and that
-	 * precedes the first node in the list. In this way, the nodes of the list are
-	 * (doubly-)linked into a cycle.
+	 * Dummy node. This is a node that does not contain any data, but acts as a placeholder so that
+	 * there are no special nodes; every node has both a next and a prev, with dummy acting as the
+	 * node that follows the last node in the list and that precedes the first node in the list. In
+	 * this way, the nodes of the list are (doubly-)linked into a cycle.
 	 */
 
 	Node dummy; // first and last node in sequence
 	int n; // length of sequence
 
 	/**
-	 * Create a doubly-linked list using a dummy node to solve head and tail link
-	 * problems.
+	 * Create a doubly-linked list using a dummy node to solve head and tail link problems.
 	 * 
 	 * Source: ODS by PM
 	 */
@@ -83,18 +76,16 @@ public class DLList<T extends Comparable<T>> {
 	}
 
 	/**
-	 * To find the node with index in a DLList start at the head of the list (dummy.next)
-	 * and work forward, or start at the tail of the list (dummy.prev) and work backward.
-	 * This reaches the ith node in O(1 + min{i, n-i}) time.
+	 * To find the node with index in a DLList start at the head of the list (dummy.next) and work
+	 * forward, or start at the tail of the list (dummy.prev) and work backward. This reaches the
+	 * ith node in O(1 + min{i, n-i}) time.
 	 * 
 	 * Source: ODS by PM
 	 * 
-	 * "GC: LinkedList - Java.util.LinkedList (.java) - GrepCode Class Source." GC:
-	 * LinkedList - Java.util.LinkedList (.java) - GrepCode Class Source. 2006. Accessed
-	 * May 17, 2016.
+	 * "GC: LinkedList - Java.util.LinkedList (.java) - GrepCode Class Source." GC: LinkedList -
+	 * Java.util.LinkedList (.java) - GrepCode Class Source. 2006. Accessed May 17, 2016.
 	 * http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/
-	 * util/LinkedList.java#LinkedList.addBefore(java.lang.Object,java.util.LinkedList.
-	 * Entry).
+	 * util/LinkedList.java#LinkedList.addBefore(java.lang.Object,java.util.LinkedList. Entry).
 	 * 
 	 * 
 	 * @param index
@@ -118,8 +109,8 @@ public class DLList<T extends Comparable<T>> {
 	}
 
 	/**
-	 * Return the value at the ith index. The running time of this operation is dominated
-	 * by the time it takes to find the ith node, and is therefore O(1 + min{i, n-i}).
+	 * Return the value at the ith index. The running time of this operation is dominated by the
+	 * time it takes to find the ith node, and is therefore O(1 + min{i, n-i}).
 	 * 
 	 * Source: ODS by PM
 	 * 
@@ -131,9 +122,9 @@ public class DLList<T extends Comparable<T>> {
 	}
 
 	/**
-	 * First find the ith node, then set its value, and finally return the old value. The
-	 * running time of this operation is dominated by the time it takes to find the ith
-	 * node, and is therefore O(1 + min{i, n-i}).
+	 * First find the ith node, then set its value, and finally return the old value. The running
+	 * time of this operation is dominated by the time it takes to find the ith node, and is
+	 * therefore O(1 + min{i, n-i}).
 	 * 
 	 * Source: ODS by PM
 	 * 
@@ -151,19 +142,16 @@ public class DLList<T extends Comparable<T>> {
 	/*
 	 * ADDING AND REMOVING
 	 * 
-	 * With a reference to node w in a DLList, insert node u before w by setting u.next =
-	 * w, u.prev = w.prev, and then adjusting u.prev.next and u.next.prev. (See Figure 3.3
-	 * in ODS) The dummy node eliminates the need to worry about w.prev or w.next not
-	 * existing.
+	 * With a reference to node w in a DLList, insert node u before w by setting u.next = w, u.prev
+	 * = w.prev, and then adjusting u.prev.next and u.next.prev. (See Figure 3.3 in ODS) The dummy
+	 * node eliminates the need to worry about w.prev or w.next not existing.
 	 * 
 	 * Source: 3.2.1 ODS by PM and
 	 * 
-	 * "GC: LinkedList - Java.util.LinkedList (.java) - GrepCode Class Source." GC:
-	 * LinkedList - Java.util.LinkedList (.java) - GrepCode Class Source. 2006. Accessed
-	 * May 17, 2016.
+	 * "GC: LinkedList - Java.util.LinkedList (.java) - GrepCode Class Source." GC: LinkedList -
+	 * Java.util.LinkedList (.java) - GrepCode Class Source. 2006. Accessed May 17, 2016.
 	 * http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/
-	 * util/LinkedList.java#LinkedList.addBefore(java.lang.Object,java.util.LinkedList.
-	 * Entry).
+	 * util/LinkedList.java#LinkedList.addBefore(java.lang.Object,java.util.LinkedList. Entry).
 	 * 
 	 */
 
@@ -212,13 +200,13 @@ public class DLList<T extends Comparable<T>> {
 
 	// REMOVING
 	/*
-	 * The only expensive part of this operation is finding the ith node using getNode(i),
-	 * so remove(i) runs in O(1 + min{i, n-i}) time.
+	 * The only expensive part of this operation is finding the ith node using getNode(i), so
+	 * remove(i) runs in O(1 + min{i, n-i}) time.
 	 */
 
 	/**
-	 * Adjust pointers at w.next and w.prev so they skip w. The dummy node eliminates the
-	 * need to consider any special cases.
+	 * Adjust pointers at w.next and w.prev so they skip w. The dummy node eliminates the need to
+	 * consider any special cases.
 	 * 
 	 * Source: ODS by PM
 	 * 
@@ -254,16 +242,21 @@ public class DLList<T extends Comparable<T>> {
 		return n;
 	}
 
+	public void printSummary(Node y) {
+		System.out.printf(
+				"Swap summary: -1: %4.2f (0: %4.2f); 0: %4.2f; +1: %4.2f (0: %4.2f); +2: %4.2f (+1: %4.2f) %n",
+				y.prev.elementData, y.prev.next.elementData, y.elementData, y.next.elementData, y.next.prev.elementData,
+				y.next.next.elementData, y.next.next.prev.elementData);
+	}
+
 	public void swapWithNextNode(Node y) {
-		// TODO: throw error if IndexOutOfBounds
-		// TODO: check to see if Index is > size()-2
+
+		if (y.next == dummy || y == dummy)
+			throw new IndexOutOfBoundsException("Cannot swap with dummy node.");
 
 		Node after = y.next.next;
 
-		System.out.printf(
-				"-1: %1.2f(0: %1.2f),0: %1.2f,+1: %1.2f(0: %1.2f),+2: %1.2f(+1: %1.2f) %n",
-				y.prev.elementData, y.prev.next.elementData, y.elementData, y.next.elementData,
-				y.next.prev.elementData, y.next.next.elementData, y.next.next.prev.elementData);
+		printSummary(y);
 
 		y.prev.next = y.next;
 		y.next.prev = y.prev;
@@ -272,10 +265,8 @@ public class DLList<T extends Comparable<T>> {
 		y.prev = y.next;
 		y.next = after;
 
-		System.out.printf(
-				"-1: %1.2f(0: %1.2f),0: %1.2f,+1: %1.2f(0: %1.2f),+2: %1.2f(+1: %1.2f) %n",
-				y.prev.elementData, y.prev.next.elementData, y.elementData, y.next.elementData,
-				y.next.prev.elementData, y.next.next.elementData, y.next.next.prev.elementData);
+		printSummary(y);
+
 		System.out.println();
 	}
 
@@ -298,7 +289,7 @@ public class DLList<T extends Comparable<T>> {
 
 		theDLList.displayList();
 		System.out.println();
-		theDLList.swapWithNextNode(theDLList.getNode(9));
+		theDLList.swapWithNextNode(theDLList.getNode(8));
 		// error: if node within 2 of end it cannot swap correctly.
 		theDLList.displayList();
 		System.out.println();
