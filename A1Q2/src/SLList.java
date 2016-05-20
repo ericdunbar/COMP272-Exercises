@@ -357,5 +357,7 @@ public class SLList<T extends Comparable<T>> {
 		swapNodeDemo();
 
 		System.out.println("END   SLL TESTING");
+		System.out.println(-2 >>> 3);
+
 	}
 }

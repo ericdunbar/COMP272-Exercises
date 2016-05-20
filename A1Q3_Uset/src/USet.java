@@ -1,9 +1,10 @@
-
-public class USet {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
+/*
+ * Source: ODS by Pat Morin
+ */
+public interface USet<T> extends Iterable<T> {
+	public int size();
+	public boolean add(T x);
+	public T remove(T x);
+	public T find(T x);
+	public void clear();
 }
