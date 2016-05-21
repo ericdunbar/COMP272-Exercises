@@ -61,7 +61,7 @@ public class ArrayQueueED<T> extends AbstractQueue<T> {
 		n++;
 		return true;
 	}
-
+s
 	public T remove() {
 		if (n == 0)
 			throw new NoSuchElementException();
