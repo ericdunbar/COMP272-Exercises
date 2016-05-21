@@ -5,9 +5,10 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Random;
 
-public class BinaryTrie<Node extends BinaryTrie.Nöde<Node,T>, T> implements SSet<T> {
+public class BinaryTrie<Node extends BinaryTrie.Node<Node,T>, T> implements SSet<T> {
 	
-	public static class Nöde<Node extends Nöde<Node, T>, T>  {
+//	public static class Nöde<Node extends Nöde<Node, T>, T>  {
+	public static class Node<Node extends Node<Node, T>, T>  {
 		T x;
 		Node parent;
 		Node[] child;

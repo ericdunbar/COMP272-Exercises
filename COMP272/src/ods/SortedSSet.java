@@ -92,7 +92,7 @@ public class SortedSSet<T> extends AbstractSet<T> implements SortedSet<T> {
 //		css.add(new SortedSSet<Integer>(new ScapegoatTree<Integer>()));
 //		css.add(new SortedSSet<Integer>(new SkiplistSSet<Integer>()));
 		{ 
-			class N<T> extends XFastTrie.Nöde<N<T>,T> {};
+			class N<T> extends XFastTrie.Node<N<T>,T> {};
 			class I implements Integerizer<Integer> { 
 				public int intValue(Integer i) { return i; }
 			}

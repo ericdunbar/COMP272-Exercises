@@ -1,8 +1,8 @@
 import java.lang.reflect.Array;
 
 /**
- * Class: ArrayQueue Purpose: To implement a simple, unoptimized FIFO queue
- * using an array. Source: Open Data Structures, Chapter 2
+ * Class: ArrayQueue Purpose: To implement a simple, unoptimized FIFO queue using an
+ * array. Source: Open Data Structures, Chapter 2
  * 
  * @author Eric Dunbar
  *
@@ -13,7 +13,10 @@ public class ArrayQueue<T> {
 	int n = 0; // the number of elements in the array
 	Class<T> theType; // added from Factory.java
 
-	public String toString(){
+	/**
+	 * Returns the contents of the ArrayQueue as a String
+	 */
+	public String toString() {
 		String toReturn = "{";
 		String comma = "";
 		for (int i = 0; i < n; i++) {
@@ -23,22 +26,52 @@ public class ArrayQueue<T> {
 		toReturn += "}";
 		return toReturn;
 	}
+
+	/**
+	 * Constructs a new ArrayQueue of the type passed to it.
+	 * 
+	 * @param theQT
+	 *            type of elements stored in the ArrayQueue
+	 */
 	public ArrayQueue(Class<T> theQT) {// added from Factory.java
 		TestingSupport.methodInfo("Class<T> " + theQT);
 		theType = theQT;
 		array = this.newArray(1);
 	}
 
+	/**
+	 * Reports the number of elements contained by the ArrayQueue.
+	 * 
+	 * @return Number of elements in the ArrayQueue
+	 */
 	int size() {
 		return n;
 	}
 
+	/**
+	 * Returns the element at the index requested. Ought to throw an exception if
+	 * IndexOutOfBounds
+	 * 
+	 * @param i
+	 *            index position
+	 * @return element at index position
+	 */
 	public T get(int i) {
 
 		// TODO check range
+		// TODO throw exception IndexOutOfBounds?
 		return array[i];
 	}
 
+	/**
+	 * Sets the element at the index. Returns the old element stored at that index.
+	 * 
+	 * @param i
+	 *            index in ArrayQueue
+	 * @param x
+	 *            element to store in ArrayQueue
+	 * @return old element stored at the index position
+	 */
 	public T set(int i, T x) {
 		// TODO check range
 		T y = array[i];
@@ -46,6 +79,12 @@ public class ArrayQueue<T> {
 		return y;
 	}
 
+	/**
+	 * Inserts the element at the requested index position.
+	 * 
+	 * @param i
+	 * @param x
+	 */
 	public void add(int i, T x) {
 		TestingSupport.methodInfo(x.toString());
 		if (n + 1 > array.length)
