@@ -54,8 +54,18 @@ public class ArrayQueueEDTest {
 	 */
 	@Test
 	public final void testAddT() {
-		fail("Not yet implemented"); // TODO
-	}
+	    ArrayQueueED<Integer> list = new ArrayQueueED<Integer>(Integer.class);
+	    list.add(42);
+	    list.add(-3);
+	    list.add(17);
+	    list.add(99);
+	    assertEquals(42, list.peek(0));
+	    assertEquals(-3, list.peek(1));
+	    assertEquals(17, list.peek(2));
+	    assertEquals(99, list.peek(3));
+
+	    assertEquals("second attempt", 42, list.get(0));   // make sure I can get them a second time
+	    assertEquals("second attempt", 99, list.get(3));	}
 
 	/**
 	 * Test method for {@link ArrayQueueED#remove()}.
