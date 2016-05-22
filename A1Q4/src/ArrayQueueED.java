@@ -28,7 +28,7 @@ public class ArrayQueueED<T> extends AbstractQueue<T> {
 	protected int head; // j in ODS by Pat Morin
 
 	// array
-	protected T[] backingArray;
+	protected T[] backArray;
 
 	// special class to create generic arrays
 	protected FactoryODS<T> arrayFactory;
@@ -41,7 +41,7 @@ public class ArrayQueueED<T> extends AbstractQueue<T> {
 	 */
 	public ArrayQueueED(Class<T> t) {
 		arrayFactory = new FactoryODS<T>(t); // used for generic arrays
-		backingArray = arrayFactory.newArray(1); // assume min size of 1
+		backArray = arrayFactory.newArray(1); // assume min size of 1
 		head = 0;
 		n = 0;
 	}
@@ -55,9 +55,9 @@ public class ArrayQueueED<T> extends AbstractQueue<T> {
 	 */
 	@Override
 	public boolean add(T x) {
-		if (n + 1 > backingArray.length)
+		if (n + 1 > backArray.length)
 			resize();
-		backingArray[(head + n) % backingArray.length] = x;
+		backArray[(head + n) % backArray.length] = x;
 		n++;
 		return true;
 	}
@@ -73,10 +73,10 @@ public class ArrayQueueED<T> extends AbstractQueue<T> {
 	public T remove() {
 		if (n == 0)
 			throw new NoSuchElementException();
-		T x = backingArray[head];
-		head = (head + 1) % backingArray.length;
+		T x = backArray[head];
+		head = (head + 1) % backArray.length;
 		n--;
-		if (backingArray.length >= 3 * n)
+		if (backArray.length >= 3 * n)
 			resize();
 		return x;
 	}
@@ -88,15 +88,15 @@ public class ArrayQueueED<T> extends AbstractQueue<T> {
 	protected void resize() {
 		T[] tempArray = arrayFactory.newArray(Math.max(1, n * 2));
 		for (int index = 0; index < n; index++)
-			tempArray[index] = backingArray[(head + index) % backingArray.length];
-		backingArray = tempArray;
+			tempArray[index] = backArray[(head + index) % backArray.length];
+		backArray = tempArray;
 		head = 0;
 	}
 
 	/**
 	 * Attempts to add an element to the queue. Included for completeness. Not a strict
 	 * implementation of offer since the method is not permitted to fail. A full queue
-	 * situation is not allowed by this implementation.
+	 * situation is not allowed by this implementation of the AbstractQueue.
 	 * 
 	 * See: http://stackoverflow.com/questions/9343081/java-queues-why-poll-and-offer
 	 * http://docs.oracle.com/javase/7/docs/api/java/util/Queue.html
@@ -110,7 +110,7 @@ public class ArrayQueueED<T> extends AbstractQueue<T> {
 	public T peek() {
 		T element = null;
 		if (n > 0)
-			element = backingArray[head];
+			element = backArray[head];
 		return element;
 	}
 

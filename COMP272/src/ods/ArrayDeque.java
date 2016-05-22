@@ -73,7 +73,7 @@ public class ArrayDeque<T> extends AbstractList<T> {
 	}
 	
 	public void add(int i, T x) {
-		if (i < 0 || i > n) throw new IndexOutOfBoundsException();
+		if (i < 0 || i > n)  throw new IndexOutOfBoundsException();
 		if (n+1 > a.length) resize();
 		if (i < n/2) { // shift a[0],..,a[i-1] left one position
 			j = (j == 0) ? a.length - 1 : j - 1; //(j-1)mod a.length

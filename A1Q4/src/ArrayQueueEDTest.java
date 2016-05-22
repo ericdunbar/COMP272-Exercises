@@ -12,12 +12,18 @@ import org.junit.Test;
  */
 
 /**
- * @author erdun
+ * @author Eric D
  *
  */
 public class ArrayQueueEDTest {
 	ArrayQueueED<Integer> int1Queue;
 	ArrayQueueED<Integer> int2Queue;
+	public static int instances = 0;
+
+	public static void incrementInstances() {
+		instances++;
+		System.out.println("Instance number " + instances);
+	}
 
 	/**
 	 * @throws java.lang.Exception
@@ -46,7 +52,15 @@ public class ArrayQueueEDTest {
 	 */
 	@Test
 	public final void testArrayQueueED() {
-		fail("Not yet implemented"); // TODO
+		incrementInstances();
+		ArrayQueueED<Integer> list = new ArrayQueueED<Integer>(Integer.class);
+		assertEquals("Size() = 0", 0, list.size());
+		list.add(55);
+		list.add(56);
+		assertEquals("Size() = 2", 2, list.size());
+		list.remove();
+		list.remove();
+		assertEquals("Size() = 0", 0, list.size());
 	}
 
 	/**
@@ -54,25 +68,40 @@ public class ArrayQueueEDTest {
 	 */
 	@Test
 	public final void testAddT() {
-	    ArrayQueueED<Integer> list = new ArrayQueueED<Integer>(Integer.class);
-	    list.add(42);
-	    list.add(-3);
-	    list.add(17);
-	    list.add(99);
-	    assertEquals(42, list.peek(0));
-	    assertEquals(-3, list.peek(1));
-	    assertEquals(17, list.peek(2));
-	    assertEquals(99, list.peek(3));
-
-	    assertEquals("second attempt", 42, list.get(0));   // make sure I can get them a second time
-	    assertEquals("second attempt", 99, list.get(3));	}
+		incrementInstances();
+		ArrayQueueED<Integer> list = new ArrayQueueED<Integer>(Integer.class);
+		list.add(42);
+		list.add(-3);
+		list.add(17);
+		list.add(99);
+		assertEquals((Integer) 42, (Integer) list.remove());
+		assertEquals((Integer) (-3), (Integer) list.remove());
+		assertEquals((Integer) 17, (Integer) list.remove());
+		assertEquals((Integer) 99, (Integer) list.remove());
+	}
 
 	/**
 	 * Test method for {@link ArrayQueueED#remove()}.
 	 */
 	@Test
 	public final void testRemove() {
-		fail("Not yet implemented"); // TODO
+		incrementInstances();
+		ArrayQueueED<Integer> list = new ArrayQueueED<Integer>(Integer.class);
+		list.add(42);
+		list.add(-3);
+		list.add(17);
+		list.add(99);
+		assertEquals((Integer) 42, (Integer) list.remove());
+		assertEquals((Integer) (-3), (Integer) list.remove());
+		list.add(17);
+		assertEquals((Integer) 17, (Integer) list.remove());
+		assertEquals((Integer) 99, (Integer) list.remove());
+		assertEquals((Integer) 17, (Integer) list.remove());
+		try {
+			assertEquals((Integer) 17, (Integer) list.remove());
+		} catch (Exception e) {
+			System.out.println("Exception was generated, as expected");
+		}
 	}
 
 	/**
