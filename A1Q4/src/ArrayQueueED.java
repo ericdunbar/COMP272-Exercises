@@ -61,7 +61,15 @@ public class ArrayQueueED<T> extends AbstractQueue<T> {
 		n++;
 		return true;
 	}
-s
+
+	/**
+	 * Removes and returns the first added (oldest) element.
+	 * 
+	 * @throws NoSuchElementException
+	 *             if queue is empty
+	 * @return oldest element
+	 */
+	@Override
 	public T remove() {
 		if (n == 0)
 			throw new NoSuchElementException();
@@ -85,33 +93,42 @@ s
 		head = 0;
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
+	/**
+	 * Attempts to add an element to the queue. Included for completeness. Not a strict
+	 * implementation of offer since the method is not permitted to fail. A full queue
+	 * situation is not allowed by this implementation.
+	 * 
+	 * See: http://stackoverflow.com/questions/9343081/java-queues-why-poll-and-offer
+	 * http://docs.oracle.com/javase/7/docs/api/java/util/Queue.html
+	 */
 	@Override
 	public boolean offer(T arg0) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
-
-		// return false;
+		return add(arg0);
 	}
 
 	@Override
 	public T peek() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
-
-		// return null;
+		T element = null;
+		if (n > 0)
+			element = backingArray[head];
+		return element;
 	}
 
+	/**
+	 * Attempts to remove an element from the queue. Included for completeness.
+	 * 
+	 * See: http://stackoverflow.com/questions/9343081/java-queues-why-poll-and-offer
+	 * http://docs.oracle.com/javase/7/docs/api/java/util/Queue.html
+	 * 
+	 * @return null if queue is empty
+	 */
 	@Override
 	public T poll() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
-
-		// return null;
+		try {
+			return remove();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override
@@ -124,10 +141,12 @@ s
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
+		return n;
+	}
 
-		// return 0;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
