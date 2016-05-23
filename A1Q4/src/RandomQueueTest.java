@@ -9,10 +9,10 @@ import org.junit.Test;
  */
 
 /**
- * @author erdun
+ * @author Eric D.
  *
  */
-public class RandomArrayQueueEDTest {
+public class RandomQueueTest {
 	public static int instances = 0;
 
 	public static void incrementInstances() {
@@ -35,7 +35,7 @@ public class RandomArrayQueueEDTest {
 	}
 
 	/**
-	 * Test method for {@link RandomArrayQueueED#remove()}.
+	 * Test method for {@link RandomQueue#remove()}.
 	 */
 	@Test
 	public final void testRemove() {
@@ -44,7 +44,7 @@ public class RandomArrayQueueEDTest {
 		int tries = 1000;
 		int listSize = 10;
 		for (int outerIdx = 0; outerIdx < tries; outerIdx++) {
-			RandomArrayQueueED<Integer> list = new RandomArrayQueueED<Integer>(Integer.class);
+			RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
 			for (int i = 0; i < listSize; i++) {
 				list.add(i);
 			}
@@ -57,12 +57,12 @@ public class RandomArrayQueueEDTest {
 	}
 
 	/**
-	 * Test method for {@link RandomArrayQueueED#RandomArrayQueueED(java.lang.Class)}.
+	 * Test method for {@link RandomQueue#RandomArrayQueueED(java.lang.Class)}.
 	 */
 	@Test
-	public final void testRandomArrayQueueED() {
+	public final void testRandomQueue() {
 		incrementInstances();
-		RandomArrayQueueED<Integer> list = new RandomArrayQueueED<Integer>(Integer.class);
+		RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
 		for (int i = 1; i < 100001; i++) {
 			list.add(i);
 			assertEquals("Size() = " + i, i, list.size());
@@ -79,7 +79,7 @@ public class RandomArrayQueueEDTest {
 	@Test
 	public final void testSize() {
 		incrementInstances();
-		RandomArrayQueueED<Integer> list = new RandomArrayQueueED<Integer>(Integer.class);
+		RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
 		for (int i = 1; i < 100001; i++) {
 			list.add(i);
 			assertEquals("Size() = " + i, i, list.size());
@@ -96,7 +96,7 @@ public class RandomArrayQueueEDTest {
 	@Test
 	public final void testAddT() {
 		incrementInstances();
-		RandomArrayQueueED<Integer> list = new RandomArrayQueueED<Integer>(Integer.class);
+		RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
 		for (int i = 1; i < 1000001; i++) {
 			assertTrue("add(" + i + ")", list.add(i));
 		}
