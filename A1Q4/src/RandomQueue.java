@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 /*
@@ -84,50 +87,136 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 	 * @param tries
 	 *            number of repetitions to subject remove() to
 	 */
-	private static void remove10to1Test(long tries, ArrayQueueED list) {
+	private static void remove10to1Test(long tries, ArrayQueueED list, int removeDivisor) {
 		int[] counts = new int[10];
-		final long divisor = tries / 10;
+		final long divisor = tries / removeDivisor;
 		// RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
 
 		for (int outerIdx = 0; outerIdx < tries; outerIdx++) {
 			list.add(outerIdx);
 		}
 
-		for (int i = 0; i < tries / 10; i++) {
+		for (int i = 0; i < tries / removeDivisor; i++) {
 			counts[(int) ((int) list.remove() / divisor)]++;
 		}
 
 		for (int i = 0; i < 10; i++) {
-			//TODO Uncomment
-			//System.out.println("  " + i + ": " + counts[i]);
+			// TODO Uncomment
+			// System.out.println(" " + i + ", " + counts[i]);
+		}
+	}
+
+	/**
+	 * Create an ArrayQueue of size arraySize.
+	 *
+	 * @param arraySize
+	 *            number of repetitions to subject remove() to
+	 * @return
+	 */
+	private static void createFilledArrayQueue(ArrayQueueED<Integer> returnList, int arraySize) {
+		for (int outerIdx = 0; outerIdx < arraySize; outerIdx++)
+			returnList.add(outerIdx);
+	}
+
+	/**@formatter:off
+	 * 
+	 * Test the remove() function of a RandomQueue or ArrayQueue. Given a RandomQueue with
+	 * a certain number of elements, if you then remove() 10% of those elements. In a
+	 * normal FIFO queue remove() 10% of elements would return the smallest elements since
+	 * they were first in (thus, first out). If the remove() function is indeed random
+	 * there should be an even distribution of elements removed from each of the 10 bins
+	 * rather than one bin being filled. Running this test on ArrayQueue should result in
+	 * a single bin being filled.
+	 *
+	 * @param list an ArrayList with elements
+	 * @param testEvery how often to remove an element
+	 * @param isSilent false if output is printed
+	 * 
+	 * @formatter:on
+	 */
+	private static void removeTest(ArrayQueueED list, int testEvery, boolean isSilent) {
+		int[] counts = new int[10];
+		final int numRepetitions = list.size() / testEvery;
+
+		final int divisor = numRepetitions / 10;
+
+		if (isSilent)
+			for (int i = 0; i < numRepetitions; i++)
+				list.remove();
+		else
+			for (int i = 0; i < numRepetitions; i++) {
+				counts[(int) list.remove() / divisor]++;
+				for (int j = 0; j < 10; j++) {
+					System.out.println(" " + j + ": " + counts[j]);
+				}
+			}
+	}
+
+	private static class timerED {
+		private static long startTime;
+
+		public static void start() {
+			startTime = System.currentTimeMillis();
+		}
+
+		public static int stop() {
+			return (int) (System.currentTimeMillis() - startTime);
+		}
+	}
+
+	private static void generateStats(ArrayQueueED list2, int incrementRepetitions) {
+
+		int reps = 50;
+
+		int[][] removeArrayQBins = new int[10][reps];
+		int[][] removeArrayAddQBins = new int[10][reps];
+
+		for (int repetitions = incrementRepetitions; repetitions < incrementRepetitions * 10
+				+ 1; repetitions += incrementRepetitions) {
+			System.out.println();
+			System.out.println("***************************");
+			System.out.println("Repetitions: " + repetitions);
+			System.out.println("***************************");
+
+			for (int i = 0; i < reps; i++) {
+				timerED.start();
+				;
+				createFilledArrayQueue(list2, repetitions);
+				int aStop = timerED.stop();
+
+				removeArrayAddQBins[(int) (repetitions / incrementRepetitions - 1)][i] = aStop;
+
+				timerED.start();
+				removeTest(list2, 1, true);
+				int bStop = timerED.stop();
+
+				removeArrayQBins[(int) (repetitions / incrementRepetitions - 1)][i] = bStop;
+
+				System.out.println("  add(x) = " + aStop + "  remove() = " + bStop);
+			}
+		}
+
+		System.out.println("RandomQueue remove() summary");
+		for (int i = 0; i < 10; i++) {
+			Arrays.sort(removeArrayQBins[i]);
+			System.out.println(i + ", " + removeArrayQBins[i][reps / 2]);
+		}
+
+		System.out.println("RandomQueue add() summary");
+		for (int i = 0; i < 10; i++) {
+			Arrays.sort(removeArrayAddQBins[i]);
+			System.out.println(i + ", " + removeArrayAddQBins[i][reps / 2]);
 		}
 	}
 
 	public static void main(String[] args) {
 		// removeTenPercentTest();
+		// ArrayQueueED<Integer> lister = new ArrayQueueED<>(Integer.class);
+		// generateStats(lister, 350_000);
 
-		long repetitions;
+		RandomQueue<Integer> lister2 = new RandomQueue<>(Integer.class);
+		generateStats(lister2, 350_000);
 
-		for (repetitions = 100_000; repetitions < 1_000_001; repetitions += 100_000) {
-
-			System.out.println("***************************");
-			System.out.println("Repetitions: " + repetitions);
-			System.out.println("***************************");
-
-			System.out.println("RandomQueue distribution...");
-			long startTime = System.currentTimeMillis();
-			RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
-			remove10to1Test(repetitions, list);
-			long endTime = System.currentTimeMillis();
-			System.out.println("Took: " + (endTime - startTime));
-			System.out.println();
-			System.out.println("ArrayQueueED distribution...");
-			startTime = System.currentTimeMillis();
-			ArrayQueueED<Integer> list2 = new ArrayQueueED<Integer>(Integer.class);
-			remove10to1Test(repetitions, list2);
-			endTime = System.currentTimeMillis();
-			System.out.println("Took: " + (endTime - startTime));
-		}
 	}
 
 }
