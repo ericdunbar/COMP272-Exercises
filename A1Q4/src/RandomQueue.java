@@ -13,8 +13,8 @@ import java.util.NoSuchElementException;
  */
 
 /**
- * A queue in which the remove() operation removes an element that is chosen uniformly and
- * at random among all the elements currently in the queue.
+ * A queue in which the remove() operation removes an element that is chosen
+ * uniformly and at random among all the elements currently in the queue.
  * 
  * @author Eric D.
  *
@@ -28,8 +28,8 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 	}
 
 	/**
-	 * Randomly removes and returns an element from the queue. This is not standard
-	 * behaviour for a remove() method in a queue.
+	 * Randomly removes and returns an element from the queue. This is not
+	 * standard behaviour for a remove() method in a queue.
 	 * 
 	 * @return element
 	 */
@@ -38,20 +38,41 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 		if (n == 0)
 			throw new NoSuchElementException();
 		int rndIndex = (int) (Math.random() * n);
-		T randomElement = backArray[(head + rndIndex) % this.backArray.length];
+
+		T randomElement = get(rndIndex);
+		T tailElement = get(head + n - 1);
+		
 		// move tail to current position
-		backArray[(head + rndIndex) % this.backArray.length] = backArray[head + n - 1];
+
+		set(rndIndex, tailElement);
+
 		n--;
 		if (backArray.length >= 3 * n)
 			resize();
+
 		return randomElement;
 	}
 
+	public T get(int i) {
+		if (i < 0 || i > n - 1)
+			throw new IndexOutOfBoundsException();
+		return backArray[(head + i) % backArray.length];
+	}
+
+	public T set(int i, T x) {
+		if (i < 0 || i > n - 1)
+			throw new IndexOutOfBoundsException();
+		T y = backArray[(head + i) % backArray.length];
+		backArray[(head + i) % backArray.length] = x;
+		return y;
+	}
+
 	/**
-	 * Test the remove() function from the RandomQueue. Remove() randomly picks, removes
-	 * and returns an element from the queue. The test removes one item from a queue of
-	 * ten items and compares it with the last item added. When repeated enough times the
-	 * probability of picking the last item should approach 0.10.
+	 * Test the remove() function from the RandomQueue. Remove() randomly picks,
+	 * removes and returns an element from the queue. The test removes one item
+	 * from a queue of ten items and compares it with the last item added. When
+	 * repeated enough times the probability of picking the last item should
+	 * approach 0.10.
 	 * 
 	 * Repeat 10 additions and 1 remove 100_000_000 times.
 	 */
@@ -69,18 +90,18 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 		}
 		double observed = (double) hits / tries;
 		boolean isExpected = (0.09 < observed) && (observed < 0.11);
-		System.out
-				.println("Expected: 0.09 < p < 0.11; Observed: " + observed + " ... " + isExpected);
+		System.out.println("Expected: 0.09 < p < 0.11; Observed: " + observed + " ... " + isExpected);
 	}
 
 	/**
-	 * Test the remove() function from the RandomQueue. Construct a RandomQueue with tries
-	 * number of elements. Then remove() 10% of those elements. In a normal FIFO queue
-	 * remove() 10% of elements would return the smallest elements since they were first
-	 * in (thus, first out). If the remove() function is indeed random there should be an
-	 * even distribution of elements removed from each of the 10 bins rather than one bin
-	 * being filled. Running this test on ArrayQueueED should result in a single bin being
-	 * filled
+	 * Test the remove() function from the RandomQueue. Construct a RandomQueue
+	 * with tries number of elements. Then remove() 10% of those elements. In a
+	 * normal FIFO queue remove() 10% of elements would return the smallest
+	 * elements since they were first in (thus, first out). If the remove()
+	 * function is indeed random there should be an even distribution of
+	 * elements removed from each of the 10 bins rather than one bin being
+	 * filled. Running this test on ArrayQueueED should result in a single bin
+	 * being filled
 	 * 
 	 * Repeat 10 additions and 1 remove tries times.
 	 *
@@ -118,19 +139,25 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 			returnList.add(outerIdx);
 	}
 
-	/**@formatter:off
+	/**
+	 * @formatter:off
 	 * 
-	 * Test the remove() function of a RandomQueue or ArrayQueue. Given a RandomQueue with
-	 * a certain number of elements, if you then remove() 10% of those elements. In a
-	 * normal FIFO queue remove() 10% of elements would return the smallest elements since
-	 * they were first in (thus, first out). If the remove() function is indeed random
-	 * there should be an even distribution of elements removed from each of the 10 bins
-	 * rather than one bin being filled. Running this test on ArrayQueue should result in
-	 * a single bin being filled.
+	 * 				Test the remove() function of a RandomQueue or ArrayQueue.
+	 *                Given a RandomQueue with a certain number of elements, if
+	 *                you then remove() 10% of those elements. In a normal FIFO
+	 *                queue remove() 10% of elements would return the smallest
+	 *                elements since they were first in (thus, first out). If
+	 *                the remove() function is indeed random there should be an
+	 *                even distribution of elements removed from each of the 10
+	 *                bins rather than one bin being filled. Running this test
+	 *                on ArrayQueue should result in a single bin being filled.
 	 *
-	 * @param list an ArrayList with elements
-	 * @param testEvery how often to remove an element
-	 * @param isSilent false if output is printed
+	 * @param list
+	 *            an ArrayList with elements
+	 * @param testEvery
+	 *            how often to remove an element
+	 * @param isSilent
+	 *            false if output is printed
 	 * 
 	 * @formatter:on
 	 */
