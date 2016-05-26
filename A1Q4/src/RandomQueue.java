@@ -42,8 +42,7 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 		T randomElement = get(rndIndex);
 		T tailElement = get(head + n - 1);
 		
-		// move tail to current position
-
+		// move tail to newly vacated index
 		set(rndIndex, tailElement);
 
 		n--;
@@ -62,8 +61,9 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 	public T set(int i, T x) {
 		if (i < 0 || i > n - 1)
 			throw new IndexOutOfBoundsException();
-		T y = backArray[(head + i) % backArray.length];
-		backArray[(head + i) % backArray.length] = x;
+		int index = (head + i) % backArray.length;
+		T y = backArray[index];
+		backArray[index] = x;
 		return y;
 	}
 
