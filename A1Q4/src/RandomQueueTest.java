@@ -57,6 +57,53 @@ public class RandomQueueTest {
 	}
 
 	/**
+	 * Test method for {@link RandomQueue#remove()}.
+	 * 
+	 * Tests to see if the last element is moved from the tail into the sequence.
+	 */
+	@Test
+	public final void testMoveLastElement() {
+		incrementInstances();
+			RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
+		int hits = 0;
+		int tries = 100;
+		int listSize = 10;
+		for (int outerIdx = 0; outerIdx < tries; outerIdx++) {
+			for (int i = 0; i < listSize; i++) {
+				list.add(i);
+			}
+
+			int removed = (list.remove());
+
+			System.out.print(outerIdx + ": " + removed + "; ");
+
+			StringBuilder sB = new StringBuilder();
+			for (int i = 0; i < listSize - 1; i++) {
+				sB.append(list.get(i));
+			}
+			String remainder = sB.toString();
+
+			System.out.print(remainder);
+			// could simplify the following with || instead of &&
+			if (removed != 9 && remainder.charAt(removed) == '9') {
+				System.out.print("***");
+				hits++;
+			}
+			System.out.println();
+			for (int i = 0; i < listSize-1; i++) {
+				list.remove();
+			}
+
+		}
+		double observed = (double) hits / tries;
+		double lower = 0.85;
+		double upper = 0.95;
+		boolean isExpected = (lower < observed) && (observed < upper);
+		assertTrue("Expected: " + lower + " < p < " + upper + "; Observed: " + observed,
+				isExpected);
+	}
+
+	/**
 	 * Test method for {@link RandomQueue#RandomArrayQueueED(java.lang.Class)}.
 	 */
 	@Test
