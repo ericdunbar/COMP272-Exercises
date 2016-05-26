@@ -243,6 +243,7 @@ public class DLList<T extends Comparable<T>> {
 	}
 
 	public void printSummary(Node y) {
+		//TODO hide from view since this is a testing method
 		System.out.printf(
 				"Swap summary: -1: %4.2f (0: %4.2f); 0: %4.2f; +1: %4.2f (0: %4.2f); +2: %4.2f (+1: %4.2f) %n",
 				y.prev.elementData, y.prev.next.elementData, y.elementData, y.next.elementData, y.next.prev.elementData,
@@ -250,6 +251,7 @@ public class DLList<T extends Comparable<T>> {
 	}
 
 	public void swapWithNextNode(Node y) {
+		//TODO move into own class
 
 		if (y.next == dummy || y == dummy)
 			throw new IndexOutOfBoundsException("Cannot swap with dummy node.");

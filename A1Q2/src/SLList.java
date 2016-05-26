@@ -182,6 +182,7 @@ public class SLList<T extends Comparable<T>> {
 	 * @return T representing the smallest element
 	 */
 	public T deleteMin() {
+		//TODO move deleteMin into its own class
 		if (n == 0)
 			return null; // nothing to delete
 		// this should throw an error, don't you think?

@@ -13,8 +13,8 @@ import java.util.NoSuchElementException;
  */
 
 /**
- * A queue in which the remove() operation removes an element that is chosen
- * uniformly and at random among all the elements currently in the queue.
+ * A queue in which the remove() operation removes an element that is chosen uniformly and
+ * at random among all the elements currently in the queue.
  * 
  * @author Eric D.
  *
@@ -28,8 +28,8 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 	}
 
 	/**
-	 * Randomly removes and returns an element from the queue. This is not
-	 * standard behaviour for a remove() method in a queue.
+	 * Randomly removes and returns an element from the queue. This is not standard
+	 * behaviour for a remove() method in a queue.
 	 * 
 	 * @return element
 	 */
@@ -38,17 +38,12 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 		if (n == 0)
 			throw new NoSuchElementException();
 		int rndIndex = (int) (Math.random() * n);
-
 		T randomElement = get(rndIndex);
 		T tailElement = get(head + n - 1);
-		
-		// move tail to newly vacated index
-		set(rndIndex, tailElement);
-
+		set(rndIndex, tailElement); // move tail to newly vacated index
 		n--;
 		if (backArray.length >= 3 * n)
 			resize();
-
 		return randomElement;
 	}
 
@@ -68,11 +63,10 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 	}
 
 	/**
-	 * Test the remove() function from the RandomQueue. Remove() randomly picks,
-	 * removes and returns an element from the queue. The test removes one item
-	 * from a queue of ten items and compares it with the last item added. When
-	 * repeated enough times the probability of picking the last item should
-	 * approach 0.10.
+	 * Test the remove() function from the RandomQueue. Remove() randomly picks, removes
+	 * and returns an element from the queue. The test removes one item from a queue of
+	 * ten items and compares it with the last item added. When repeated enough times the
+	 * probability of picking the last item should approach 0.10.
 	 * 
 	 * Repeat 10 additions and 1 remove 100_000_000 times.
 	 */
@@ -90,18 +84,18 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 		}
 		double observed = (double) hits / tries;
 		boolean isExpected = (0.09 < observed) && (observed < 0.11);
-		System.out.println("Expected: 0.09 < p < 0.11; Observed: " + observed + " ... " + isExpected);
+		System.out
+				.println("Expected: 0.09 < p < 0.11; Observed: " + observed + " ... " + isExpected);
 	}
 
 	/**
-	 * Test the remove() function from the RandomQueue. Construct a RandomQueue
-	 * with tries number of elements. Then remove() 10% of those elements. In a
-	 * normal FIFO queue remove() 10% of elements would return the smallest
-	 * elements since they were first in (thus, first out). If the remove()
-	 * function is indeed random there should be an even distribution of
-	 * elements removed from each of the 10 bins rather than one bin being
-	 * filled. Running this test on ArrayQueueED should result in a single bin
-	 * being filled
+	 * Test the remove() function from the RandomQueue. Construct a RandomQueue with tries
+	 * number of elements. Then remove() 10% of those elements. In a normal FIFO queue
+	 * remove() 10% of elements would return the smallest elements since they were first
+	 * in (thus, first out). If the remove() function is indeed random there should be an
+	 * even distribution of elements removed from each of the 10 bins rather than one bin
+	 * being filled. Running this test on ArrayQueueED should result in a single bin being
+	 * filled
 	 * 
 	 * Repeat 10 additions and 1 remove tries times.
 	 *
@@ -193,7 +187,7 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 
 	private static void generateStats(ArrayQueueED list2, int incrementRepetitions) {
 
-		int reps = 50;
+		int reps = 10;
 
 		int[][] removeArrayQBins = new int[10][reps];
 		int[][] removeArrayAddQBins = new int[10][reps];
@@ -223,16 +217,12 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 			}
 		}
 
-		System.out.println("RandomQueue remove() summary");
+		System.out.println("RandomQueue, remove(), add(x)");
 		for (int i = 0; i < 10; i++) {
 			Arrays.sort(removeArrayQBins[i]);
-			System.out.println(i + ", " + removeArrayQBins[i][reps / 2]);
-		}
-
-		System.out.println("RandomQueue add() summary");
-		for (int i = 0; i < 10; i++) {
 			Arrays.sort(removeArrayAddQBins[i]);
-			System.out.println(i + ", " + removeArrayAddQBins[i][reps / 2]);
+			System.out.println(i + ", " + removeArrayQBins[i][reps / 2] + ", "
+					+ removeArrayAddQBins[i][reps / 2]);
 		}
 	}
 
@@ -242,7 +232,7 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 		// generateStats(lister, 350_000);
 
 		RandomQueue<Integer> lister2 = new RandomQueue<>(Integer.class);
-		generateStats(lister2, 350_000);
+		generateStats(lister2, (int)Math.pow(2, 18));
 
 	}
 
