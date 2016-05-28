@@ -5,7 +5,16 @@
  * @author erdun
  *
  */
-public class ReverseDLList<T extends DLList> {
+public class ReversibleDLList<T> extends DLList<T extends Comparable<T>> {
+
+	public void reverse(){
+		dummy.next = null;
+	}
+	
+	public ReversibleDLList() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

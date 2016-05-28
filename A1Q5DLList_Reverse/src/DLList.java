@@ -17,7 +17,7 @@
  * @param <E>
  *
  */
-public class DLList<T extends Comparable<T>> {
+public class DLList<T> implements Comparable<T> {
 
 	/*
 	 * "CompareTo with Generic Objects!" (Beginning Java Forum at Coderanch). July 31, 2013.
@@ -48,7 +48,13 @@ public class DLList<T extends Comparable<T>> {
 	 * ***********************************************************************************
 	 */
 
-	class Node {
+	/**
+	 * DLList Node implementing prev and next.
+	 * 
+	 * @author erdun
+	 *
+	 */
+	public class Node {
 		T elementData;
 		Node prev, next;
 	}
@@ -60,15 +66,15 @@ public class DLList<T extends Comparable<T>> {
 	 * this way, the nodes of the list are (doubly-)linked into a cycle.
 	 */
 
-	Node dummy; // first and last node in sequence
-	int n; // length of sequence
+	public Node dummy; // first and last node in sequence
+	public int n; // length of sequence
 
 	/**
 	 * Create a doubly-linked list using a dummy node to solve head and tail link problems.
 	 * 
 	 * Source: ODS by PM
 	 */
-	DLList() {
+	public DLList() {
 		dummy = new Node();
 		dummy.next = dummy;
 		dummy.prev = dummy;
@@ -328,5 +334,12 @@ public class DLList<T extends Comparable<T>> {
 		DLListNodeSwapDemo();
 
 		System.out.println("END   DLL TESTING");
+	}
+
+	@Override
+	public int compareTo(T arg0) {
+		// TODO Auto-generated method stub
+		System.out.println("compareTo in DLList.java ran");
+		return 0;
 	}
 }
