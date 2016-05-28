@@ -2,7 +2,7 @@
  * 5. Exercise 3.12. Write a method, reverse(), that reverses the order of elements in a
  * DLList.
  * 
- * @author erdun
+ * @author Eric Dunbar
  *
  */
 public class ReversibleDLList<T> extends DLList<T> {
@@ -55,11 +55,11 @@ public class ReversibleDLList<T> extends DLList<T> {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("START DLL TESTING");
+		System.out.println("START REVERSIBLE DLL TESTING");
 
 		reversibleDLListDemo();
 
-		System.out.println("END   DLL TESTING");
+		System.out.println("END   REVERSIBLE DLL TESTING");
 	}
 
 }

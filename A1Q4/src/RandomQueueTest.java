@@ -121,7 +121,7 @@ public class RandomQueueTest {
 	}
 
 	/**
-	 * Test method for {@link ArrayQueueED#size()}.
+	 * Test method for {@link ArrayQueue#size()}.
 	 */
 	@Test
 	public final void testSize() {
@@ -138,7 +138,7 @@ public class RandomQueueTest {
 	}
 
 	/**
-	 * Test method for {@link ArrayQueueED#add(java.lang.Object)}.
+	 * Test method for {@link ArrayQueue#add(java.lang.Object)}.
 	 */
 	@Test
 	public final void testAddT() {

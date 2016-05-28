@@ -21,7 +21,7 @@ import java.util.NoSuchElementException;
  * @param <T>
  *            type
  */
-public class RandomQueue<T> extends ArrayQueueED<T> {
+public class RandomQueue<T> extends ArrayQueue<T> {
 
 	public RandomQueue(Class<T> t) {
 		super(t);
@@ -47,20 +47,6 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 		return randomElement;
 	}
 
-	public T get(int i) {
-		if (i < 0 || i > n - 1)
-			throw new IndexOutOfBoundsException();
-		return backArray[(head + i) % backArray.length];
-	}
-
-	public T set(int i, T x) {
-		if (i < 0 || i > n - 1)
-			throw new IndexOutOfBoundsException();
-		int index = (head + i) % backArray.length;
-		T y = backArray[index];
-		backArray[index] = x;
-		return y;
-	}
 
 	/**
 	 * Test the remove() function from the RandomQueue. Remove() randomly picks, removes
@@ -102,7 +88,7 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 	 * @param tries
 	 *            number of repetitions to subject remove() to
 	 */
-	private static void remove10to1Test(long tries, ArrayQueueED list, int removeDivisor) {
+	private static void remove10to1Test(long tries, ArrayQueue list, int removeDivisor) {
 		int[] counts = new int[10];
 		final long divisor = tries / removeDivisor;
 		// RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
@@ -128,7 +114,7 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 	 *            number of repetitions to subject remove() to
 	 * @return
 	 */
-	private static void createFilledArrayQueue(ArrayQueueED<Integer> returnList, int arraySize) {
+	private static void createFilledArrayQueue(ArrayQueue<Integer> returnList, int arraySize) {
 		for (int outerIdx = 0; outerIdx < arraySize; outerIdx++)
 			returnList.add(outerIdx);
 	}
@@ -155,7 +141,7 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 	 * 
 	 * @formatter:on
 	 */
-	private static void removeTest(ArrayQueueED list, int testEvery, boolean isSilent) {
+	private static void removeTest(ArrayQueue list, int testEvery, boolean isSilent) {
 		int[] counts = new int[10];
 		final int numRepetitions = list.size() / testEvery;
 
@@ -185,7 +171,7 @@ public class RandomQueue<T> extends ArrayQueueED<T> {
 		}
 	}
 
-	private static void generateStats(ArrayQueueED list2, int incrementRepetitions) {
+	private static void generateStats(ArrayQueue list2, int incrementRepetitions) {
 
 		int reps = 10;
 

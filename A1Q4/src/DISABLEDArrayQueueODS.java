@@ -13,7 +13,7 @@ import java.util.Queue;
  *
  * @param <T>
  */
-public class ArrayQueueODS<T> extends AbstractQueue<T> {
+public class DISABLEDArrayQueueODS<T> extends AbstractQueue<T> {
 	/**
 	 * The class of elements stored in this queue
 	 */
@@ -48,7 +48,7 @@ public class ArrayQueueODS<T> extends AbstractQueue<T> {
 	/**
 	 * Constructor
 	 */
-	public ArrayQueueODS(Class<T> t) {
+	public DISABLEDArrayQueueODS(Class<T> t) {
 		f = new FactoryODS<T>(t);
 		a = f.newArray(1);
 		j = 0;
@@ -123,7 +123,7 @@ public class ArrayQueueODS<T> extends AbstractQueue<T> {
 	
 	public static void main(String args[]) {
 		int m = 10000, n = 50;
-		Queue<Integer> q = new ArrayQueueODS<Integer>(Integer.class);
+		Queue<Integer> q = new DISABLEDArrayQueueODS<Integer>(Integer.class);
 		for (int i = 0; i < m; i++) {
 			q.add(new Integer(i));
 			if (q.size() > n) {

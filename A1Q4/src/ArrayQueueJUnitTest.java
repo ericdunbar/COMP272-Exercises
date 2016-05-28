@@ -15,9 +15,9 @@ import org.junit.Test;
  * @author Eric D
  *
  */
-public class ArrayQueueEDTest {
-	ArrayQueueED<Integer> int1Queue;
-	ArrayQueueED<Integer> int2Queue;
+public class ArrayQueueJUnitTest {
+	ArrayQueue<Integer> int1Queue;
+	ArrayQueue<Integer> int2Queue;
 	public static int instances = 0;
 
 	public static void incrementInstances() {
@@ -40,7 +40,7 @@ public class ArrayQueueEDTest {
 	}
 
 	/**
-	 * Test method for {@link ArrayQueueED#size()}.
+	 * Test method for {@link ArrayQueue#size()}.
 	 */
 	@Test
 	public final void testSize() {
@@ -48,12 +48,12 @@ public class ArrayQueueEDTest {
 	}
 
 	/**
-	 * Test method for {@link ArrayQueueED#ArrayQueueED(java.lang.Class)}.
+	 * Test method for {@link ArrayQueue#ArrayQueueED(java.lang.Class)}.
 	 */
 	@Test
 	public final void testArrayQueueED() {
 		incrementInstances();
-		ArrayQueueED<Integer> list = new ArrayQueueED<Integer>(Integer.class);
+		ArrayQueue<Integer> list = new ArrayQueue<Integer>(Integer.class);
 		assertEquals("Size() = 0", 0, list.size());
 		list.add(55);
 		list.add(56);
@@ -64,12 +64,12 @@ public class ArrayQueueEDTest {
 	}
 
 	/**
-	 * Test method for {@link ArrayQueueED#add(java.lang.Object)}.
+	 * Test method for {@link ArrayQueue#add(java.lang.Object)}.
 	 */
 	@Test
 	public final void testAddT() {
 		incrementInstances();
-		ArrayQueueED<Integer> list = new ArrayQueueED<Integer>(Integer.class);
+		ArrayQueue<Integer> list = new ArrayQueue<Integer>(Integer.class);
 		list.add(42);
 		list.add(-3);
 		list.add(17);
@@ -81,12 +81,12 @@ public class ArrayQueueEDTest {
 	}
 
 	/**
-	 * Test method for {@link ArrayQueueED#remove()}.
+	 * Test method for {@link ArrayQueue#remove()}.
 	 */
 	@Test
 	public final void testRemove() {
 		incrementInstances();
-		ArrayQueueED<Integer> list = new ArrayQueueED<Integer>(Integer.class);
+		ArrayQueue<Integer> list = new ArrayQueue<Integer>(Integer.class);
 		list.add(42);
 		list.add(-3);
 		list.add(17);
@@ -105,7 +105,7 @@ public class ArrayQueueEDTest {
 	}
 
 	/**
-	 * Test method for {@link ArrayQueueED#resize()}.
+	 * Test method for {@link ArrayQueue#resize()}.
 	 */
 	@Test
 	public final void testResize() {
@@ -113,7 +113,7 @@ public class ArrayQueueEDTest {
 	}
 
 	/**
-	 * Test method for {@link ArrayQueueED#offer(java.lang.Object)}.
+	 * Test method for {@link ArrayQueue#offer(java.lang.Object)}.
 	 */
 	@Test
 	public final void testOffer() {
@@ -121,7 +121,7 @@ public class ArrayQueueEDTest {
 	}
 
 	/**
-	 * Test method for {@link ArrayQueueED#peek()}.
+	 * Test method for {@link ArrayQueue#peek()}.
 	 */
 	@Test
 	public final void testPeek() {
@@ -129,7 +129,7 @@ public class ArrayQueueEDTest {
 	}
 
 	/**
-	 * Test method for {@link ArrayQueueED#poll()}.
+	 * Test method for {@link ArrayQueue#poll()}.
 	 */
 	@Test
 	public final void testPoll() {
@@ -137,7 +137,7 @@ public class ArrayQueueEDTest {
 	}
 
 	/**
-	 * Test method for {@link ArrayQueueED#iterator()}.
+	 * Test method for {@link ArrayQueue#iterator()}.
 	 */
 	@Test
 	public final void testIterator() {

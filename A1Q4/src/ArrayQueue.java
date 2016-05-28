@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
  * @param <T>
  *
  */
-public class ArrayQueueED<T> extends AbstractQueue<T> {
+public class ArrayQueue<T> extends AbstractQueue<T> {
 	/*
 	 * the ArrayQueue data structure implements a FIFO (first-in-first-out) queue;
 	 * elements are removed (using the remove() operation) from the queue in the same
@@ -34,12 +34,39 @@ public class ArrayQueueED<T> extends AbstractQueue<T> {
 	protected FactoryODS<T> arrayFactory;
 
 	/**
+	 * Gets the element at the given index.
+	 * 
+	 * @param index index
+	 * @return element
+	 */
+	public T get(int index) {
+		if (index < 0 || index > n - 1)
+			throw new IndexOutOfBoundsException();
+		return backArray[(head + index) % backArray.length];
+	}
+
+	/**
+	 * Sets the element of the Node at the given index, i to the element, x
+	 * @param i index
+	 * @param x element
+	 * @return
+	 */
+	public T set(int i, T x) {
+		if (i < 0 || i > n - 1)
+			throw new IndexOutOfBoundsException();
+		int index = (head + i) % backArray.length;
+		T y = backArray[index];
+		backArray[index] = x;
+		return y;
+	}
+
+	/**
 	 * Create instance of an array capable of handling generics.
 	 * 
 	 * @param t
 	 *            object type
 	 */
-	public ArrayQueueED(Class<T> t) {
+	public ArrayQueue(Class<T> t) {
 		arrayFactory = new FactoryODS<T>(t); // used for generic arrays
 		backArray = arrayFactory.newArray(1); // assume min size of 1
 		head = 0;
