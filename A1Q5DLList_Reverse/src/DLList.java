@@ -248,14 +248,6 @@ public class DLList<T> implements Comparable<T> {
 		return n;
 	}
 
-	public void printSummary(Node y) {
-		//TODO hide from view since this is a testing method
-		System.out.printf(
-				"Swap summary: -1: %4.2f (0: %4.2f); 0: %4.2f; +1: %4.2f (0: %4.2f); +2: %4.2f (+1: %4.2f) %n",
-				y.prev.elementData, y.prev.next.elementData, y.elementData, y.next.elementData, y.next.prev.elementData,
-				y.next.next.elementData, y.next.next.prev.elementData);
-	}
-
 	public void swapWithNextNode(Node y) {
 		//TODO move into own class
 
@@ -278,7 +270,16 @@ public class DLList<T> implements Comparable<T> {
 		System.out.println();
 	}
 
+	private void printSummary(Node y) {
+		//TODO hide from view since this is a testing method
+		System.out.printf(
+				"Swap summary: -1: %4.2f (0: %4.2f); 0: %4.2f; +1: %4.2f (0: %4.2f); +2: %4.2f (+1: %4.2f) %n",
+				y.prev.elementData, y.prev.next.elementData, y.elementData, y.next.elementData, y.next.prev.elementData,
+				y.next.next.elementData, y.next.next.prev.elementData);
+	}
+
 	private void displayList() {
+		//TODO hide from view since this is a testing method
 		for (int i = 0; i < this.size(); i++) {
 			System.out.println("i: " + i + " e: " + this.get(i));
 		}
@@ -339,7 +340,8 @@ public class DLList<T> implements Comparable<T> {
 	@Override
 	public int compareTo(T arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("compareTo in DLList.java ran");
-		return 0;
+		System.out.println("compareTo in DLList.java... doesn't do anything");
+		throw new UnsupportedOperationException();
 	}
+
 }
