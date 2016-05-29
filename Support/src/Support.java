@@ -1,13 +1,24 @@
 
-public class TestingSupport {
+public class Support {
 	private static boolean isTesting = false;
 
+	public static void printDescription(String title, String[] details){
+		String indent = "  ";
+		System.out.println("TITLE");
+		System.out.println(indent + title);
+		System.out.println();
+		System.out.println("DETAILS:");
+		for (int i = 0; i < details.length; i++) {
+			System.out.println(indent + details[i]);
+		}
+	}
+	
 	public static boolean isTesting() {
 		return isTesting;
 	}
 
 	public static void setTesting(boolean isTesting) {
-		TestingSupport.isTesting = isTesting;
+		Support.isTesting = isTesting;
 	}
 
 	public static void methodInfo(String methodDetail) {

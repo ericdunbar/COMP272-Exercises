@@ -12,7 +12,7 @@ import org.junit.Test;
  * @author Eric D.
  *
  */
-public class RandomQueueTest {
+public class RandomQueueJUnitTest {
 	public static int instances = 0;
 
 	public static void incrementInstances() {
@@ -64,7 +64,7 @@ public class RandomQueueTest {
 	@Test
 	public final void testMoveLastElement() {
 		incrementInstances();
-			RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
+		RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
 		int hits = 0;
 		int tries = 100;
 		int listSize = 10;
@@ -90,7 +90,7 @@ public class RandomQueueTest {
 				hits++;
 			}
 			System.out.println();
-			for (int i = 0; i < listSize-1; i++) {
+			for (int i = 0; i < listSize - 1; i++) {
 				list.remove();
 			}
 
@@ -148,5 +148,4 @@ public class RandomQueueTest {
 			assertTrue("add(" + i + ")", list.add(i));
 		}
 	}
-
 }
