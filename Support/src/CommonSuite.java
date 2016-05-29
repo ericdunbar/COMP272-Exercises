@@ -164,6 +164,17 @@ public class CommonSuite {
 	}
 
 	/**
+	 * Prints an array of type String to System.out.
+	 * 
+	 * @param theArray array of type <i>String</i>
+	 */
+	public static void printArray(String[] theArray) {
+		for (String string : theArray) {
+			System.out.println(string);
+		}
+	}
+
+	/**
 	 * Generates an ArrayList of type String from an array of type String.
 	 * 
 	 * @param myString array of type String

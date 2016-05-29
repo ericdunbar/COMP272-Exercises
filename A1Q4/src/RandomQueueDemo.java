@@ -1,3 +1,5 @@
+import java.lang.reflect.UndeclaredThrowableException;
+import java.rmi.UnexpectedException;
 import java.util.Arrays;
 
 /**
@@ -32,18 +34,22 @@ public class RandomQueueDemo {
 	 * approach 0.10.
 	 * 
 	 * Repeat 10 additions and 1 remove 1_000_000 times.
+	 * @param theTester 
 	 */
-	private static void removeTenPercentTest() {
+	private static void removeTenPercentTest(TestSuite theTester) {
 
-		String title = ("Remove 10% Test");
-		String[] details = {
+		// Create test fact tracker
+		String[] details = {"Remove 10% Test", "",
 				"Test the remove() function from the RandomQueue. Remove() randomly picks,",
 				"removes and returns an element from the queue. The test removes one item",
 				"from a queue of ten items and compares it with the last item added. When",
 				"repeated enough times the probability of picking the last item should",
 				"approach 0.10.", "", "Repeat 10 additions and 1 remove 1_000_000 times." };
-		
-		CommonSuite.printDescription(title, details);
+
+		// Display general information
+		System.out.println();
+		CommonSuite.printArray(details);
+
 		System.out.println();
 
 		int hits = 0;
@@ -61,6 +67,14 @@ public class RandomQueueDemo {
 		boolean isExpected = (0.09 < observed) && (observed < 0.11);
 		System.out
 				.println("Expected: 0.09 < p < 0.11; Observed: " + observed + " ... " + isExpected);
+		
+		// Collect test results
+		if (theTester.isTesting()) {
+			theTester.isValidTestOutput(TestSuite.ObtainTestInput.obtainComment(),
+					"This is program input", TestSuite.ObtainTestInput.obtainExpectedOutput(), "",
+					false, TestSuite.ObtainTestInput.obtainStage());
+		}
+
 	}
 
 	/**
@@ -76,8 +90,9 @@ public class RandomQueueDemo {
 	 * Repeat 10 additions and 1 remove tries times.
 	 *
 	 * @param tries number of repetitions to subject remove() to
+	 * @throws UnexpectedException 
 	 */
-	private static void remove10to1Test(long tries, ArrayQueue list, int removeDivisor) {
+	private static void remove10to1Test(long tries, ArrayQueue list, int removeDivisor) throws UnexpectedException {
 		int[] counts = new int[10];
 		final long divisor = tries / removeDivisor;
 		// RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
@@ -94,6 +109,7 @@ public class RandomQueueDemo {
 			// TODO Uncomment
 			// System.out.println(" " + i + ", " + counts[i]);
 		}
+		throw new UnexpectedException("asdf");
 	}
 
 	/**
@@ -201,13 +217,34 @@ public class RandomQueueDemo {
 	}
 
 	public static void main(String[] args) {
+		// Are we testing?
+		boolean testing = true;
 
-		removeTenPercentTest();
+		// Display programmer info and create testing object
+		TestSuite theTester = CommonSuite.commonProgramStart("Eric Dunbar", "3243614", 1, 4,
+				"RandomQueue", testing);
+
+		// perform the tasks required by the question
+
+
+		removeTenPercentTest(theTester);
 		// ArrayQueueED<Integer> lister = new ArrayQueueED<>(Integer.class);
 		// generateStats(lister, 350_000);
 
 		RandomQueue<Integer> lister2 = new RandomQueue<>(Integer.class);
 		generateStats(lister2, (int) Math.pow(2, 18));
+
+		System.out.println();
+		System.out.println("Press enter to continue");
+		CommonSuite.getTextInput(); // discard input
+
+		// Thank the user
+		System.out.println();
+		System.out.println("The demonstration is complete.");
+		System.out.println();
+
+		// Let's recap... display testing results, if applicable
+		CommonSuite.commonProgramEnd(theTester);
 
 	}
 
