@@ -43,7 +43,7 @@ public class RandomQueueDemo {
 				"repeated enough times the probability of picking the last item should",
 				"approach 0.10.", "", "Repeat 10 additions and 1 remove 1_000_000 times." };
 		
-		Support.printDescription(title, details);
+		CommonSuite.printDescription(title, details);
 		System.out.println();
 
 		int hits = 0;

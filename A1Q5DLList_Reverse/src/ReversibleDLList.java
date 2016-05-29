@@ -35,7 +35,7 @@ public class ReversibleDLList<T> extends DLList<T> {
 	 * Demonstrate basic ReversibleDLList functionality.
 	 */
 	private static void reversibleDLListDemo() {
-		Support.setTesting(true);
+		CommonSuite.setTesting(true);
 		ReversibleDLList<Double> theReversibleDLList = new ReversibleDLList<>();
 
 		for (int j = 0; j < 10; j += 2) {
@@ -48,7 +48,7 @@ public class ReversibleDLList<T> extends DLList<T> {
 			theReversibleDLList.reverse();
 			int theDLListsize = theReversibleDLList.size();
 			for (int i = 0; i < theDLListsize; i++) {
-				Support.methodInfo(String.format("%7.2f", theReversibleDLList.remove(0)));
+				CommonSuite.methodInfo(String.format("%7.2f", theReversibleDLList.remove(0)));
 			}
 		}
 	}

@@ -4,14 +4,15 @@ import java.util.Scanner;
 
 //@formatter:off
 /**
-*			Assignment 1 Common Tools (not assigned), COMP268
+*			Assignment 1 Common Tools (not assigned), COMP272
 * Class:	TestSuite.java
-* Purpose:	Provide a testing suite for use with COMP268 Assignment 1 programs.
+* Purpose:	Provide a testing suite for use with COMP272 programs.
 *
 * @author:		Eric Dunbar
 * Student ID:	3243514
 * Date:			October 3, 2015
-* Version:		1.0
+*               May 30, 2016 (revision)
+* Version:		1.1
 *
 * Based on:		Eck, David J. (2015). Introduction to Programming Using Java, 
 *				Seventh Edition.  Web access http://math.hws.edu/javanotes/
@@ -53,19 +54,13 @@ public class TestSuite {
 		 * Creates an instance of TestTracker, a type that tracks the parameters
 		 * passed to the super-instance for testing purposes.
 		 * 
-		 * @param comment
-		 *            the comment, to be printed, as String
-		 * @param programInput
-		 *            the code fragment, as String
-		 * @param expectedOutput
-		 *            the expected output, as String
-		 * @param observedOutput
-		 *            the observed output, as String
-		 * @param testStage
-		 *            the test stage this test is part of (1, 2, 3, 4), as
+		 * @param comment the comment, to be printed, as String
+		 * @param programInput the code fragment, as String
+		 * @param expectedOutput the expected output, as String
+		 * @param observedOutput the observed output, as String
+		 * @param testStage the test stage this test is part of (1, 2, 3, 4), as
 		 *            TestStage
-		 * @param isValid
-		 *            is expected == observed?
+		 * @param isValid is expected == observed?
 		 */
 		public TestTracker(String comment, String programInput, String expectedOutput,
 				String observedOutput, TestStage testStage, boolean isValid) {
@@ -87,15 +82,16 @@ public class TestSuite {
 		System.out.print("> ");
 		String enabled = "";
 
-		while (!enabled.equalsIgnoreCase("y") && !enabled.equalsIgnoreCase("n")) {
+		while (!enabled.equalsIgnoreCase("y") && !enabled.equalsIgnoreCase("n"))
 			enabled = myInput.nextLine();
-		}
 
-		if (enabled.equalsIgnoreCase("y")) {
-			setTesting(true);
-		} else if (enabled.equalsIgnoreCase("n")) {
-			setTesting(false);
-		}
+		setTesting(enabled.equalsIgnoreCase("y"));
+		// TODO cleanup if this code works
+		// ) {
+		// setTesting(true);
+		// } else if (enabled.equalsIgnoreCase("n")) {
+		// setTesting(false);
+		// }
 	}
 
 	/**
@@ -110,8 +106,7 @@ public class TestSuite {
 	/**
 	 * Sets whether program should display test code
 	 * 
-	 * @param testing
-	 *            true if testing, as boolean
+	 * @param testing true if testing, as boolean
 	 */
 	public void setTesting(boolean testing) {
 		this.testing = testing;
@@ -141,8 +136,7 @@ public class TestSuite {
 		/**
 		 * Display a message and obtain a single line worth of String input
 		 * 
-		 * @param message
-		 *            message to be displayed
+		 * @param message message to be displayed
 		 * @return String containing user response
 		 */
 		private static String obtainString(String message) {
@@ -158,8 +152,8 @@ public class TestSuite {
 		 * Complete a fully user-controlled isValidTest. The user provides all
 		 * input and decides whether the test results are the same.
 		 * 
-		 * @param myTestSuite
-		 *            an instance of a test tracking object of type TestSuite
+		 * @param myTestSuite an instance of a test tracking object of type
+		 *            TestSuite
 		 */
 		public static void doFullManualValidTest(TestSuite myTestSuite) {
 			System.out.println();
@@ -396,12 +390,10 @@ public class TestSuite {
 
 	}
 
-	
 	/**
 	 * Prints a wide variety of testing information.
 	 * 
-	 * @param theTester
-	 *            an instance of type TestSuite containing test data to be
+	 * @param theTester an instance of type TestSuite containing test data to be
 	 *            printed
 	 */
 	public void printFullTestData() {
@@ -454,14 +446,10 @@ public class TestSuite {
 	/**
 	 * Automatically compare two String fragments for similarities.
 	 * 
-	 * @param comment
-	 *            comment describing the test
-	 * @param programInput
-	 *            code executed
-	 * @param expectedOutput
-	 *            output that is expected
-	 * @param observedOutput
-	 *            output that is observed
+	 * @param comment comment describing the test
+	 * @param programInput code executed
+	 * @param expectedOutput output that is expected
+	 * @param observedOutput output that is observed
 	 * @return whether or not the expected and observed output were the same
 	 */
 	public boolean isValidTestOutput(String comment, String programInput, String expectedOutput,
@@ -479,20 +467,14 @@ public class TestSuite {
 	 * comparison or whether the end user should have to manually compare the
 	 * results.
 	 * 
-	 * @param comment
-	 *            comment describing the test
-	 * @param programInput
-	 *            code executed
-	 * @param expectedOutput
-	 *            output that is expected
-	 * @param observedOutput
-	 *            output that is observed
-	 * @param automatedComparison
-	 *            whether method should conduct comparison automatically (true)
-	 *            or whether user should do the comparison through visual
-	 *            inspection (false)
-	 * @param whichStage
-	 *            which of the four stages is this, type TestStage
+	 * @param comment comment describing the test
+	 * @param programInput code executed
+	 * @param expectedOutput output that is expected
+	 * @param observedOutput output that is observed
+	 * @param automatedComparison whether method should conduct comparison
+	 *            automatically (true) or whether user should do the comparison
+	 *            through visual inspection (false)
+	 * @param whichStage which of the four stages is this, type TestStage
 	 * @return whether or not the expected and observed output were the same
 	 */
 	public boolean isValidTestOutput(String comment, String programInput, String expectedOutput,
@@ -507,20 +489,15 @@ public class TestSuite {
 	 * comparison or whether the end user should have to manually compare the
 	 * results.
 	 * 
-	 * @param comment
-	 *            comment describing the test
-	 * @param programInput
-	 *            code executed
-	 * @param expectedOutput
-	 *            output that is expected
-	 * @param observedOutput
-	 *            output that is observed
-	 * @param automatedComparison
-	 *            whether method should conduct comparison automatically (true)
-	 *            or whether user should do the comparison through visual
-	 *            inspection (false)
-	 * @param whichStage
-	 *            determines which of the TestStage stages this test belongs to
+	 * @param comment comment describing the test
+	 * @param programInput code executed
+	 * @param expectedOutput output that is expected
+	 * @param observedOutput output that is observed
+	 * @param automatedComparison whether method should conduct comparison
+	 *            automatically (true) or whether user should do the comparison
+	 *            through visual inspection (false)
+	 * @param whichStage determines which of the TestStage stages this test
+	 *            belongs to
 	 * @return whether or not the expected and observed output were the same
 	 */
 	private boolean isBackendValidTestOutput(String comment, String programInput,
