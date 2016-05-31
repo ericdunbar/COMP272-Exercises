@@ -228,7 +228,8 @@ public class RandomQueueDemo {
 		String[] tasksList = { "TASKS:", "1. confirm add(x) works, as expected",
 				"2. confirm RandomQueue.remove() is random",
 				"3. confirm that n = 0, n = 1 return appropriate error messages, if applicable",
-				"4. confirm add(x) and remove() run in constant time per operation" };
+				"4. confirm add(x) and remove() run in constant time per operation",
+				"5. confirm the tail element is moved into the newly emptied index position"};
 
 		CommonSuite.printArray(tasksList);
 
