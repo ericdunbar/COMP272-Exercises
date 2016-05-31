@@ -398,7 +398,7 @@ public class TestSuite {
 	 */
 	public void printFullTestData() {
 		// Note: since this code is reused so much it was thought best to spin
-		// it off into its own parameter
+		// it off into its own method
 
 		// Let's recap...
 

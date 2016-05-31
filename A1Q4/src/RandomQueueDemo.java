@@ -1,4 +1,3 @@
-import java.lang.reflect.UndeclaredThrowableException;
 import java.rmi.UnexpectedException;
 import java.util.Arrays;
 
@@ -21,11 +20,12 @@ import java.util.Arrays;
  */
 public class RandomQueueDemo {
 
-	//TODO confirm add(x) works, as expected
-	//TODO confirm RandomQueue.remove() is random
-	//TODO confirm that n = 0, n = 1 return appropriate error messages, if applicable
-	//TODO confirm add(x) and remove() run in constant time per operation
-	
+	// TODO confirm add(x) works, as expected
+	// TODO confirm RandomQueue.remove() is random
+	// TODO confirm that n = 0, n = 1 return appropriate error messages, if
+	// applicable
+	// TODO confirm add(x) and remove() run in constant time per operation
+
 	/**
 	 * Test the remove() function from the RandomQueue. Remove() randomly picks,
 	 * removes and returns an element from the queue. The test removes one item
@@ -34,17 +34,18 @@ public class RandomQueueDemo {
 	 * approach 0.10.
 	 * 
 	 * Repeat 10 additions and 1 remove 1_000_000 times.
-	 * @param theTester 
+	 * 
+	 * @param theTester
 	 */
-	private static void removeTenPercentTest(TestSuite theTester) {
+	private static void confirmRandomRemove(TestSuite theTester) {
 
 		// Create test fact tracker
-		String[] details = {"Remove 10% Test", "",
+		String[] details = { "Remove 10% Test", "",
 				"Test the remove() function from the RandomQueue. Remove() randomly picks,",
 				"removes and returns an element from the queue. The test removes one item",
 				"from a queue of ten items and compares it with the last item added. When",
-				"repeated enough times the probability of picking the last item should",
-				"approach 0.10.", "", "Repeat 10 additions and 1 remove 1_000_000 times." };
+				"repeated enough times the probability of picking the last item should", "approach 0.10.", "",
+				"Repeat 10 additions and 1 remove 1_000_000 times." };
 
 		// Display general information
 		System.out.println();
@@ -65,14 +66,13 @@ public class RandomQueueDemo {
 		}
 		double observed = (double) hits / tries;
 		boolean isExpected = (0.09 < observed) && (observed < 0.11);
-		System.out
-				.println("Expected: 0.09 < p < 0.11; Observed: " + observed + " ... " + isExpected);
-		
+		System.out.println("Expected: 0.09 < p < 0.11; Observed: " + observed + " ... " + isExpected);
+
 		// Collect test results
 		if (theTester.isTesting()) {
-			theTester.isValidTestOutput(TestSuite.ObtainTestInput.obtainComment(),
-					"This is program input", TestSuite.ObtainTestInput.obtainExpectedOutput(), "",
-					false, TestSuite.ObtainTestInput.obtainStage());
+			theTester.isValidTestOutput(TestSuite.ObtainTestInput.obtainComment(), "This is program input",
+					TestSuite.ObtainTestInput.obtainExpectedOutput(), "", false,
+					TestSuite.ObtainTestInput.obtainStage());
 		}
 
 	}
@@ -89,8 +89,9 @@ public class RandomQueueDemo {
 	 * 
 	 * Repeat 10 additions and 1 remove tries times.
 	 *
-	 * @param tries number of repetitions to subject remove() to
-	 * @throws UnexpectedException 
+	 * @param tries
+	 *            number of repetitions to subject remove() to
+	 * @throws UnexpectedException
 	 */
 	private static void remove10to1Test(long tries, ArrayQueue list, int removeDivisor) throws UnexpectedException {
 		int[] counts = new int[10];
@@ -115,7 +116,8 @@ public class RandomQueueDemo {
 	/**
 	 * Create an ArrayQueue of size arraySize.
 	 *
-	 * @param arraySize number of repetitions to subject remove() to
+	 * @param arraySize
+	 *            number of repetitions to subject remove() to
 	 * @return
 	 */
 	private static void createFilledArrayQueue(ArrayQueue<Integer> returnList, int arraySize) {
@@ -175,7 +177,7 @@ public class RandomQueueDemo {
 		}
 	}
 
-	private static void generateStats(ArrayQueue<Integer> list2, int incrementRepetitions) {
+	private static void confirmConstantTime(ArrayQueue<Integer> list2, int incrementRepetitions) {
 
 		int reps = 10;
 
@@ -211,8 +213,7 @@ public class RandomQueueDemo {
 		for (int i = 0; i < 10; i++) {
 			Arrays.sort(removeArrayQBins[i]);
 			Arrays.sort(removeArrayAddQBins[i]);
-			System.out.println(i + ", " + removeArrayQBins[i][reps / 2] + ", "
-					+ removeArrayAddQBins[i][reps / 2]);
+			System.out.println(i + ", " + removeArrayQBins[i][reps / 2] + ", " + removeArrayAddQBins[i][reps / 2]);
 		}
 	}
 
@@ -221,29 +222,43 @@ public class RandomQueueDemo {
 		boolean testing = true;
 
 		// Display programmer info and create testing object
-		TestSuite theTester = CommonSuite.commonProgramStart("Eric Dunbar", "3243614", 1, 4,
-				"RandomQueue", testing);
+		TestSuite theTester = CommonSuite.commonProgramStart("Eric Dunbar", "3243614", 1, 4, "RandomQueue", testing);
+
+		// Display tasks
+		String[] tasksList = { "TASKS:", "1. confirm add(x) works, as expected",
+				"2. confirm RandomQueue.remove() is random",
+				"3. confirm that n = 0, n = 1 return appropriate error messages, if applicable",
+				"4. confirm add(x) and remove() run in constant time per operation" };
+
+		CommonSuite.printArray(tasksList);
 
 		// perform the tasks required by the question
 
+		// TASK 1. add(x) works
+		
+		// TASK 2. remove() is truly random
+		
+		confirmRandomRemove(theTester);
 
-		removeTenPercentTest(theTester);
-		// ArrayQueueED<Integer> lister = new ArrayQueueED<>(Integer.class);
-		// generateStats(lister, 350_000);
+		// TASK 3. n = 0 and n = 1 perform as expected
+		
+		// TASK 4. add(x) and remove() run in constant time
+		ArrayQueue<Integer> lister = new ArrayQueue<>(Integer.class);
+		confirmConstantTime(lister, 350_000);
 
 		RandomQueue<Integer> lister2 = new RandomQueue<>(Integer.class);
-		generateStats(lister2, (int) Math.pow(2, 18));
+		confirmConstantTime(lister2, (int) Math.pow(2, 18));
 
-		System.out.println();
-		System.out.println("Press enter to continue");
-		CommonSuite.getTextInput(); // discard input
 
 		// Thank the user
 		System.out.println();
 		System.out.println("The demonstration is complete.");
 		System.out.println();
+		System.out.println("Press enter to continue");
+		CommonSuite.getTextInput(); // discard input
+		System.out.println();
 
-		// Let's recap... display testing results, if applicable
+		// Display testing results, if applicable
 		CommonSuite.commonProgramEnd(theTester);
 
 	}
