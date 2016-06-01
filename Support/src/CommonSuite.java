@@ -287,7 +287,26 @@ public class CommonSuite {
 		TestSuite testSuite = new TestSuite();
 		testSuite.setTesting(isTesting);
 		return testSuite;
+	}
 
+	/**
+	 * Prints program details using the parameters passed as author, student
+	 * number, assignment number and question number. The boolean isTesting sets
+	 * whether the TestSuite object ought to be testing.
+	 * 
+	 * author = "Eric Dunbar" studentNumber = "3243614"
+	 * 
+	 * @param assignment Assignment number, as int
+	 * @param question Question number, as int
+	 * @param questionTitle Title of the question, as String
+	 * @param isTesting Whether the TestSuite should be testing, as boolean
+	 */
+	public static TestSuite commonProgramStart(int assignment, int question, String questionTitle,
+			boolean isTesting) {
+		String author = "Eric Dunbar";
+		String studentNumber = "3243614";
+		return commonProgramStart(author, studentNumber, assignment, question, questionTitle,
+				isTesting);
 	}
 
 	/**
@@ -341,6 +360,18 @@ public class CommonSuite {
 		{
 			StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
 			System.out.println("  " + stackTraceElements[2].getMethodName() + " " + methodDetail);
+		}
+	}
+	
+	public static class StopWatch {
+		private static long startTime;
+
+		public static void start() {
+			startTime = System.currentTimeMillis();
+		}
+
+		public static int stop() {
+			return (int) (System.currentTimeMillis() - startTime);
 		}
 	}
 

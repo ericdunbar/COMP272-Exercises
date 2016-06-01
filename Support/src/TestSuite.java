@@ -228,7 +228,7 @@ public class TestSuite {
 									// feedback
 
 				System.out.println("Please choose your test stage.");
-				printGlossaryOfTestStages();
+				printGlossaryTestStages();
 				// Control structure to get input and display responses
 				System.out.print("> "); // Show > to indicate input required
 				sMenuChoice = theInput.nextLine(); // Obtain menu choice
@@ -293,33 +293,30 @@ public class TestSuite {
 	/**
 	 * Print a glossary of what each of the four TestStages means.
 	 */
-	public static void printGlossaryOfTestStages() {
+	public static void printGlossaryTestStages() {
+		String indentS = CommonSuite.stringRepeat(" ", indent);
+
 		System.out.println("GLOSSARY OF STAGES:");
 		System.out.println(TestStage.Stage1);
-		System.out.print(CommonSuite.stringRepeat(" ", indent));
-		System.out.println("Program compiles successfully?");
+		System.out.println(indentS + "Program compiles successfully?");
 		System.out.println(TestStage.Stage2);
-		System.out.print(CommonSuite.stringRepeat(" ", indent));
-		System.out.println("Normal data entered for test runs.");
+		System.out.println(indentS + "Normal data entered for test runs.");
 		System.out.println(TestStage.Stage3);
-		System.out.print(CommonSuite.stringRepeat(" ", indent));
-		System.out.println("Abnormal data entered for test runs.");
+		System.out.println(indentS + "Abnormal data entered for test runs.");
 		System.out.println(TestStage.Stage4);
-		System.out.print(CommonSuite.stringRepeat(" ", indent));
-		System.out.println("Limiting conditions violated for test runs.");
+		System.out.println(indentS + "Limiting conditions violated for test runs.");
 	}
 
 	/**
 	 * Prints a concise summary of the tests performed.
 	 */
 	public void printShortTestSummary() {
+		String indentS = CommonSuite.stringRepeat(" ", indent);
+
 		System.out.println("TEST SUMMARY:");
-		System.out.print(CommonSuite.stringRepeat(" ", indent));
-		System.out.println("Number of tests performed: " + getNumberOfTestsRun());
-		System.out.print(CommonSuite.stringRepeat(" ", indent));
-		System.out.println("Number of tests passed:    " + getTestsPassed());
-		System.out.print(CommonSuite.stringRepeat(" ", indent));
-		System.out.println("Number of tests failed:    " + getTestsFailed());
+		System.out.println(indentS + "Number of tests performed: " + getNumberOfTestsRun());
+		System.out.println(indentS + "Number of tests passed:    " + getTestsPassed());
+		System.out.println(indentS + "Number of tests failed:    " + getTestsFailed());
 	}
 
 	/**
@@ -329,6 +326,7 @@ public class TestSuite {
 	 */
 	private void printTestStageResults(TestStage currentStage) {
 		// Print the test information for this particular stage of testing
+		String indentS = CommonSuite.stringRepeat(" ", indent);
 		int numberOfFailures = 0; // how many failures occurred in this stage
 		int numberOfTests = 0; // track how many tests were performed in this
 								// stage
@@ -338,15 +336,13 @@ public class TestSuite {
 									// of tests
 				System.out.println("Test Run " + numberOfTests + "(" + testTracker.comment + "):");
 				System.out.println("Program Input:");
-				System.out.print(CommonSuite.stringRepeat(" ", indent));
-				System.out.println(testTracker.programInput);
+				System.out.println(indentS + testTracker.programInput);
 				System.out.println();
 				System.out.println("Expected Program Output:");
-				System.out.print(CommonSuite.stringRepeat(" ", indent));
-				System.out.println(testTracker.expectedOutput);
+				System.out.println(indentS + testTracker.expectedOutput);
 				System.out.println();
 				System.out.println("Actual Program Output:");
-				System.out.print(CommonSuite.stringRepeat(" ", indent));
+				System.out.print(indentS);
 				if (testTracker.isValid) {
 					System.out.println("As expected.");
 				} else {
@@ -358,7 +354,9 @@ public class TestSuite {
 
 			} // end if
 		} // end for
+
 		String theStage;
+
 		switch (currentStage) {
 		case Stage1:
 			theStage = "Stage 1";
@@ -444,7 +442,8 @@ public class TestSuite {
 	// http://stackoverflow.com/questions/1820908/how-to-turn-off-the-eclipse-code-formatter-for-certain-sections-of-java-code
 
 	/**
-	 * Automatically compare two String fragments for similarities.
+	 * Automatically compare two String fragments for similarities. Defaults to
+	 * stage 2, normal input.
 	 * 
 	 * @param comment comment describing the test
 	 * @param programInput code executed
@@ -471,11 +470,11 @@ public class TestSuite {
 	 * @param programInput code executed
 	 * @param expectedOutput output that is expected
 	 * @param observedOutput output that is observed
-	 * @param automatedComparison whether method should conduct comparison
-	 *            automatically (true) or whether user should do the comparison
-	 *            through visual inspection (false)
+	 * @param automatedComparison true if method conducts comparison
+	 *            automatically, otherwise comparison is done manually through
+	 *            visual inspection
 	 * @param whichStage which of the four stages is this, type TestStage
-	 * @return whether or not the expected and observed output were the same
+	 * @return whether the expected and observed output were the same
 	 */
 	public boolean isValidTestOutput(String comment, String programInput, String expectedOutput,
 			String observedOutput, boolean automatedComparison, TestStage whichStage) {
@@ -493,12 +492,11 @@ public class TestSuite {
 	 * @param programInput code executed
 	 * @param expectedOutput output that is expected
 	 * @param observedOutput output that is observed
-	 * @param automatedComparison whether method should conduct comparison
-	 *            automatically (true) or whether user should do the comparison
-	 *            through visual inspection (false)
-	 * @param whichStage determines which of the TestStage stages this test
-	 *            belongs to
-	 * @return whether or not the expected and observed output were the same
+	 * @param automatedComparison true if method conducts comparison
+	 *            automatically, otherwise comparison is done manually through
+	 *            visual inspection
+	 * @param whichStage which of the four stages is this, type TestStage
+	 * @return whether the expected and observed output were the same
 	 */
 	private boolean isBackendValidTestOutput(String comment, String programInput,
 			String expectedOutput, String observedOutput, boolean automatedComparison,
