@@ -25,6 +25,7 @@ public class TestSuite {
 	private boolean testing = true; // this is for the instance to let the
 	// program know whether it should be showing
 	// testing code, if desired
+	private boolean silentRecording = true; // display info immediately?
 
 	//@formatter:off
 	/**
@@ -49,6 +50,7 @@ public class TestSuite {
 		String observedOutput;
 		TestStage testStage;
 		boolean isValid;
+		String toStringS;
 
 		/**
 		 * Creates an instance of TestTracker, a type that tracks the parameters
@@ -70,6 +72,35 @@ public class TestSuite {
 			this.observedOutput = observedOutput;
 			this.testStage = testStage;
 			this.isValid = isValid;
+		}
+
+		private void addToStringNoIndent(String addS){
+			toStringS += addS;
+		}
+
+		private void addToString(String addS){
+			String indentS = CommonSuite.stringRepeat(" ", CommonSuite.indentAmount);
+			toStringS += indentS + addS;
+		}
+
+		private void addToStringln(String addS){
+			String indentS = "\n" + CommonSuite.stringRepeat(" ", CommonSuite.indentAmount);
+			toStringS += indentS + addS;
+		}
+		
+		public String toString(){
+			toStringS = "";
+
+			addToString(CommonSuite.stringRepeat("__", 30));
+			addToStringln(("    DESCRIPTION: ")+(comment));
+			addToStringln(("           CODE: ") + (programInput));
+			addToStringln(("EXPECTED OUTPUT: ") +(expectedOutput));
+			addToStringln(("OBSERVED OUTPUT: ") +(observedOutput));
+			addToStringln(("         O == E: ")+(isValid));
+			addToStringln((CommonSuite.stringRepeat("--", 30)));
+			addToStringNoIndent("\n\n");
+			
+			return toStringS;
 		}
 	} // end of TestTracker class
 
@@ -112,6 +143,20 @@ public class TestSuite {
 		this.testing = testing;
 	}
 
+	/**
+	 * @return the silentRecording
+	 */
+	public boolean isSilentRecording() {
+		return silentRecording;
+	}
+
+	/**
+	 * @param silentRecording the silentRecording to set
+	 */
+	public void setSilentRecording(boolean silentRecording) {
+		this.silentRecording = silentRecording;
+	}
+
 	// To what testing stage does the test belong?
 	public enum TestStage {
 		Stage1, Stage2, Stage3, Stage4
@@ -121,8 +166,6 @@ public class TestSuite {
 	private int numberOfTestsRun = 0;
 	private int testsPassed = 0;
 	private int testsFailed = 0;
-
-	private static final int indent = 4; // by how much should text be indented?
 
 	/**
 	 * Sub-class to obtain input for TestSuite.java
@@ -294,7 +337,7 @@ public class TestSuite {
 	 * Print a glossary of what each of the four TestStages means.
 	 */
 	public static void printGlossaryTestStages() {
-		String indentS = CommonSuite.stringRepeat(" ", indent);
+		String indentS = CommonSuite.stringRepeat(" ", CommonSuite.indentAmount);
 
 		System.out.println("GLOSSARY OF STAGES:");
 		System.out.println(TestStage.Stage1);
@@ -311,7 +354,7 @@ public class TestSuite {
 	 * Prints a concise summary of the tests performed.
 	 */
 	public void printShortTestSummary() {
-		String indentS = CommonSuite.stringRepeat(" ", indent);
+		String indentS = CommonSuite.stringRepeat(" ", CommonSuite.indentAmount);
 
 		System.out.println("TEST SUMMARY:");
 		System.out.println(indentS + "Number of tests performed: " + getNumberOfTestsRun());
@@ -326,7 +369,7 @@ public class TestSuite {
 	 */
 	private void printTestStageResults(TestStage currentStage) {
 		// Print the test information for this particular stage of testing
-		String indentS = CommonSuite.stringRepeat(" ", indent);
+		String indentS = CommonSuite.stringRepeat(" ", CommonSuite.indentAmount);
 		int numberOfFailures = 0; // how many failures occurred in this stage
 		int numberOfTests = 0; // track how many tests were performed in this
 								// stage
@@ -553,6 +596,9 @@ public class TestSuite {
 
 		recordsTestInfo.add(new TestTracker(comment, programInput, expectedOutput, observedOutput,
 				whichStage, isValid));
+		if (!isSilentRecording()) {
+			System.out.print(recordsTestInfo.get(recordsTestInfo.size()-1));
+		}
 
 		return isValid;
 	}

@@ -28,6 +28,8 @@ public class CommonSuite {
 	private static int questionData;
 	private static String questionTitleData;
 	private static Scanner myScanner = new Scanner(System.in);
+	public static int indentAmount = 4; // by how much should text be indented?
+
 
 	/**
 	 * Gets and returns a String from System.in. A message is displayed.
@@ -328,14 +330,17 @@ public class CommonSuite {
 	// confident nothing relies on it.
 	// private static boolean isTesting = false;
 
+	public static String indentString(String stringToIndent){
+		return CommonSuite.stringRepeat(" ", indentAmount) + stringToIndent;
+	}
+	
 	public static void printDescription(String title, String[] details) {
-		String indent = "  ";
 		System.out.println("TITLE");
-		System.out.println(indent + title);
+		System.out.println(indentString(title));
 		System.out.println();
 		System.out.println("DETAILS:");
 		for (int i = 0; i < details.length; i++) {
-			System.out.println(indent + details[i]);
+			System.out.println(indentString(details[i]));
 		}
 	}
 

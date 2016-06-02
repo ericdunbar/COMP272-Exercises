@@ -253,8 +253,8 @@ public class RandomQueueDemo {
 				resultS, true, TestSuite.TestStage.Stage4);
 
 		for (int i = 0; i < 3; i++) {
-			theTester.isValidTestOutput("add() when n = 0.", "add(" + (55 + i) + ");",
-					"true" + (55 + i), "" + list.add(55 + i) + list.get(i));
+			theTester.isValidTestOutput("add("+(55+i)+") when n = "+(0+i)+".", "add(" + (55 + i) + ");",
+					"true, " + (55 + i), "" + list.add(55 + i) + ", " + list.get(i));
 			theTester.isValidTestOutput("size() when n = " + (1 + i) + ".", "size();", "" + (1 + i),
 					"" + list.size());
 		}
@@ -281,9 +281,10 @@ public class RandomQueueDemo {
 
 		// Display programmer info and create testing object
 		theTester = CommonSuite.commonProgramStart(1, 4, "RandomQueue", testing);
+		theTester.setSilentRecording(false); // report results immediately
 
 		// Display tasks
-		String[] tasksList = { "TASKS:", "1. does add(x), remove() work for n = {0, 1, 2}",
+		String[] tasksList = { "TASKS:", "1. do add(x) and remove() work for n = {0, 1, 2}",
 				"2. is RandomQueue.remove() random",
 				"3. do add(x) and remove() run in constant time",
 				"4. is tail element moved into empty index position" };
