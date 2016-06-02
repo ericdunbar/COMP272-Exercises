@@ -55,15 +55,12 @@ public class RandomQueueDemo {
 				"Test whether remove() randomly picks, removes and returns ",
 				"an element from the queue. The test removes one item",
 				"from a queue of ten items and compares it with the last item added. When",
-				"repeated enough times the probability of picking the last item should",
-				"approach 0.10.", "",
+				"repeated enough times the probability of picking the last item should", "approach 0.10.", "",
 				"Repeat " + listSize + " additions and 1 remove " + tries + " times." };
 
 		// Display general information
 		System.out.println();
-		CommonSuite.printArray(details);
-
-		System.out.println();
+		CommonSuite.printIndentedArray(details);
 
 		for (int outerIdx = 0; outerIdx < tries; outerIdx++) {
 			RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
@@ -75,8 +72,8 @@ public class RandomQueueDemo {
 		}
 		double observed = (double) hits / tries;
 		boolean isExpected = (0.09 < observed) && (observed < 0.11);
-		System.out
-				.println("Expected: 0.09 < p < 0.11; Observed: " + observed + " ... " + isExpected);
+		System.out.println(
+				CommonSuite.indentString("Expected: 0.09 < p < 0.11; Observed: " + observed + " O==E? " + isExpected));
 
 		String expectedS, observedS;
 		if (isExpected)
@@ -88,8 +85,8 @@ public class RandomQueueDemo {
 		}
 
 		// Collect test results
-		theTester.isValidTestOutput("Does remove() randomly pick elements to remove",
-				"10 add(x), followed by 1 remove()", expectedS, observedS);
+		theTester.isValidTestOutput("Does remove() randomly pick elements?", "10 add(x), followed by 1 remove()",
+				expectedS, observedS);
 	}
 
 	/**
@@ -104,11 +101,11 @@ public class RandomQueueDemo {
 	 * 
 	 * Repeat 10 additions and 1 remove tries times.
 	 *
-	 * @param tries number of repetitions to subject remove() to
+	 * @param tries
+	 *            number of repetitions to subject remove() to
 	 * @throws UnexpectedException
 	 */
-	private static void remove10to1Test(long tries, ArrayQueue list, int removeDivisor)
-			throws UnexpectedException {
+	private static void remove10to1Test(long tries, ArrayQueue list, int removeDivisor) throws UnexpectedException {
 		int[] counts = new int[10];
 		final long divisor = tries / removeDivisor;
 		// RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
@@ -131,7 +128,8 @@ public class RandomQueueDemo {
 	/**
 	 * Create an ArrayQueue of size arraySize.
 	 *
-	 * @param arraySize number of repetitions to subject remove() to
+	 * @param arraySize
+	 *            number of repetitions to subject remove() to
 	 * @return
 	 */
 	private static void createFilledArrayQueue(ArrayQueue<Integer> returnList, int arraySize) {
@@ -149,9 +147,12 @@ public class RandomQueueDemo {
 	 * bin being filled. Running this test on ArrayQueue should result in a
 	 * single bin being filled.
 	 * 
-	 * @param list an ArrayList with elements
-	 * @param testEvery how often to remove an element
-	 * @param silent false if output is printed
+	 * @param list
+	 *            an ArrayList with elements
+	 * @param testEvery
+	 *            how often to remove an element
+	 * @param silent
+	 *            false if output is printed
 	 */
 	private static void removeTest(ArrayQueue<?> list, int testEvery, boolean silent) {
 		int[] counts = new int[10];
@@ -171,15 +172,15 @@ public class RandomQueueDemo {
 			}
 	}
 
-	private static class timerED {
+	private static class StopWatch {
 		private static long startTime;
 
 		public static void start() {
 			startTime = System.currentTimeMillis();
 		}
 
-		public static int stop() {
-			return (int) (System.currentTimeMillis() - startTime);
+		public static long stop() {
+			return (System.currentTimeMillis() - startTime);
 		}
 	}
 
@@ -187,50 +188,60 @@ public class RandomQueueDemo {
 	 * Generates statistics to determine whether remove() and add(x) run in
 	 * constant time.
 	 * 
-	 * @param list2 an ArrayQueue of type Integer
-	 * @param incrementRepetitions increment for each round
-	 * @param reps number of repetitions
+	 * @param list2
+	 *            an ArrayQueue of type Integer
+	 * @param incrementR
+	 *            increment for each round
+	 * @param reps
+	 *            number of repetitions
 	 */
-	private static void runsInConstantTime(ArrayQueue<Integer> list2, int incrementRepetitions,
-			int reps) {
-		int[][] removeBins = new int[10][reps];
-		int[][] removeAddBins = new int[10][reps];
+	private static void runsInConstantTime(ArrayQueue<Integer> list2, int incrementR, int reps) {
+		// track time taken to perform a sequence of operations
+		int[][] removeTimeBins = new int[10][reps];
+		int[][] addTimeBins = new int[10][reps];
 
-		for (int repetitions = incrementRepetitions; repetitions < incrementRepetitions * 10
-				+ 1; repetitions += incrementRepetitions) {
-			System.out.println();
-			System.out.println("***************************");
-			System.out.println("No. operations: " + repetitions);
-			System.out.println("***************************");
+		// format output header
+		System.out.println(CommonSuite.indentString(CommonSuite.stringRepeat("*", 57)));
+		System.out.println(CommonSuite.indentString("* Table. Median time per operation in milliseconds (ms) *"));
+		System.out.println(CommonSuite.indentString("*                                                       *"));
+		System.out.println(CommonSuite.indentString("*    No. operations       add    remove                 *"));
+
+		// run trials
+		for (int r = incrementR; r < incrementR * 10 + 1; r += incrementR) {
+			System.out.print(CommonSuite.indentString(String.format("*           %7d", r)));
 
 			for (int i = 0; i < reps; i++) {
-				timerED.start();
-				createFilledArrayQueue(list2, repetitions);
-				int aStop = timerED.stop();
+				StopWatch.start();
+				createFilledArrayQueue(list2, r);
+				int aStop = (int) StopWatch.stop();
 
-				removeAddBins[(int) (repetitions / incrementRepetitions - 1)][i] = aStop;
+				// record time for add(x) operations
+				addTimeBins[(int) (r / incrementR - 1)][i] = aStop;
 
-				timerED.start();
+				StopWatch.start();
 				removeTest(list2, 1, true);
-				int bStop = timerED.stop();
+				int bStop = (int) StopWatch.stop();
 
-				removeBins[(int) (repetitions / incrementRepetitions - 1)][i] = bStop;
-
-				System.out.println("  add(x) = " + aStop + "  remove() = " + bStop);
+				// record time for remove() operations
+				removeTimeBins[(int) (r / incrementR - 1)][i] = bStop;
 			}
+
+			// summarize and print time taken for operations with the specified
+			// number of repetitions, r
+			Arrays.sort(removeTimeBins[(int) (r / incrementR - 1)]);
+			Arrays.sort(addTimeBins[(int) (r / incrementR - 1)]);
+
+			double medianAddTime = (addTimeBins[(int) (r / incrementR - 1)][(int) (reps / 2) - 1]
+					+ addTimeBins[(int) (r / incrementR - 1)][(int) (reps / 2)]) / 2;
+			double medianRemoveTime = (removeTimeBins[(int) (r / incrementR - 1)][(int) (reps / 2) - 1]
+					+ removeTimeBins[(int) (r / incrementR - 1)][(int) (reps / 2)]) / 2;
+
+			System.out.println(String.format("%10.1f%10.1f                 *", medianAddTime, medianRemoveTime));
+
 		}
 
-		System.out.println();
-		System.out.println("The following table can be plotted to illustrate");
-		System.out.println("whether remove() and add(x) run in constant time");
-		System.out.println();
-		System.out.println("number of operations, remove(), add(x)");
-		for (int i = 0; i < 10; i++) {
-			Arrays.sort(removeBins[i]);
-			Arrays.sort(removeAddBins[i]);
-			System.out.println(
-					(i+1)*incrementRepetitions + ", " + removeBins[i][reps / 2] + ", " + removeAddBins[i][reps / 2]);
-		}
+		// format output
+		System.out.println(CommonSuite.indentString(CommonSuite.stringRepeat("*", 57)));
 	}
 
 	/**
@@ -240,30 +251,36 @@ public class RandomQueueDemo {
 
 	private static void testSmallSizes() {
 		RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
-		theTester.isValidTestOutput("size() when n = 0.",
-				"new RandomQueue<Integer>(Integer.class); .size();", "" + 0, "" + list.size());
 
+		// request size of an empty queue
+		theTester.isValidTestOutput("size() of an empty queue", "new RandomQueue<Integer>; .size();", "" + 0,
+				"" + list.size());
+
+		// perform remove operation on an empty queue
 		String resultS;
 		try {
 			resultS = "" + list.remove();
 		} catch (NoSuchElementException nE) {
 			resultS = "NoSuchElementException";
 		}
-		theTester.isValidTestOutput("remove() when n = 0.", "remove()", "NoSuchElementException",
-				resultS, true, TestSuite.TestStage.Stage4);
+		theTester.isValidTestOutput("remove() on an empty queue", "remove()", "NoSuchElementException", resultS, true,
+				TestSuite.TestStage.Stage4);
 
+		// add 3 items to an empty queue and check size after each add operation
 		for (int i = 0; i < 3; i++) {
-			theTester.isValidTestOutput("add("+(55+i)+") when n = "+(0+i)+".", "add(" + (55 + i) + ");",
+			theTester.isValidTestOutput("add(" + (55 + i) + ") to queue of size = " + (0 + i), "add(" + (55 + i) + ");",
 					"true, " + (55 + i), "" + list.add(55 + i) + ", " + list.get(i));
-			theTester.isValidTestOutput("size() when n = " + (1 + i) + ".", "size();", "" + (1 + i),
+			theTester.isValidTestOutput("size() when queue size = " + (1 + i), "size();", "" + (1 + i),
 					"" + list.size());
 		}
 
+		// remove 3 items from a queue with 3 items and check size afer each
+		// remove operation
 		for (int i = 0; i < 3; i++) {
 			list.remove();
 		}
-		theTester.isValidTestOutput("size() after 3 add() and 3 remove() operations.",
-				"remove(); remove(); remove();", "" + 0, "" + list.size());
+		theTester.isValidTestOutput("size() after 3 add() & 3 remove() ops", "remove(); remove(); remove();", "" + 0,
+				"" + list.size());
 	}
 
 	private static void headerPrint(String[] tasksList, int currentTask) {
@@ -284,39 +301,40 @@ public class RandomQueueDemo {
 		theTester.setSilentRecording(false); // report results immediately
 
 		// Display tasks
-		String[] tasksList = { "TASKS:", "1. do add(x) and remove() work for n = {0, 1, 2}",
-				"2. is RandomQueue.remove() random",
-				"3. do add(x) and remove() run in constant time",
-				"4. is tail element moved into empty index position" };
-		int currentTask = 1;
+		String[] tasksList = { "1. do add(x) and remove() work for n = {0, 1, 2}", "2. is RandomQueue.remove() random",
+				"3. is tail element moved into empty index position",
+				"4. do add(x) and remove() run in constant time" };
 
-		CommonSuite.printArray(tasksList);
+		int currentTask = 0;
+
+		System.out.println("TASKS:");
+		CommonSuite.printIndentedArray(tasksList);
 
 		// perform the tasks required by the question
 
-		// TASK 1. 
+		// TASK 1.
 
 		headerPrint(tasksList, currentTask++);
 		testSmallSizes();
 
-		// TASK 2. 
+		// TASK 2.
 
 		headerPrint(tasksList, currentTask++);
 		confirmRandomRemove(theTester);
 
 		// TASK 3.
+
+		headerPrint(tasksList, currentTask++);
+		// TODO task 3
+
+		// TASK 4.
 		// ArrayQueue<Integer> lister = new ArrayQueue<>(Integer.class);
 		// runsInConstantTime(lister, 350_000);
 
 		headerPrint(tasksList, currentTask++);
 		RandomQueue<Integer> lister2 = new RandomQueue<>(Integer.class);
-		runsInConstantTime(lister2, (int) Math.pow(2, 18), 2);
+		runsInConstantTime(lister2, (int) Math.pow(2, 16), 10);
 
-		// TASK 4.
-
-		headerPrint(tasksList, currentTask++);
-		//TODO task 4
-		
 		// Thank the user
 		System.out.println();
 		System.out.println("The demonstration is complete.");

@@ -4,20 +4,16 @@ import java.util.Scanner;
 
 //@formatter:off
 /**
-*			Assignment 1 Common Tools (not assigned), COMP272
-* Class:	TestSuite.java
-* Purpose:	Provide a testing suite for use with COMP272 programs.
-*
-* @author:		Eric Dunbar
-* Student ID:	3243514
-* Date:			October 3, 2015
-*               May 30, 2016 (revision)
-* Version:		1.1
-*
-* Based on:		Eck, David J. (2015). Introduction to Programming Using Java, 
-*				Seventh Edition.  Web access http://math.hws.edu/javanotes/
-*/
-//@formatter:on
+ * Assignment 1 Common Tools (not assigned), COMP272 Class: TestSuite.java
+ * Purpose: Provide a testing suite for use with COMP272 programs.
+ *
+ * @author: Eric Dunbar Student ID: 3243514 Date: October 3, 2015 May 30, 2016
+ *          (revision) Version: 1.1
+ *
+ *          Based on: Eck, David J. (2015). Introduction to Programming Using
+ *          Java, Seventh Edition. Web access http://math.hws.edu/javanotes/
+ */
+// @formatter:on
 public class TestSuite {
 
 	private ArrayList<TestTracker> recordsTestInfo = new ArrayList<TestTracker>();
@@ -27,22 +23,20 @@ public class TestSuite {
 	// testing code, if desired
 	private boolean silentRecording = true; // display info immediately?
 
-	//@formatter:off
+	// @formatter:off
 	/**
-	*			Assignment 1 Common Tools, COMP268
-	* Class:	TestSuite.java
-	* Purpose:	Provides a private object Type that allows instances 
-	* to track testing parameters.
-	*
-	* @author:		Eric Dunbar
-	* Student ID:	3243514
-	* Date:			October 3, 2015
-	* Version:		1.0
-	*
-	* Based on:		Eck, David J. (2015). Introduction to Programming Using Java, 
-	*				Seventh Edition.  Web access http://math.hws.edu/javanotes/
-	*/
-	//@formatter:on
+	 * Assignment 1 Common Tools, COMP268 Class: TestSuite.java Purpose:
+	 * Provides a private object Type that allows instances to track testing
+	 * parameters.
+	 *
+	 * @author: Eric Dunbar Student ID: 3243514 Date: October 3, 2015 Version:
+	 *          1.0
+	 *
+	 *          Based on: Eck, David J. (2015). Introduction to Programming
+	 *          Using Java, Seventh Edition. Web access
+	 *          http://math.hws.edu/javanotes/
+	 */
+	// @formatter:on
 	private class TestTracker {
 		String comment;
 		String programInput;
@@ -56,16 +50,22 @@ public class TestSuite {
 		 * Creates an instance of TestTracker, a type that tracks the parameters
 		 * passed to the super-instance for testing purposes.
 		 * 
-		 * @param comment the comment, to be printed, as String
-		 * @param programInput the code fragment, as String
-		 * @param expectedOutput the expected output, as String
-		 * @param observedOutput the observed output, as String
-		 * @param testStage the test stage this test is part of (1, 2, 3, 4), as
+		 * @param comment
+		 *            the comment, to be printed, as String
+		 * @param programInput
+		 *            the code fragment, as String
+		 * @param expectedOutput
+		 *            the expected output, as String
+		 * @param observedOutput
+		 *            the observed output, as String
+		 * @param testStage
+		 *            the test stage this test is part of (1, 2, 3, 4), as
 		 *            TestStage
-		 * @param isValid is expected == observed?
+		 * @param isValid
+		 *            is expected == observed?
 		 */
-		public TestTracker(String comment, String programInput, String expectedOutput,
-				String observedOutput, TestStage testStage, boolean isValid) {
+		public TestTracker(String comment, String programInput, String expectedOutput, String observedOutput,
+				TestStage testStage, boolean isValid) {
 			this.comment = comment;
 			this.programInput = programInput;
 			this.expectedOutput = expectedOutput;
@@ -74,32 +74,35 @@ public class TestSuite {
 			this.isValid = isValid;
 		}
 
-		private void addToStringNoIndent(String addS){
+		private void addToStringNoIndent(String addS) {
 			toStringS += addS;
 		}
 
-		private void addToString(String addS){
-			String indentS = CommonSuite.stringRepeat(" ", CommonSuite.indentAmount);
-			toStringS += indentS + addS;
+		private void addToString(String addS) {
+			toStringS += CommonSuite.indentString(addS);
 		}
 
-		private void addToStringln(String addS){
-			String indentS = "\n" + CommonSuite.stringRepeat(" ", CommonSuite.indentAmount);
-			toStringS += indentS + addS;
+		private void addToStringln(String addS) {
+			toStringS += "\n" + CommonSuite.indentString( addS);
 		}
-		
-		public String toString(){
+
+		private String formatTitle(String header) {
+			return String.format("| %13s: ", header);
+		}
+
+		public String toString() {
 			toStringS = "";
+			String[] titlesS = { "DEMONSTRATION", "CODE", "EXPECTED", "OBSERVED", "O==E" };
 
 			addToString(CommonSuite.stringRepeat("__", 30));
-			addToStringln(("    DESCRIPTION: ")+(comment));
-			addToStringln(("           CODE: ") + (programInput));
-			addToStringln(("EXPECTED OUTPUT: ") +(expectedOutput));
-			addToStringln(("OBSERVED OUTPUT: ") +(observedOutput));
-			addToStringln(("         O == E: ")+(isValid));
+			addToStringln((formatTitle(titlesS[0])) + (comment));
+			addToStringln((formatTitle(titlesS[1])) + (programInput));
+			addToStringln((formatTitle(titlesS[2])) + (expectedOutput));
+			addToStringln((formatTitle(titlesS[3])) + (observedOutput));
+			addToStringln((formatTitle(titlesS[4])) + (isValid));
 			addToStringln((CommonSuite.stringRepeat("--", 30)));
 			addToStringNoIndent("\n\n");
-			
+
 			return toStringS;
 		}
 	} // end of TestTracker class
@@ -137,7 +140,8 @@ public class TestSuite {
 	/**
 	 * Sets whether program should display test code
 	 * 
-	 * @param testing true if testing, as boolean
+	 * @param testing
+	 *            true if testing, as boolean
 	 */
 	public void setTesting(boolean testing) {
 		this.testing = testing;
@@ -151,7 +155,8 @@ public class TestSuite {
 	}
 
 	/**
-	 * @param silentRecording the silentRecording to set
+	 * @param silentRecording
+	 *            the silentRecording to set
 	 */
 	public void setSilentRecording(boolean silentRecording) {
 		this.silentRecording = silentRecording;
@@ -179,7 +184,8 @@ public class TestSuite {
 		/**
 		 * Display a message and obtain a single line worth of String input
 		 * 
-		 * @param message message to be displayed
+		 * @param message
+		 *            message to be displayed
 		 * @return String containing user response
 		 */
 		private static String obtainString(String message) {
@@ -195,8 +201,8 @@ public class TestSuite {
 		 * Complete a fully user-controlled isValidTest. The user provides all
 		 * input and decides whether the test results are the same.
 		 * 
-		 * @param myTestSuite an instance of a test tracking object of type
-		 *            TestSuite
+		 * @param myTestSuite
+		 *            an instance of a test tracking object of type TestSuite
 		 */
 		public static void doFullManualValidTest(TestSuite myTestSuite) {
 			System.out.println();
@@ -213,8 +219,8 @@ public class TestSuite {
 			TestSuite.TestStage whichStage = TestSuite.ObtainTestInput.obtainStage();
 
 			boolean automatedComparison = false; // Force a manual comparison
-			myTestSuite.isValidTestOutput(comment, programInput, expectedOutput, observedOutput,
-					automatedComparison, whichStage);
+			myTestSuite.isValidTestOutput(comment, programInput, expectedOutput, observedOutput, automatedComparison,
+					whichStage);
 
 			System.out.println();
 			System.out.println("This particular test run has been recorded by the TestSuite.");
@@ -255,8 +261,7 @@ public class TestSuite {
 		 * @return String containing comment
 		 */
 		public static String obtainCode() {
-			return obtainString(
-					"Please enter the CODE that was run or the INPUT provided on a single line");
+			return obtainString("Please enter the CODE that was run or the INPUT provided on a single line");
 		}
 
 		/**
@@ -421,20 +426,85 @@ public class TestSuite {
 		if (numberOfTests == 0) {
 			System.out.println("Not applicable. No tests were performed for " + theStage);
 		} else if (numberOfFailures > 0) {
-			System.out.println(theStage + " - end of test -- stage fails -- " + numberOfFailures
-					+ " out of " + numberOfTests + " failed");
+			System.out.println(theStage + " - end of test -- stage fails -- " + numberOfFailures + " out of "
+					+ numberOfTests + " failed");
 		} else {
-			System.out.println(
-					theStage + " - end of test -- stage passes -- test performed as expected.");
+			System.out.println(theStage + " - end of test -- stage passes -- test performed as expected.");
 		}
 		System.out.println();
 
 	}
 
 	/**
+	 * Prints test results for one of the TestStage stages.
+	 * 
+	 * @param currentStage
+	 */
+	private void printCompactTestStageResults(TestStage currentStage) {
+		// Print the test information for this particular stage of testing
+		String indentS = CommonSuite.stringRepeat(" ", CommonSuite.indentAmount);
+		int numberOfFailures = 0; // how many failures occurred in this stage
+		int numberOfTests = 0; // track how many tests were performed in this
+								// stage
+		for (TestTracker testTracker : recordsTestInfo) {
+			if (testTracker.testStage == currentStage) {
+				numberOfTests++; // we've got a live one. Increment the number
+									// of tests
+				System.out.println(CommonSuite.indentString("Test Run " + numberOfTests));
+				System.out.println(CommonSuite.indentString("Description: "+ "(" + testTracker.comment + "):"));
+				System.out.println(CommonSuite.indentString("Program Input: " + testTracker.programInput));
+				System.out.println(CommonSuite.indentString("Expected Output: "+ testTracker.expectedOutput));
+				System.out.print(CommonSuite.indentString("Actual Output: "));
+				if (testTracker.isValid) {
+					System.out.println("As expected.");
+				} else {
+					System.out.println(testTracker.observedOutput);
+					numberOfFailures++;
+				}
+				System.out.println();
+				System.out.println();
+
+			} // end if
+		} // end for
+
+		String theStage;
+
+		switch (currentStage) {
+		case Stage1:
+			theStage = "Stage 1";
+			break;
+		case Stage2:
+			theStage = "Stage 2";
+			break;
+		case Stage3:
+			theStage = "Stage 3";
+			break;
+		case Stage4:
+			theStage = "Stage 4";
+			break;
+		default:
+			theStage = "";
+			break;
+		}
+
+		if (numberOfTests == 0) {
+			System.out.println("Not applicable. No tests were performed for " + theStage);
+		} else if (numberOfFailures > 0) {
+			System.out.println(theStage + " - end of test -- stage fails -- " + numberOfFailures + " out of "
+					+ numberOfTests + " failed");
+		} else {
+			System.out.println(theStage + " - end of test -- stage passes -- test performed as expected.");
+		}
+		System.out.println();
+
+	}
+
+	
+	/**
 	 * Prints a wide variety of testing information.
 	 * 
-	 * @param theTester an instance of type TestSuite containing test data to be
+	 * @param theTester
+	 *            an instance of type TestSuite containing test data to be
 	 *            printed
 	 */
 	public void printFullTestData() {
@@ -466,19 +536,19 @@ public class TestSuite {
 		System.out.println();
 
 		TestStage currentStage = TestStage.Stage2;
-		printTestStageResults(currentStage);
+		printCompactTestStageResults(currentStage);
 
 		System.out.println("Stage 3 - Abnormal Data:");
 		System.out.println();
 
 		currentStage = TestStage.Stage3;
-		printTestStageResults(currentStage);
+		printCompactTestStageResults(currentStage);
 
 		System.out.println("Stage 4 - Limiting Conditions:");
 		System.out.println();
 
 		currentStage = TestStage.Stage4;
-		printTestStageResults(currentStage);
+		printCompactTestStageResults(currentStage);
 		System.out.println(CommonSuite.stringRepeat("*", 80));
 	}
 
@@ -488,10 +558,14 @@ public class TestSuite {
 	 * Automatically compare two String fragments for similarities. Defaults to
 	 * stage 2, normal input.
 	 * 
-	 * @param comment comment describing the test
-	 * @param programInput code executed
-	 * @param expectedOutput output that is expected
-	 * @param observedOutput output that is observed
+	 * @param comment
+	 *            comment describing the test
+	 * @param programInput
+	 *            code executed
+	 * @param expectedOutput
+	 *            output that is expected
+	 * @param observedOutput
+	 *            output that is observed
 	 * @return whether or not the expected and observed output were the same
 	 */
 	public boolean isValidTestOutput(String comment, String programInput, String expectedOutput,
@@ -499,8 +573,8 @@ public class TestSuite {
 		boolean automatedComparison = true; // default to automated comparison
 		TestStage whichStage = TestStage.Stage2; // default to stage 2, normal
 													// input
-		return isValidTestOutput(comment, programInput, expectedOutput, observedOutput,
-				automatedComparison, whichStage);
+		return isValidTestOutput(comment, programInput, expectedOutput, observedOutput, automatedComparison,
+				whichStage);
 	}
 
 	/**
@@ -509,41 +583,50 @@ public class TestSuite {
 	 * comparison or whether the end user should have to manually compare the
 	 * results.
 	 * 
-	 * @param comment comment describing the test
-	 * @param programInput code executed
-	 * @param expectedOutput output that is expected
-	 * @param observedOutput output that is observed
-	 * @param automatedComparison true if method conducts comparison
-	 *            automatically, otherwise comparison is done manually through
-	 *            visual inspection
-	 * @param whichStage which of the four stages is this, type TestStage
+	 * @param comment
+	 *            comment describing the test
+	 * @param programInput
+	 *            code executed
+	 * @param expectedOutput
+	 *            output that is expected
+	 * @param observedOutput
+	 *            output that is observed
+	 * @param automatedComparison
+	 *            true if method conducts comparison automatically, otherwise
+	 *            comparison is done manually through visual inspection
+	 * @param whichStage
+	 *            which of the four stages is this, type TestStage
 	 * @return whether the expected and observed output were the same
 	 */
-	public boolean isValidTestOutput(String comment, String programInput, String expectedOutput,
+	public boolean isValidTestOutput(String comment, String programInput, String expectedOutput, String observedOutput,
+			boolean automatedComparison, TestStage whichStage) {
+		return isBackendValidTestOutput(comment, programInput, expectedOutput, observedOutput, automatedComparison,
+				whichStage);
+	}
+
+	/**
+	 * Compare two String fragments for similarities. Use boolean
+	 * automatedComparison to determine whether the routine should do the
+	 * comparison or whether the end user should have to manually compare the
+	 * results.
+	 * 
+	 * @param comment
+	 *            comment describing the test
+	 * @param programInput
+	 *            code executed
+	 * @param expectedOutput
+	 *            output that is expected
+	 * @param observedOutput
+	 *            output that is observed
+	 * @param automatedComparison
+	 *            true if method conducts comparison automatically, otherwise
+	 *            comparison is done manually through visual inspection
+	 * @param whichStage
+	 *            which of the four stages is this, type TestStage
+	 * @return whether the expected and observed output were the same
+	 */
+	private boolean isBackendValidTestOutput(String comment, String programInput, String expectedOutput,
 			String observedOutput, boolean automatedComparison, TestStage whichStage) {
-		return isBackendValidTestOutput(comment, programInput, expectedOutput, observedOutput,
-				automatedComparison, whichStage);
-	}
-
-	/**
-	 * Compare two String fragments for similarities. Use boolean
-	 * automatedComparison to determine whether the routine should do the
-	 * comparison or whether the end user should have to manually compare the
-	 * results.
-	 * 
-	 * @param comment comment describing the test
-	 * @param programInput code executed
-	 * @param expectedOutput output that is expected
-	 * @param observedOutput output that is observed
-	 * @param automatedComparison true if method conducts comparison
-	 *            automatically, otherwise comparison is done manually through
-	 *            visual inspection
-	 * @param whichStage which of the four stages is this, type TestStage
-	 * @return whether the expected and observed output were the same
-	 */
-	private boolean isBackendValidTestOutput(String comment, String programInput,
-			String expectedOutput, String observedOutput, boolean automatedComparison,
-			TestStage whichStage) {
 
 		boolean isValid = false; // initialize the test variable as false
 
@@ -594,10 +677,10 @@ public class TestSuite {
 			testsFailed++;
 		}
 
-		recordsTestInfo.add(new TestTracker(comment, programInput, expectedOutput, observedOutput,
-				whichStage, isValid));
+		recordsTestInfo
+				.add(new TestTracker(comment, programInput, expectedOutput, observedOutput, whichStage, isValid));
 		if (!isSilentRecording()) {
-			System.out.print(recordsTestInfo.get(recordsTestInfo.size()-1));
+			System.out.print(recordsTestInfo.get(recordsTestInfo.size() - 1));
 		}
 
 		return isValid;
