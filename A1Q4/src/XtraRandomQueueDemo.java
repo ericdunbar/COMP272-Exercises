@@ -71,7 +71,7 @@ public class XtraRandomQueueDemo {
 
 		// Collect test results
 		if (theTester.isTesting()) {
-			theTester.isValidTestOutput(TestSuite.ObtainTestInput.obtainComment(),
+			theTester.recordTest(TestSuite.ObtainTestInput.obtainComment(),
 					"This is program input", TestSuite.ObtainTestInput.obtainExpectedOutput(), "",
 					false, TestSuite.ObtainTestInput.obtainStage());
 		}
