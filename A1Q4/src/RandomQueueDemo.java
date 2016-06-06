@@ -66,22 +66,23 @@ public class RandomQueueDemo {
 	}
 
 	/**
-	 * Confirm whether the remove() function from RandomQueue is uniformly
-	 * random. Construct a RandomQueue with tries number of elements. Then
-	 * remove() 10% of those elements. In a normal FIFO queue remove() 10% of
-	 * elements would return the smallest elements since they were first in
-	 * (thus, first out). If the remove() function is indeed uniformly random
-	 * there should be an even distribution of elements removed from each of the
-	 * 10 bins rather than one bin being filled. Running this test (i) on a
-	 * queue of type ArrayQueueED should result in a single bin being filled and
-	 * (ii) (i) on a queue of type RandomQueue should result each bin having an
-	 * even distribution of elements.
+	 * Is the remove() function is uniformly random. Fill a queue with elements.
+	 * Remove() 10% of those elements. In a normal FIFO queue the smallest
+	 * elements would be returned since they were first in (thus, first out). If
+	 * the remove() function is uniformly random there should be an even
+	 * distribution of all sizes of elements removed from each of the bins
+	 * rather than one bin being filled. Running this method (i) on a queue of
+	 * type ArrayQueueED should result in a single bin being filled and (ii) (i)
+	 * on a queue of type RandomQueue should result each bin having an even
+	 * distribution of elements.
 	 *
 	 * @param tries number of repetitions to subject remove() to
+	 * @param numBins number of bins to use to capture elements
+	 * @param list the queue to use for testing, either RandomQueue or ArrayQueue
 	 */
 	private static boolean isUniformRemove(int tries, ArrayQueue<Integer> list, int numBins) {
 		String[] background = { "Confirm remove() is uniformly random", "",
-				"Confirm whether the remove() function from RandomQueue is uniformly",
+				"Confirm whether the remove() function is uniformly",
 				"random. Construct a queue with a number of elements. Then remove()",
 				"10% of those elements. In a normal FIFO queue remove() 10% of",
 				"elements would return the smallest elements since they were First In",
@@ -92,6 +93,7 @@ public class RandomQueueDemo {
 				"and, (ii) a RandomQueue should result each bin having an fair",
 				"distribution of elements." };
 
+		x;
 		boolean uniformRemove;
 		int[] counts = new int[numBins];
 
