@@ -188,7 +188,7 @@ public class CommonSuite {
 	 * 
 	 * @param theArray array of type <i>String</i>
 	 */
-	public static void indentArrayPrintln(String[] theArray) {
+	public static void printlnIndentArray(String[] theArray) {
 		for (String string : theArray) {
 			System.out.println(indentString(string));
 		}

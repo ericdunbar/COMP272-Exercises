@@ -36,7 +36,7 @@ public class RandomQueueDemo {
 
 		// Display general information
 		System.out.println();
-		CommonSuite.indentArrayPrintln(details);
+		CommonSuite.printlnIndentArray(details);
 
 		// Perform testing of random() to see randomness of pick
 		for (int outerIdx = 0; outerIdx < tries; outerIdx++) {
@@ -61,6 +61,18 @@ public class RandomQueueDemo {
 	}
 
 	private static void taskIsRemoveUniform() {
+		String[] background = { "Confirm remove() is uniformly random", "",
+				"Confirm whether the remove() function is uniformly random.",
+				"From a queue filled with a series of numbers remove() 10% of those",
+				"elements. If the remove() function is uniformly random there should",
+				"be an even distribution of elements removed and each bin should have",
+				"similar numbers of the total of removed elements. Running this test on:",
+				"(i) an ArrayQueueED should result in one full bin and the rest empty;",
+				"and, (ii) a RandomQueue should result each bin having an equal",
+				"share of the removed elements." };
+
+		CommonSuite.printlnIndentArray(background);
+
 		isUniformRemove(1_000_000, new ArrayQueue<Integer>(Integer.class), 20);
 		isUniformRemove(1_000_000, new RandomQueue<Integer>(Integer.class), 20);
 	}
@@ -81,19 +93,6 @@ public class RandomQueueDemo {
 	 * @param list the queue to use for testing, either RandomQueue or ArrayQueue
 	 */
 	private static boolean isUniformRemove(int tries, ArrayQueue<Integer> list, int numBins) {
-		String[] background = { "Confirm remove() is uniformly random", "",
-				"Confirm whether the remove() function is uniformly",
-				"random. Construct a queue with a number of elements. Then remove()",
-				"10% of those elements. In a normal FIFO queue remove() 10% of",
-				"elements would return the smallest elements since they were First In",
-				"(thus, First Out). If the remove() function is uniformly random there",
-				"should be an even distribution of elements removed and each bin should",
-				"have its share of the total of removed elements. Running this test on:",
-				"(i) an ArrayQueueED should result in one full bin and the rest empty;",
-				"and, (ii) a RandomQueue should result each bin having an fair",
-				"distribution of elements." };
-
-		x;
 		boolean uniformRemove;
 		int[] counts = new int[numBins];
 
@@ -382,7 +381,7 @@ public class RandomQueueDemo {
 		int currentTask = 0;
 
 		System.out.println("TASKS:");
-		CommonSuite.indentArrayPrintln(tasksList);
+		CommonSuite.printlnIndentArray(tasksList);
 
 		// perform the tasks required by the question
 		// TASK 1.
