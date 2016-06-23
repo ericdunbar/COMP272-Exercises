@@ -83,7 +83,7 @@ public class A1Q1PriorityQueueDemo {
 
 	public static void main(String[] args) {
 		// Are we testing?
-		boolean testing = true;
+		boolean testing = false;
 
 		// Display programmer info and create testing object
 		theTester = CommonSuite.commonProgramStart(1, 1, "PriorityQueue Demo", testing);
@@ -116,6 +116,9 @@ public class A1Q1PriorityQueueDemo {
 
 		CommonSuite.headerPrint(tasksList, currentTask++);
 		deleteOnEmpty();
+		
+		CommonSuite.commonProgramEnd(theTester);
+
 	}
 
 }
