@@ -350,14 +350,6 @@ public class RandomQueueDemo {
 				TestSuite.TestStage.Stage2);
 	}
 
-	private static void headerPrint(String[] tasksList, int currentTask) {
-		System.out.println();
-		System.out.println("============================================================");
-		System.out.println(tasksList[currentTask]);
-		System.out.println("============================================================");
-		System.out.println();
-
-	}
 
 	private static void doDemo() {
 
@@ -386,26 +378,26 @@ public class RandomQueueDemo {
 		// perform the tasks required by the question
 		// TASK 1.
 
-		headerPrint(tasksList, currentTask++);
+		CommonSuite.headerPrint(tasksList, currentTask++);
 		taskSmallSizes();
 
 		// TASK 2.
 
-		headerPrint(tasksList, currentTask++);
+		CommonSuite.headerPrint(tasksList, currentTask++);
 		taskIsRemoveRandom();
 
 		// TASK 3.
 
-		headerPrint(tasksList, currentTask++);
+		CommonSuite.headerPrint(tasksList, currentTask++);
 		taskMoveLastElement();
 
 		// TASK 4.
-		headerPrint(tasksList, currentTask++);
+		CommonSuite.headerPrint(tasksList, currentTask++);
 		taskIsRemoveUniform();
 
 		// TASK 5.
 
-		headerPrint(tasksList, currentTask++);
+		CommonSuite.headerPrint(tasksList, currentTask++);
 		taskConstantTime();
 
 		// Thank the user

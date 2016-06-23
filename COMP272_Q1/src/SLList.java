@@ -191,8 +191,6 @@ public class SLList<T extends Comparable<T>> {
 		// this should throw an error, don't you think?
 		else if (n == 1)
 			return pop(); // one item to delete
-		else if (n == 2)
-			System.out.println("A problem exists... fix me");
 
 		Node currentNode = head;
 		Node minimumIsNext = new Node();
@@ -229,7 +227,6 @@ public class SLList<T extends Comparable<T>> {
 			}
 
 			n--;
-			System.out.print("TAIL is min ");
 			return element;
 		} else if (minimumIsNext.next.next == tail) {
 			// TAIL comes after minimum
@@ -240,7 +237,6 @@ public class SLList<T extends Comparable<T>> {
 			minimumIsNext.next = tail;
 
 			n--;
-			System.out.print("TAIL is one after min ");
 			return element;
 		} else
 			return removeNextNode(minimumIsNext);
@@ -268,42 +264,5 @@ public class SLList<T extends Comparable<T>> {
 
 	public int size() {
 		return n;
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		SLList<String> myPriorityQueue = new SLList<>();
-
-		System.out.println("Fi".compareTo("Fifth"));
-
-		System.out.println(myPriorityQueue.size());
-		System.out.println(myPriorityQueue.add("First"));
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Second");
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Tenth");
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Fourth");
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Fifth");
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Sixth");
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Seventh");
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Eighth");
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Ninth");
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Third");
-		System.out.println(myPriorityQueue.size());
-
-		while (myPriorityQueue.size() > 0) {
-			System.out.print(myPriorityQueue.size() + ", ");
-			System.out.println(myPriorityQueue.deleteMin() + ", " + myPriorityQueue.size());
-		}
-		System.out.println(myPriorityQueue.size());
-		System.out.println(myPriorityQueue.deleteMin());
-		System.out.println(myPriorityQueue.size());
 	}
 }

@@ -235,6 +235,20 @@ public class CommonSuite {
 	}
 
 	/**
+	 * Prints the header. First developed for RandomQueueDemo.
+	 * 
+	 * @param tasksList
+	 * @param currentTask
+	 */
+	public static void headerPrint(String[] tasksList, int currentTask) {
+		System.out.println();
+		System.out.println("============================================================");
+		System.out.println(tasksList[currentTask]);
+		System.out.println("============================================================");
+	}
+
+
+	/**
 	 * Prints programmer details
 	 * 
 	 */
