@@ -1,7 +1,7 @@
 
 /**
  * Demonstrate the implementation of a priority queue for assignment 1, question
- * 1 b.
+ * 1 a.
  * 
  * @author Eric Dunbar
  *
@@ -13,7 +13,7 @@ public class A1Q1PriorityQueueDemo {
 
 	/**
 	 * Demo the add() and size() methods for a PriorityQueue based on a
-	 * singly-linked list for assignment 1, question 1 b in COMP272.
+	 * singly-linked list for assignment 1, question 1 a in COMP272.
 	 */
 	private static void addElementsDemo() {
 		String[] ordinals = { "First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth",

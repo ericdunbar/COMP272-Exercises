@@ -20,28 +20,23 @@
  * Details: Its implementation a stack using two queues. To call it use the syntax, new
  * TwoQueueStack <T>(T.class). This stack implements push(x) and pop().
  * 
- * @author 094360
+ * @author Eric Dunbar
  * @version 2016.05.04.1
  * @param <T>
  * @formatter:on
  */
 public class TwoQueueStack<T> {
-	private ArrayQueue qUnused;
-	private ArrayQueue qUsed;
+	private ArrayQueue<T> qUnused;
+	private ArrayQueue<T> qUsed;
 	private Class<T> theType; // added from Factory.java
 
 	public TwoQueueStack(Class<T> theQT) {
 		theType = theQT;
-		qUnused = new ArrayQueue(theType);
-		qUsed = new ArrayQueue(theType);
+		qUnused = new ArrayQueue<T>(theType);
+		qUsed = new ArrayQueue<T>(theType);
 	}
 
-/*	public TwoQueueStack() {
-		qUnused = new ArrayQueue(theType);
-		qUsed = new ArrayQueue(theType);
-	}
-*/
-	
+
 	public T push(T dataElement) {
 		// Last element in needs to be at the tail of the queue (i.e. first out)
 		TestingSupport.methodInfo("(" + dataElement + ")");
@@ -80,71 +75,4 @@ public class TwoQueueStack<T> {
 		return (T) qUsed.remove();
 	}
 
-	private static void OneQueueTest() {
-		System.out.println("START One queue only");
-		System.out.println();
-		System.out.println("Demonstration only. No use to final TwoQueueStack class.");
-		TestingSupport.setTesting(false);
-		System.out.println();
-
-		ArrayQueue<Integer> mine = new ArrayQueue<Integer>(Integer.class);
-
-		mine.add(new Integer(5));
-		mine.add(new Integer(10));
-		mine.add(new Integer(15));
-		mine.add(new Integer(20));
-		mine.add(new Integer(25));
-		mine.add(new Integer(30));
-
-		System.out.println();
-
-		mine.removeLast();
-		mine.removeLast();
-		mine.removeFirst();
-		mine.removeFirst();
-		mine.removeLast();
-		mine.removeLast();
-
-		try {
-			mine.removeLast();
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-		;
-
-		System.out.println();
-		System.out.println("END   One queue only");
-	}
-
-	private static void PushPopTest() {
-		System.out.println("START PushPop Testing");
-		System.out.println();
-		System.out.println("Demonstration of push(x) and pop().");
-		TestingSupport.setTesting(false);
-
-		TwoQueueStack<Integer> demoStack = new TwoQueueStack<>(Integer.class);
-		
-		for (int i = 0; i < 10000; i++) {
-			System.out.println("Round " + i);
-			System.out.println("    " + demoStack.toString());
-			TestingSupport.methodInfo("push(" + demoStack.push(88*i) + ");");
-		}
-		for (int i = 0; i < 11; i++) {
-			try {
-				System.out.println(demoStack.pop());
-			} catch (Exception e) {
-				System.out.println(e.toString());
-			}
-		}
-		System.out.println("END   PushPop Testing");
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		System.out.println("START TwoQueueStack Testing");
-		OneQueueTest();
-		PushPopTest();
-		System.out.println("END   TwoQueueStack Testing");
-	}
 }

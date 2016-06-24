@@ -20,8 +20,8 @@ public class CommonSuite {
 	// program
 	private static String authorData;
 	private static String studentNumberData;
-	private static int assignmentData;
-	private static int questionData;
+	private static String assignmentData;
+	private static String questionData;
 	private static String questionTitleData;
 	private static Scanner myScanner = new Scanner(System.in);
 	public static int indentAmount = 4; // by how much should text be indented?
@@ -268,9 +268,9 @@ public class CommonSuite {
 			System.out.println();
 			System.out.printf("%sStudent ID: %s", offsetBlock, studentNumberData);
 			System.out.println();
-			System.out.printf("%sAssignment: %d", offsetBlock, assignmentData);
+			System.out.printf("%sAssignment: %s", offsetBlock, assignmentData);
 			System.out.println();
-			System.out.printf("%sQuestion:   %d", offsetBlock, questionData);
+			System.out.printf("%sQuestion:   %s", offsetBlock, questionData);
 			System.out.println();
 			System.out.printf("%sTitle:      %s", offsetBlock, questionTitleData);
 			System.out.println();
@@ -289,8 +289,8 @@ public class CommonSuite {
 	 * @param question Question number, as int
 	 * @param questionTitle Title of the question, as String
 	 */
-	public static void printProgrammerInfo(String author, String studentNumber, int assignment,
-			int question, String questionTitle) {
+	public static void printProgrammerInfo(String author, String studentNumber, String assignment,
+			String question, String questionTitle) {
 
 		authorData = author;
 		studentNumberData = studentNumber;
@@ -314,6 +314,25 @@ public class CommonSuite {
 	 */
 	public static TestSuite commonProgramStart(String author, String studentNumber, int assignment,
 			int question, String questionTitle, boolean isTesting) {
+		return commonProgramStart(Integer.toString(assignment),
+				Integer.toString(question), questionTitle, isTesting);
+	}
+	
+	/**
+	 * Prints program details using the parameters passed as author, student
+	 * number, assignment number and question number. The boolean isTesting sets
+	 * whether the TestSuite object ought to be testing.
+	 * 
+	 * @param assignment Assignment number, as String
+	 * @param question Question number, as String
+	 * @param questionTitle Title of the question, as String
+	 * @param isTesting Whether the TestSuite should be testing, as boolean
+	 */
+	public static TestSuite commonProgramStart(String assignment,
+			String question, String questionTitle, boolean isTesting) {
+		String author = "Eric Dunbar";
+		String studentNumber = "3243614";
+
 		// Display programmer info
 		printProgrammerInfo(author, studentNumber, assignment, question, questionTitle);
 
