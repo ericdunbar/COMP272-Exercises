@@ -157,7 +157,7 @@ public class SLList<T extends Comparable<T>> {
 		for (int i = 0; i < this.size(); i++) {
 			if (base.next == swapNextNode) {
 				if (base.next == tail)
-					return; // throw exception?
+					return x; // throw exception?
 
 				// is the node to swap head?
 				boolean isHead = (base.next == head);
