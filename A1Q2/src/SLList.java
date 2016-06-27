@@ -37,7 +37,7 @@ public class SLList<T extends Comparable<T>> {
 	// http://stackoverflow.com/questions/25437682/use-a-linked-list-to-implement-a-priority-queue
 	// *******************************************************************************************
 
-	private class Node {
+	class Node {
 		T elementData;
 		Node next;
 	}
@@ -131,6 +131,18 @@ public class SLList<T extends Comparable<T>> {
 		return true; // when would false get returned?
 	}
 
+
+	/**
+	 * 2. Swap two adjacent elements in a list by adjusting only the links (and not the data)
+	 * using...
+	 * 
+	 * a. singly-linked list (6 marks).
+	 * @param index Index of first of two nodes
+	 */
+	public void swapWithNextNode(int index) {
+		swapWithNextNode(getNode(index));
+	}
+	
 	/**
 	 * 2. Swap two adjacent elements in a list by adjusting only the links (and not the data)
 	 * using...
@@ -274,47 +286,8 @@ public class SLList<T extends Comparable<T>> {
 		return returnNode;
 	}
 
-	private static void swapNodeDemo() {
-		SLList<String> mySwapQueue = new SLList<>();
 
-		System.out.println(mySwapQueue.size());
-		System.out.println(mySwapQueue.add("First"));
-		System.out.println(mySwapQueue.size());
-		mySwapQueue.add("Second");
-		System.out.println(mySwapQueue.size());
-		mySwapQueue.add("third");
-		System.out.println(mySwapQueue.size());
-		mySwapQueue.add("Fourth");
-		System.out.println(mySwapQueue.size());
-		mySwapQueue.add("Fifth");
-		System.out.println(mySwapQueue.size());
-		mySwapQueue.add("Sixth");
-		System.out.println(mySwapQueue.size());
-		mySwapQueue.add("Seventh");
-		System.out.println(mySwapQueue.size());
-		mySwapQueue.add("Eighth");
-		System.out.println(mySwapQueue.size());
-		mySwapQueue.add("Ninth");
-		System.out.println(mySwapQueue.size());
-		mySwapQueue.add("Tenth");
-		System.out.println(mySwapQueue.size());
-		for (int idx = 0; idx < mySwapQueue.size(); idx++) {
-			System.out.println(idx + ": " + mySwapQueue.getNode(idx).elementData);
-		}
-
-		int j = 10;
-				
-		mySwapQueue.swapWithNextNode(mySwapQueue.getNode(j));
-
-		System.out.println(mySwapQueue.getNode(j));
-		
-		for (int idx = 0; idx < mySwapQueue.size(); idx++) {
-			System.out.println(idx + ": " + mySwapQueue.getNode(idx).elementData);
-		}
-
-	}
-
-	@SuppressWarnings("unused")
+	
 	private static void priorityQueueDemo() {
 		SLList<String> myPriorityQueue = new SLList<>();
 
