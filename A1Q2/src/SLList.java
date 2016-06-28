@@ -38,8 +38,8 @@ public class SLList<T extends Comparable<T>> {
 	// *******************************************************************************************
 
 	class Node {
-		T elementData;
-		Node next;
+		public T elementData;
+		public Node next;
 	}
 
 	/*
@@ -154,10 +154,13 @@ public class SLList<T extends Comparable<T>> {
 		Node base = new Node();
 		base.next = head;
 
+		if (this.size() == 0) {
+			throw new IndexOutOfBoundsException("Empty list");
+		}
 		for (int i = 0; i < this.size(); i++) {
 			if (base.next == swapNextNode) {
 				if (base.next == tail)
-					return x; // throw exception?
+					throw new IndexOutOfBoundsException("Cannot swap tail with a following node");
 
 				// is the node to swap head?
 				boolean isHead = (base.next == head);
@@ -328,7 +331,7 @@ public class SLList<T extends Comparable<T>> {
 		// TODO Auto-generated method stub
 		System.out.println("START SLL TESTING");
 
-		swapNodeDemo();
+		//swapNodeDemo();
 
 		System.out.println("END   SLL TESTING");
 		System.out.println(-2 >>> 3);
