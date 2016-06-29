@@ -1,17 +1,18 @@
 /**
- * Demonstrates the node swapping operation for a singly-linked list.
+ * Demonstrates the node swapping operation for a doubly-linked list.
  * 
  * @author Eric Dunbar
  *
  */
-public class A1A2SLListSwappingDemo {
+public class A1A2DLListSwappingDemo {
 	static TestSuite theTester;
 
+	
 	/**
 	 * Swap the nodes in a singly-linked-list in a forward or reverse direction
 	 * (starting at node 0 or the last node) and proceeding until all nodes have
 	 * been swapped. The starting node should be moved to the other end of the
-	 * linked list if the SLList is implemented correctly.
+	 * linked list if the DLList is implemented correctly.
 	 * 
 	 * @param forward
 	 *            true if swapping happens left(node 0)-to-right(tail node)
@@ -20,12 +21,12 @@ public class A1A2SLListSwappingDemo {
 	 *            IndexOutOfBoundException
 	 */
 	private static void swapNodeDemo(boolean forward, int errorOffset) {
-		SLList<String> mySwapQueue = new SLList<>();
+		DLList<String> mySwapQueue = new DLList<>();
 
 		String[] ordinals = { "Ten", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
 
 		String[] description = { "",
-				"Initial list: The 'Ten' is out of logical order when initially added to SLList." };
+				"Initial list: The 'Ten' is out of logical order when initially added to DLList." };
 
 		for (String string : description) {
 			System.out.println(string);
@@ -76,13 +77,13 @@ public class A1A2SLListSwappingDemo {
 		System.out.println();
 
 	}
-
+	
 	public static void main(String[] args) {
 		// Are we testing?
 		boolean testing = false;
 
 		// Display programmer info and create testing object
-		theTester = CommonSuite.commonProgramStart("1", "2a", "Singly-linked List Swap Demo", testing);
+		theTester = CommonSuite.commonProgramStart("1", "2b", "Doubly-linked List Swap Demo", testing);
 		theTester.setSilentRecording(false); // report results immediately
 
 		// Display tasks
@@ -112,7 +113,7 @@ public class A1A2SLListSwappingDemo {
 		CommonSuite.headerPrint(tasksList, currentTask++);
 		try {
 			swapNodeDemo(true, 1);
-			System.out.println("ERROR. Exception expected. Code did not perform as expected.");
+			System.out.println("ERROR. Exception expected. Code did not perform as expected");
 
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("Success. Exception expected. Code performs as expected");
