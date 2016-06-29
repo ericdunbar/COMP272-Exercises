@@ -283,6 +283,34 @@ public class DLList<T> implements Comparable<T> {
 				y.next.next.elementData, y.next.next.prev.elementData);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String listSummary = "";
+		String separator = "";
+		Node current = dummy.next;
+
+		for (int i = 0; i < this.size(); i++) {
+			String classType;
+			try {
+				classType = current.elementData.getClass().toString();
+			} catch (Exception e) {
+				classType = "";
+			}
+			if (classType.equals("class java.lang.Double")) {
+				listSummary += separator + String.format("%4.2f", current.elementData);
+			} else
+				listSummary += separator + current.elementData;
+			current = current.next;
+			separator = ", ";
+		}
+		return "DLList [" + listSummary + "]";
+	}
+
 	public void swapWithNextNode(Node y) {
 		// TODO move into own class
 
@@ -308,78 +336,8 @@ public class DLList<T> implements Comparable<T> {
 
 	}
 
-	private void displayList() {
-		for (int i = 0; i < this.size(); i++) {
-			System.out.println("i: " + i + " e: " + this.get(i));
-		}
-	}
-
-	/**
-	 * Demonstrate node swapping functionality.
-	 */
-	private static void DLListNodeSwapDemo() {
-		TestingSupport.setTesting(true);
-		DLList<Double> theDLList = new DLList<>();
-
-		for (int i = 0; i < 10; i++) {
-			theDLList.add(i + Math.random());
-		}
-
-		theDLList.displayList();
-		System.out.println();
-		theDLList.swapWithNextNode(theDLList.getNode(8));
-		// error: if node within 2 of end it cannot swap correctly.
-		theDLList.displayList();
-		System.out.println();
-
-		int theDLListsize = theDLList.size();
-		for (int i = 0; i < theDLListsize; i++) {
-			TestingSupport.methodInfo(Double.toString(theDLList.remove(0)));
-		}
-	}
-
-	/**
-	 * Demonstrate basic DLList functionality.
-	 */
-	private static void DLListDemo() {
-		TestingSupport.setTesting(false);
-		DLList<Double> theDLList = new DLList<>();
-
-		for (int i = 0; i < 10; i++) {
-			theDLList.add(i + Math.random());
-			theDLList.add(i * 2, 100 + i + 100 * i + Math.random());
-		}
-
-		int theDLListsize = theDLList.size();
-		for (int i = 0; i < theDLListsize; i++) {
-			TestingSupport.methodInfo(Double.toString(theDLList.remove(0)));
-		}
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("Comparison code");
-
-		DLList<Integer> dT = new DLList<>();
-		dT.add(55);
-		dT.add(88);
-
-		System.out.println(dT.get(0) + " > " + dT.get(1));
-		System.out.println(dT.get(0) > dT.get(1));
-
-		System.out.println("Comparison code");
-
-		System.out.println("START DLL TESTING");
-
-		DLListDemo();
-		DLListNodeSwapDemo();
-
-		System.out.println("END   DLL TESTING");
-	}
-
 	@Override
 	public int compareTo(T arg0) {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Not implemented yet");
 	}
 }

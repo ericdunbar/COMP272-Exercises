@@ -1,6 +1,4 @@
-import java.util.AbstractQueue;
 import java.util.EmptyStackException;
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /*
@@ -247,7 +245,7 @@ public class SLList<T extends Comparable<T>> {
 			throw new NoSuchElementException(
 					"Cannot remove nodes at size()-1 or size()-2 using this method.");
 		} else if (n == 0) {
-			throw new EmptyStackException(); // should be
+			throw new EmptyStackException(); // TODO should be
 												// EmptyLinkedListException but
 												// close enough
 		}

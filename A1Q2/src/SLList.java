@@ -185,7 +185,7 @@ public class SLList<T extends Comparable<T>> {
 			base = base.next;
 		}
 
-		// what happens if the node isn't found? Throw an exception?
+		//TODO what happens if the node isn't found? Throw an exception?
 	}
 
 	/**

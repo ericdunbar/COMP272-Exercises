@@ -39,6 +39,8 @@ public class A1A2DLListSwappingDemo {
 					2 - errorOffset);
 
 		System.out.println();
+		
+		// Create the DLList
 		for (int j = 0; j < 1; j++) {
 			for (int i = 0; i < ordinals.length; i++) {
 				String s = ordinals[i];// + (1 - j);
@@ -59,6 +61,7 @@ public class A1A2DLListSwappingDemo {
 
 		System.out.println();
 
+		// Swap elements
 		if (forward) {
 			for (int i = 0; i < mySwapQueue.size() - 1 + errorOffset; i++) {
 				mySwapQueue.swapWithNextNode(mySwapQueue.getNode(i));
