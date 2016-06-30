@@ -30,8 +30,7 @@ public class RandomQueueDemo {
 				"Test whether remove() randomly picks, removes and returns ",
 				"an element from the queue. The test removes one item",
 				"from a queue of ten items and compares it with the last item added. When",
-				"repeated enough times the probability of picking the last item should",
-				"approach 0.10.", "",
+				"repeated enough times the probability of picking the last item should", "approach 0.10.", "",
 				"Repeat " + listSize + " additions and 1 remove " + tries + " times." };
 
 		// Display general information
@@ -68,8 +67,7 @@ public class RandomQueueDemo {
 				"be an even distribution of elements removed and each bin should have",
 				"similar numbers of the total of removed elements. Running this test on:",
 				"(i) an ArrayQueueED should result in one full bin and the rest empty;",
-				"and, (ii) a RandomQueue should result each bin having an equal",
-				"share of the removed elements." };
+				"and, (ii) a RandomQueue should result each bin having an equal", "share of the removed elements." };
 
 		CommonSuite.printlnIndentArray(background);
 
@@ -88,9 +86,12 @@ public class RandomQueueDemo {
 	 * on a queue of type RandomQueue should result each bin having an even
 	 * distribution of elements.
 	 *
-	 * @param tries number of repetitions to subject remove() to
-	 * @param numBins number of bins to use to capture elements
-	 * @param list the queue to use for testing, either RandomQueue or ArrayQueue
+	 * @param tries
+	 *            number of repetitions to subject remove() to
+	 * @param numBins
+	 *            number of bins to use to capture elements
+	 * @param list
+	 *            the queue to use for testing, either RandomQueue or ArrayQueue
 	 */
 	private static boolean isUniformRemove(int tries, ArrayQueue<Integer> list, int numBins) {
 		boolean uniformRemove;
@@ -112,15 +113,24 @@ public class RandomQueueDemo {
 			max = (counts[i] > max) ? counts[i] : max;
 		}
 
+		double minRatio = (double) min / expectedPerBin;
+		double maxRatio = (double) max / expectedPerBin;
+
 		// Note: to do this properly use variance rather than min/max
 		String description = "Is random() uniformly random for " + list.getClass() + "?";
 		String inputS = tries + " add(x), " + (int) tries / numBins + " remove(x)";
-		String expected = "Bin counts: within 10% of " + expectedPerBin;
+		String expected;
+
+		if (list.getClass().toString().equals("class ArrayQueue")) {
+			expected = "Bin counts: 0 or " + (tries / numBins);
+			//all in one bin is maxRatio == numBins
+			uniformRemove = (minRatio == 0) && ((int)maxRatio == numBins); 
+		} else {
+			expected = "Bin counts: within 10% of " + expectedPerBin;
+			uniformRemove = (minRatio > 0.9) && (maxRatio < 1.1);
+		}
 		String observed = "Bin counts: min = " + min + "; max = " + max;
 
-		double minRatio = (double) min / expectedPerBin;
-		double maxRatio = (double) max / expectedPerBin;
-		uniformRemove = (minRatio > 0.9) && (maxRatio < 1.1);
 		theTester.recordTestKnownResult(description, inputS, expected, observed, uniformRemove);
 
 		return uniformRemove;
@@ -130,7 +140,8 @@ public class RandomQueueDemo {
 	 * Create an ArrayQueue of size arraySize and fill it with a sequence of
 	 * numbers.
 	 *
-	 * @param arraySize number of repetitions to subject remove() to
+	 * @param arraySize
+	 *            number of repetitions to subject remove() to
 	 */
 	private static void fillQueueSequentially(ArrayQueue<Integer> list, int arraySize) {
 		for (int outerIdx = 0; outerIdx < arraySize; outerIdx++)
@@ -147,9 +158,12 @@ public class RandomQueueDemo {
 	 * bin being filled. Running this test on ArrayQueue should result in a
 	 * single bin being filled.
 	 * 
-	 * @param list an ArrayList with elements
-	 * @param testEvery how often to remove an element
-	 * @param silent false if output is printed
+	 * @param list
+	 *            an ArrayList with elements
+	 * @param testEvery
+	 *            how often to remove an element
+	 * @param silent
+	 *            false if output is printed
 	 */
 	private static void removeTest(ArrayQueue<?> list, int testEvery, boolean silent) {
 		int[] counts = new int[10];
@@ -190,8 +204,8 @@ public class RandomQueueDemo {
 		RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
 
 		// request size of an empty queue
-		theTester.recordTest("size() of an empty queue", "new RandomQueue<Integer>; .size();",
-				"" + 0, "" + list.size());
+		theTester.recordTest("size() of an empty queue", "new RandomQueue<Integer>; .size();", "" + 0,
+				"" + list.size());
 
 		// perform remove operation on an empty queue
 		String resultS;
@@ -200,16 +214,14 @@ public class RandomQueueDemo {
 		} catch (NoSuchElementException nE) {
 			resultS = "NoSuchElementException";
 		}
-		theTester.recordTest("remove() on an empty queue", "remove()", "NoSuchElementException",
-				resultS, true, TestSuite.TestStage.Stage4);
+		theTester.recordTest("remove() on an empty queue", "remove()", "NoSuchElementException", resultS, true,
+				TestSuite.TestStage.Stage4);
 
 		// add 3 items to an empty queue and check size after each add operation
 		for (int i = 0; i < 3; i++) {
-			theTester.recordTest("add(" + (55 + i) + ") to queue of size = " + (0 + i),
-					"add(" + (55 + i) + ");", "true, " + (55 + i),
-					"" + list.add(55 + i) + ", " + list.get(i));
-			theTester.recordTest("size() when queue size = " + (1 + i), "size();", "" + (1 + i),
-					"" + list.size());
+			theTester.recordTest("add(" + (55 + i) + ") to queue of size = " + (0 + i), "add(" + (55 + i) + ");",
+					"true, " + (55 + i), "" + list.add(55 + i) + ", " + list.get(i));
+			theTester.recordTest("size() when queue size = " + (1 + i), "size();", "" + (1 + i), "" + list.size());
 		}
 
 		// remove 3 items from a queue with 3 items and check size afer each
@@ -217,8 +229,8 @@ public class RandomQueueDemo {
 		for (int i = 0; i < 3; i++) {
 			list.remove();
 		}
-		theTester.recordTest("size() after 3 add() & 3 remove() ops", "add(x); remove(); size();",
-				"" + 0, "" + list.size());
+		theTester.recordTest("size() after 3 add() & 3 remove() ops", "add(x); remove(); size();", "" + 0,
+				"" + list.size());
 	}
 
 	/**
@@ -286,9 +298,12 @@ public class RandomQueueDemo {
 	 * Generates statistics to determine whether remove() and add(x) run in
 	 * constant time.
 	 * 
-	 * @param list2 an ArrayQueue of type Integer
-	 * @param incrementR increment for each round
-	 * @param reps number of repetitions
+	 * @param list2
+	 *            an ArrayQueue of type Integer
+	 * @param incrementR
+	 *            increment for each round
+	 * @param reps
+	 *            number of repetitions
 	 */
 	private static void runsInConstantTime(ArrayQueue<Integer> list2, int incrementR, int reps) {
 		// track time taken to perform a sequence of operations
@@ -297,12 +312,9 @@ public class RandomQueueDemo {
 
 		// format output header
 		System.out.println(CommonSuite.indentString(CommonSuite.stringRepeat("*", 57)));
-		System.out.println(CommonSuite
-				.indentString("* Table. Median time per operation in milliseconds (ms) *"));
-		System.out.println(CommonSuite
-				.indentString("*                                                       *"));
-		System.out.println(CommonSuite
-				.indentString("*    No. operations       add    remove                 *"));
+		System.out.println(CommonSuite.indentString("* Table. Median time per operation in milliseconds (ms) *"));
+		System.out.println(CommonSuite.indentString("*                                                       *"));
+		System.out.println(CommonSuite.indentString("*    No. operations       add    remove                 *"));
 
 		// run trials
 		for (int r = incrementR; r < incrementR * 10 + 1; r += incrementR) {
@@ -331,11 +343,10 @@ public class RandomQueueDemo {
 
 			double medianAddTime = (addTimeBins[(int) (r / incrementR - 1)][(int) (reps / 2) - 1]
 					+ addTimeBins[(int) (r / incrementR - 1)][(int) (reps / 2)]) / 2;
-			double medianRemoveTime = (removeTimeBins[(int) (r / incrementR - 1)][(int) (reps / 2)
-					- 1] + removeTimeBins[(int) (r / incrementR - 1)][(int) (reps / 2)]) / 2;
+			double medianRemoveTime = (removeTimeBins[(int) (r / incrementR - 1)][(int) (reps / 2) - 1]
+					+ removeTimeBins[(int) (r / incrementR - 1)][(int) (reps / 2)]) / 2;
 
-			System.out.println(String.format("%10.1f%10.1f                 *", medianAddTime,
-					medianRemoveTime));
+			System.out.println(String.format("%10.1f%10.1f                 *", medianAddTime, medianRemoveTime));
 		}
 
 		// format output
@@ -343,13 +354,10 @@ public class RandomQueueDemo {
 		System.out.println();
 
 		theTester.recordTest("Do add(x) and remove() run in constant time?",
-				"add(x), then remove() repeated " + incrementR + " to " + incrementR * 10
-						+ " times.",
-				"Linear response, R^2 > 0.9 when graphed",
-				TestSuite.ObtainTestInput.obtainObservedOutput(), !theTester.isTesting(),
-				TestSuite.TestStage.Stage2);
+				"add(x), then remove() repeated " + incrementR + " to " + incrementR * 10 + " times.",
+				"Linear response, R^2 > 0.9 when graphed", TestSuite.ObtainTestInput.obtainObservedOutput(),
+				!theTester.isTesting(), TestSuite.TestStage.Stage2);
 	}
-
 
 	private static void doDemo() {
 
@@ -366,8 +374,7 @@ public class RandomQueueDemo {
 		// Display tasks
 		String[] tasksList = { "1. Do add(x) and remove() work for n = {0, 1, 2}?",
 				"2. Is RandomQueue.remove() random?",
-				"3. Is tail element moved into empty index position upon remove()?",
-				"4. Is remove() uniformly random?",
+				"3. Is tail element moved into empty index position upon remove()?", "4. Is remove() uniformly random?",
 				"5. Do add(x) and remove() run in constant time?" };
 
 		int currentTask = 0;
