@@ -12,8 +12,8 @@ public class A1Q1BTwoQueueStackDemo {
 	private static void OneQueueTest() {
 		System.out.println("START One queue only");
 		System.out.println();
-		System.out.println("Confirm FIFO operation of a single queue.");
-		System.out.println("Check error handling of remove on empty queue.");
+		System.out.println("Confirm operation of a single queue and");
+		System.out.println("check error handling of remove() from empty queue.");
 		
 		TestingSupport.setTesting(false);
 		System.out.println();
@@ -45,21 +45,30 @@ public class A1Q1BTwoQueueStackDemo {
 	private static void PushPopTest() {
 		System.out.println("START PushPop Testing");
 		System.out.println();
-		System.out.println("Demonstration of push(x).");
-		TestingSupport.setTesting(true);
+		System.out.println("BEGIN: Demonstration of push(x).");
+		
+		System.out.println();
+		System.out.println("Show implementation details? i.e. all add(), remove(), and resize() operations? y/n?");
+		TestingSupport.setTesting(CommonSuite.getBooleanInput());
+
+
+		System.out.println();
+		System.out.println("qUnused and qUsed are the two queues used inside the stack.");
 
 		TwoQueueStack<Integer> demoStack = new TwoQueueStack<>(Integer.class);
 
-		int arraySize = 15;
+		int arraySize = 6;
 		for (int i = 0; i < arraySize; i++) {
 			System.out.printf("Round %3d " , i);
-			System.out.println(demoStack.toString());
 			TestingSupport.methodInfo("push(" + demoStack.push(88 * i) + ");");
+			System.out.println(demoStack.toString());
 		}
 
 		System.out.println();
-		System.out.println("Demonstration of pop().");
+		System.out.println("BEGIN: Demonstration of pop().");
 		System.out.println();
+		System.out.println("This is the full stack as returned by a sequence of pop() operations:");
+		
 		String prepend ="";
 		System.out.print("{");
 		for (int i = 0; i < arraySize; i++) {
@@ -83,7 +92,7 @@ public class A1Q1BTwoQueueStackDemo {
 		theTester.setSilentRecording(false); // report results immediately
 
 		// Display tasks
-		String[] tasksList = { "1. OneQueueTest?", "2. PushPopTest?", "3. ...?" };
+		String[] tasksList = { "1. One queue test", "2. Push-pop demo"};
 
 		int currentTask = 0;
 
@@ -101,11 +110,6 @@ public class A1Q1BTwoQueueStackDemo {
 
 		CommonSuite.headerPrint(tasksList, currentTask++);
 		PushPopTest();
-
-		// perform the tasks required by the question
-		// TASK 3.
-
-		CommonSuite.headerPrint(tasksList, currentTask++);
 
 		CommonSuite.commonProgramEnd(theTester);
 

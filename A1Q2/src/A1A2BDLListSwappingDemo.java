@@ -4,7 +4,7 @@
  * @author Eric Dunbar
  *
  */
-public class A1A2DLListSwappingDemo {
+public class A1A2BDLListSwappingDemo {
 	static TestSuite theTester;
 
 	
@@ -48,12 +48,18 @@ public class A1A2DLListSwappingDemo {
 			}
 		}
 
-		System.out.print("   Node:");
+		DLList<String>.Node someNode = mySwapQueue.getNode(0);
+		String beforeElement = someNode.elementData;
+		String beforeNodePointer = "" + someNode;
+				
+		// Display legend
+		System.out.print("  Index:");
 		for (int idx = 0; idx < mySwapQueue.size(); idx++) {
 			System.out.printf("%5d ", idx);
 		}
 		System.out.println();
 
+		// Display initial and final list contents
 		System.out.print("Initial: ");
 		for (int idx = 0; idx < mySwapQueue.size(); idx++) {
 			System.out.printf("%5s ", mySwapQueue.getNode(idx).elementData);
@@ -77,6 +83,14 @@ public class A1A2DLListSwappingDemo {
 			System.out.printf("%5s ", mySwapQueue.getNode(idx).elementData);
 		}
 
+		// Display a node to confirm that the node was moved and not the element		
+		System.out.println();
+		System.out.println();
+		System.out.println("Mini test: Does swapping change the node or the element? If the element changes,");
+		System.out.println("           the before and after element ought to be different.");
+		System.out.println();
+		System.out.println("    Before swapping: Node element = " + beforeElement + "; Node pointer = " + beforeNodePointer);
+		System.out.println("     After swapping: Node element = " + someNode.elementData + "; Node pointer = " + someNode);
 		System.out.println();
 
 	}

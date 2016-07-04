@@ -62,7 +62,7 @@ public class A1Q5ReversibleDLListDemo {
 		theTester.setSilentRecording(false); // report results immediately
 
 		// Display tasks
-		String[] tasksList = { "1. REVERSIBLE DLL TESTING", "1. a Reverse a DLList of double elements", "1. b Reverse a DLList of String elements" };
+		String[] tasksList = { "1. REVERSIBLE DLL TESTING", "      Reverse a DLList of double elements", "      Reverse a DLList of String elements" };
 
 		int currentTask = 0;
 
