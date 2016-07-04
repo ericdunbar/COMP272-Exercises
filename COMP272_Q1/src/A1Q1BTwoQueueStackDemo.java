@@ -6,7 +6,7 @@
  *
  */
 
-public class A1Q1TwoQueueStackDemo {
+public class A1Q1BTwoQueueStackDemo {
 	static TestSuite theTester;
 
 	private static void OneQueueTest() {
