@@ -3,7 +3,12 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A FIFO queue that extends the Queue<T> interface, based largely on sample
+ * @author Eric Dunbar
+ * @date 7/7/2016
+ * @assignment 1
+ * @question 4
+ * @title Array Queue
+ * @description   A FIFO queue that extends the Queue<T> interface, based largely on sample
  * code from Open Data Structures by Pat Morin. This data structure implements a
  * FIFO (first-in-first-out) queue with add(x) and remove() operations that
  * perform in constant amortized time; elements are removed from the queue in
