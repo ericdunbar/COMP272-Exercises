@@ -6,7 +6,7 @@
  * @author Eric Dunbar
  *
  */
-public class A1Q1PriorityQueueDemo {
+public class A1Q1APriorityQueueDemo {
 
 	static SLList<String> myPriorityQueue = new SLList<>();
 	static TestSuite theTester;
