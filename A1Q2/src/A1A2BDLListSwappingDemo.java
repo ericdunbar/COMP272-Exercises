@@ -1,13 +1,16 @@
 /**
- * Demonstrates the node swapping operation for a doubly-linked list.
- * 
  * @author Eric Dunbar
+ * @date 7/7/2016
+ * @assignment 1
+ * @question 2B
+ * @title DLList Node Swapping Demo
+ * @description Demonstrates the node swapping operation for a doubly-linked
+ *              list.
  *
  */
 public class A1A2BDLListSwappingDemo {
 	static TestSuite theTester;
 
-	
 	/**
 	 * Swap the nodes in a singly-linked-list in a forward or reverse direction
 	 * (starting at node 0 or the last node) and proceeding until all nodes have
@@ -39,7 +42,7 @@ public class A1A2BDLListSwappingDemo {
 					2 - errorOffset);
 
 		System.out.println();
-		
+
 		// Create the DLList
 		for (int j = 0; j < 1; j++) {
 			for (int i = 0; i < ordinals.length; i++) {
@@ -51,7 +54,7 @@ public class A1A2BDLListSwappingDemo {
 		DLList<String>.Node someNode = mySwapQueue.getNode(0);
 		String beforeElement = someNode.elementData;
 		String beforeNodePointer = "" + someNode;
-				
+
 		// Display legend
 		System.out.print("  Index:");
 		for (int idx = 0; idx < mySwapQueue.size(); idx++) {
@@ -83,18 +86,20 @@ public class A1A2BDLListSwappingDemo {
 			System.out.printf("%5s ", mySwapQueue.getNode(idx).elementData);
 		}
 
-		// Display a node to confirm that the node was moved and not the element		
+		// Display a node to confirm that the node was moved and not the element
 		System.out.println();
 		System.out.println();
 		System.out.println("Mini test: Does swapping change the node or the element? If the element changes,");
 		System.out.println("           the before and after element ought to be different.");
 		System.out.println();
-		System.out.println("    Before swapping: Node element = " + beforeElement + "; Node pointer = " + beforeNodePointer);
-		System.out.println("     After swapping: Node element = " + someNode.elementData + "; Node pointer = " + someNode);
+		System.out.println(
+				"    Before swapping: Node element = " + beforeElement + "; Node pointer = " + beforeNodePointer);
+		System.out.println(
+				"     After swapping: Node element = " + someNode.elementData + "; Node pointer = " + someNode);
 		System.out.println();
 
 	}
-	
+
 	public static void main(String[] args) {
 		// Are we testing?
 		boolean testing = false;
@@ -131,14 +136,11 @@ public class A1A2BDLListSwappingDemo {
 		try {
 			swapNodeDemo(true, 1);
 			System.out.println("ERROR. Exception expected. Code did not perform as expected");
-
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("Success. Exception expected. Code performs as expected");
 			System.out.println("         " + e);
 		}
 
 		CommonSuite.commonProgramEnd(theTester);
-
 	}
-
 }

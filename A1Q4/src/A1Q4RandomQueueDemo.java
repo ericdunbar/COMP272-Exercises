@@ -5,8 +5,8 @@ import java.util.NoSuchElementException;
  * @author Eric Dunbar
  * @date 7/7/2016
  * @assignment 1
- * @question 5
- * @title Reversible DLL
+ * @question 4
+ * @title Random Queue Demonstration
  * @description Demonstrates operation of RandomQueue Queue Interface for
  *              assignment 1, question 4 in COMP272. RandomQueue expectations:
  *              1. remove() removes and returns an element, uniformly at random;
