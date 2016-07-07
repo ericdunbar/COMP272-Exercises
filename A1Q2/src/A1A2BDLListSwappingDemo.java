@@ -9,7 +9,7 @@
  *
  */
 public class A1A2BDLListSwappingDemo {
-	static TestSuite theTester;
+	static TestSuite theTester; // track testing data
 
 	/**
 	 * Swap the nodes in a singly-linked-list in a forward or reverse direction

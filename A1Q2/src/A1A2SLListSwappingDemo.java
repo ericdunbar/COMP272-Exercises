@@ -1,8 +1,11 @@
 /**
- * Demonstrates the node swapping operation for a singly-linked list.
- * 
  * @author Eric Dunbar
- *
+ * @date 7/7/2016
+ * @assignment 1
+ * @question 2A
+ * @title Demonstrates SLList node swapping
+ * @description  Demonstrates the node swapping operation for a singly-linked list.
+ * 
  */
 public class A1A2SLListSwappingDemo {
 	static TestSuite theTester;

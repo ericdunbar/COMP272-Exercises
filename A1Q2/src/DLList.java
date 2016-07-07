@@ -1,20 +1,16 @@
-/*
- * 2. Swap two adjacent elements in a list by adjusting only the links (and not the data)
- * using...
- * 
- * b. doubly-linked list (6 marks).
- * 
- */
-
 /**
- * Description: In a DLList (doubly-linked list) each node u stores a data
+ * @author Eric Dunbar
+ * @date 17/5/2016
+ * @assignment 1
+ * @question 2B
+ * @title DLList node swapping
+ * @description  2. Swap two adjacent elements in a list by adjusting only the links (and not the data) using...
+ * a doubly-linked list (6 marks). In a DLList (doubly-linked list) each node u stores a data
  * value, x and has references to both the node u.next that follows it and the
  * node u.prev that precedes it.
  * 
  * Source: ODS by PM
- * 
- * @Date 17/5/2016
- * @author Eric Dunbar
+
  * @param <E>
  *
  */
@@ -59,8 +55,6 @@ public class DLList<T> implements Comparable<T> {
 
 	/**
 	 * DLList Node implemented with prev and next
-	 * 
-	 * @author erdun
 	 *
 	 */
 	class Node {
@@ -311,8 +305,12 @@ public class DLList<T> implements Comparable<T> {
 		return "DLList [" + listSummary + "]";
 	}
 
+	/**
+	 * Swap the following node with the current node
+	 * @param y First of two nodes to be swapped
+	 */
 	public void swapWithNextNode(Node y) {
-		// TODO move into own class
+		// Future: move into own class
 
 		if (y.next == dummy || y == dummy)
 			throw new IndexOutOfBoundsException("Cannot swap with dummy node.");

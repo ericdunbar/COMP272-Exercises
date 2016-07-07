@@ -1,35 +1,29 @@
 import java.util.EmptyStackException;
 import java.util.NoSuchElementException;
 
-/*
- * 2. Swap two adjacent elements in a list by adjusting only the links (and not the data) using...
- * 
- * a. singly-linked list (6 marks).
- * 
- */
-
 /**
- * Description: An SLList (singly-linked list) is a sequence of Nodes. Each node u stores a data
- * value u.x and a reference u.next to the next node in the sequence. For the last node w in the
+ * @author Eric Dunbar
+ * @date 15/5/2016
+ * @assignment 1
+ * @question 2A
+ * @title SLList node swapping
+ * @description  2. Swap two adjacent elements in a list by adjusting only the links (and not the data) using...
+ * a singly-linked list (6 marks). Description: An SLList (singly-linked list) is a sequence of Nodes. Each node
+ * u stores a data value u.x and a reference u.next to the next node in the sequence. For the last node w in the 
  * sequence, w.next = null
  * 
- * @Date 15/5/2016
- * @author Eric Dunbar
  * @param <E>
  *
  */
 public class SLList<T extends Comparable<T>> {
 
+	// LIST OF LINKS:
+
 	// Note: future effort... implement PriorityQueue
-
 	// http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/util/LinkedList.java#LinkedList.Node
-
 	// http://stackoverflow.com/questions/20255911/what-does-the-e-in-java-mean
-
 	// http://stackoverflow.com/questions/5526955/in-java-whats-the-difference-between-e-t
-
 	// http://www.coderanch.com/t/617025/java/java/compareTo-generic-objects
-
 	// http://stackoverflow.com/questions/3777315/t-cannot-be-resolved-to-a-type
 
 	// COMPARABLE solution
@@ -37,14 +31,18 @@ public class SLList<T extends Comparable<T>> {
 	// http://stackoverflow.com/questions/25437682/use-a-linked-list-to-implement-a-priority-queue
 	// *******************************************************************************************
 
+	/**
+	 * Track the element for each node with this class
+	 */
 	class Node {
 		public T elementData;
 		public Node next;
 	}
 
 	/*
-	 * For efficiency, an SLList uses variables head and tail to keep track of the first and last
-	 * node in the sequence, as well as an integer n to keep track of the length of the sequence:
+	 * For efficiency, an SLList uses variables head and tail to keep track of
+	 * the first and last node in the sequence, as well as an integer n to keep
+	 * track of the length of the sequence:
 	 */
 
 	Node head; // first node in sequence
@@ -52,19 +50,27 @@ public class SLList<T extends Comparable<T>> {
 	int n; // length of sequence
 
 	// STACK OPERATIONS
-
 	/*
-	 * An SLList can efficiently implement the Stack operations push() and pop() by adding and
-	 * removing elements at the head of the sequence.
+	 * An SLList can efficiently implement the Stack operations push() and pop()
+	 * by adding and removing elements at the head of the sequence.
 	 * 
-	 * The push() operation simply creates a new node u with data value element, sets u.next to the
-	 * old head of the list and makes u the new HEAD of the list. Finally, it increments n since the
-	 * size of the SLList has increased by one.
+	 * The push() operation simply creates a new node u with data value element,
+	 * sets u.next to the old head of the list and makes u the new HEAD of the
+	 * list. Finally, it increments n since the size of the SLList has increased
+	 * by one.
 	 * 
-	 * Sources: http://crunchify.com/how-to-implement-a-linkedlist-class-from-scratch-in- java/ and
-	 * Morin
+	 * Sources\:
+	 * http://crunchify.com/how-to-implement-a-linkedlist-class-from-scratch-in-
+	 * java/ and Morin
 	 */
 
+	/**
+	 * Implement push operation. Adds element to the stack.
+	 * 
+	 * @param element
+	 *            data
+	 * @return element data given to method
+	 */
 	public T push(T element) {
 		Node u = new Node(); // create a Node
 		u.elementData = element; // set data value
@@ -78,9 +84,10 @@ public class SLList<T extends Comparable<T>> {
 	}
 
 	/*
-	 * The pop() operation, after checking that the SLList is not empty, removes the HEAD by setting
-	 * head = head.next and decrementing n. A special case occurs when the last element is being
-	 * removed, in which case tail is set to null.
+	 * The pop() operation, after checking that the SLList is not empty, removes
+	 * the HEAD by setting head = head.next and decrementing n. A special case
+	 * occurs when the last element is being removed, in which case tail is set
+	 * to null.
 	 */
 	public T pop() {
 		if (n == 0)
@@ -97,7 +104,8 @@ public class SLList<T extends Comparable<T>> {
 	// QUEUE OPERATIONS
 
 	/*
-	 * Removals are done from the HEAD of the list, and are identical to the pop() operation.
+	 * Removals are done from the HEAD of the list, and are identical to the
+	 * pop() operation.
 	 */
 
 	public T remove() {
@@ -105,9 +113,10 @@ public class SLList<T extends Comparable<T>> {
 	}
 
 	/*
-	 * Additions are done at the TAIL of the list. In most cases, this is done by setting tail.next
-	 * = u, where u is the newly created node that contains x. However, a special case occurs when n
-	 * = 0, in which case tail = head = null. In this case, both tail and head are set to u.
+	 * Additions are done at the TAIL of the list. In most cases, this is done
+	 * by setting tail.next = u, where u is the newly created node that contains
+	 * x. However, a special case occurs when n = 0, in which case tail = head =
+	 * null. In this case, both tail and head are set to u.
 	 */
 
 	/**
@@ -131,23 +140,23 @@ public class SLList<T extends Comparable<T>> {
 		return true; // when would false get returned?
 	}
 
-
 	/**
-	 * 2. Swap two adjacent elements in a list by adjusting only the links (and not the data)
-	 * using...
+	 * Swap two adjacent elements in a list by adjusting only the links (and not
+	 * the data) using a singly-linked list (6 marks).
 	 * 
-	 * a. singly-linked list (6 marks).
-	 * @param index Index of first of two nodes
+	 * @param index
+	 *            Index of first of two nodes
 	 */
 	public void swapWithNextNode(int index) {
 		swapWithNextNode(getNode(index));
 	}
-	
+
 	/**
-	 * 2. Swap two adjacent elements in a list by adjusting only the links (and not the data)
-	 * using...
+	 * Swap two adjacent elements in a list by adjusting only the links (and not
+	 * the data) using a singly-linked list (6 marks).
 	 * 
-	 * a. singly-linked list (6 marks).
+	 * @param swapNextNode
+	 *            the node that is to be swapped with the following node
 	 */
 	public void swapWithNextNode(Node swapNextNode) {
 		// throw an exception if list is empty?
@@ -184,20 +193,19 @@ public class SLList<T extends Comparable<T>> {
 			}
 			base = base.next;
 		}
-
-		//TODO what happens if the node isn't found? Throw an exception?
 	}
 
 	/**
-	 * Search for, removes and returns the smallest element in the singly-linked list. Ties are
-	 * arbitrarily broken by removing the "oldest" or "first in" element.
+	 * Search for, removes and returns the smallest element in the singly-linked
+	 * list. Ties are arbitrarily broken by removing the "oldest" or "first in"
+	 * element.
 	 * 
 	 * @param <T>
 	 * 
 	 * @return T representing the smallest element
 	 */
 	public T deleteMin() {
-		//TODO move deleteMin into its own class
+		// Future: move deleteMin into its own class
 		if (n == 0)
 			return null; // nothing to delete
 		// this should throw an error, don't you think?
@@ -258,10 +266,15 @@ public class SLList<T extends Comparable<T>> {
 			return removeNextNode(minimumIsNext);
 	}
 
+	/**
+	 * DO the actual removing to the node
+	 * 
+	 * @param removeNextNode node before node to remove
+	 * @return element of removed node
+	 */
 	private T removeNextNode(SLList<T>.Node removeNextNode) {
 		if (removeNextNode == tail || removeNextNode.next == tail) {
-			throw new NoSuchElementException(
-					"Cannot remove nodes at size()-1 or size()-2 using this method.");
+			throw new NoSuchElementException("Cannot remove nodes at size()-1 or size()-2 using this method.");
 		} else if (n == 0) {
 			throw new EmptyStackException(); // should be
 												// EmptyLinkedListException but
@@ -278,63 +291,23 @@ public class SLList<T extends Comparable<T>> {
 		return element; // return the Object
 	}
 
+	/**
+	 * How many elements are stored in the SLList?
+	 * @return number of elements
+	 */
 	public int size() {
 		return n;
 	}
 
+	/**
+	 * Given an index return the pointer to the node
+	 * @param i index
+	 * @return pointer to node
+	 */
 	public Node getNode(int i) {
 		Node returnNode = head;
 		for (int idx = 0; idx < i; idx++)
 			returnNode = returnNode.next;
 		return returnNode;
-	}
-
-
-	
-	private static void priorityQueueDemo() {
-		SLList<String> myPriorityQueue = new SLList<>();
-
-		System.out.println("Fi".compareTo("Fifth"));
-
-		System.out.println(myPriorityQueue.size());
-		System.out.println(myPriorityQueue.add("First"));
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Second");
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Tenth");
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Fourth");
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Fifth");
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Sixth");
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Seventh");
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Eighth");
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Ninth");
-		System.out.println(myPriorityQueue.size());
-		myPriorityQueue.add("Third");
-		System.out.println(myPriorityQueue.size());
-
-		while (myPriorityQueue.size() > 0) {
-			System.out.print(myPriorityQueue.size() + ", ");
-			System.out.println(myPriorityQueue.deleteMin() + ", " + myPriorityQueue.size());
-		}
-		System.out.println(myPriorityQueue.size());
-		System.out.println(myPriorityQueue.deleteMin());
-		System.out.println(myPriorityQueue.size());
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("START SLL TESTING");
-
-		//swapNodeDemo();
-
-		System.out.println("END   SLL TESTING");
-		System.out.println(-2 >>> 3);
-
 	}
 }
