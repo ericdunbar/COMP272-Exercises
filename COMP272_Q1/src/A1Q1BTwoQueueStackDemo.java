@@ -1,20 +1,24 @@
 /**
- * Demonstrate the implementation of a two queue-backed stack for assignment 1,
- * question 1 b.
- * 
  * @author Eric Dunbar
- *
+ * @date 7/7/2016
+ * @assignment 1
+ * @question 1b
+ * @title Two Queue Stack Demonstration
+ * @description Demonstrate the implementation of a two queue-backed stack for
+ *              assignment 1, question 1 b.
  */
-
 public class A1Q1BTwoQueueStackDemo {
 	static TestSuite theTester;
 
+	/**
+	 * Confirm that a single queue works properly.
+	 */
 	private static void OneQueueTest() {
 		System.out.println("START One queue only");
 		System.out.println();
 		System.out.println("Confirm operation of a single queue and");
 		System.out.println("check error handling of remove() from empty queue.");
-		
+
 		TestingSupport.setTesting(false);
 		System.out.println();
 
@@ -42,15 +46,17 @@ public class A1Q1BTwoQueueStackDemo {
 		System.out.println("END   One queue only");
 	}
 
+	/**
+	 * Demonstrate that push and pop work for a two queue stack.
+	 */
 	private static void PushPopTest() {
 		System.out.println("START PushPop Testing");
 		System.out.println();
 		System.out.println("BEGIN: Demonstration of push(x).");
-		
+
 		System.out.println();
 		System.out.println("Show implementation details? i.e. all add(), remove(), and resize() operations? y/n?");
 		TestingSupport.setTesting(CommonSuite.getBooleanInput());
-
 
 		System.out.println();
 		System.out.println("qUnused and qUsed are the two queues used inside the stack.");
@@ -59,7 +65,7 @@ public class A1Q1BTwoQueueStackDemo {
 
 		int arraySize = 6;
 		for (int i = 0; i < arraySize; i++) {
-			System.out.printf("Round %3d " , i);
+			System.out.printf("Round %3d ", i);
 			TestingSupport.methodInfo("push(" + demoStack.push(88 * i) + ");");
 			System.out.println(demoStack.toString());
 		}
@@ -68,8 +74,8 @@ public class A1Q1BTwoQueueStackDemo {
 		System.out.println("BEGIN: Demonstration of pop().");
 		System.out.println();
 		System.out.println("This is the full stack as returned by a sequence of pop() operations:");
-		
-		String prepend ="";
+
+		String prepend = "";
 		System.out.print("{");
 		for (int i = 0; i < arraySize; i++) {
 			try {
@@ -92,7 +98,7 @@ public class A1Q1BTwoQueueStackDemo {
 		theTester.setSilentRecording(false); // report results immediately
 
 		// Display tasks
-		String[] tasksList = { "1. One queue test", "2. Push-pop demo"};
+		String[] tasksList = { "1. One queue test", "2. Push-pop demo" };
 
 		int currentTask = 0;
 

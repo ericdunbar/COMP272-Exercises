@@ -1,10 +1,11 @@
-
 /**
- * Demonstrate the implementation of a priority queue for assignment 1, question
- * 1 a.
- * 
  * @author Eric Dunbar
- *
+ * @date 7/7/2016
+ * @assignment 1
+ * @question 1A
+ * @title Priority Queue Demonstration
+ * @description Demonstrate the implementation of a priority queue for
+ *              assignment 1, question 1 a.
  */
 public class A1Q1APriorityQueueDemo {
 
@@ -33,7 +34,6 @@ public class A1Q1APriorityQueueDemo {
 						myPriorityQueue.add(s), myPriorityQueue.size());
 			}
 		}
-
 	}
 
 	/**
@@ -53,13 +53,11 @@ public class A1Q1APriorityQueueDemo {
 			System.out.printf("size() = %5d, deleteMin() = %14s, size() = %5d;%n", myPriorityQueue.size(),
 					myPriorityQueue.deleteMin(), myPriorityQueue.size());
 		}
-
 	}
 
 	/**
 	 * Demo what happens when deleteMin() method is performed on a PriorityQueue
 	 * that's been emptied and one that's been newly declared.
-	 * 
 	 */
 	private static void deleteOnEmpty() {
 		String[] description = { "", "deleteMin() on empty PriorityQueue:", "" };
@@ -116,9 +114,7 @@ public class A1Q1APriorityQueueDemo {
 
 		CommonSuite.headerPrint(tasksList, currentTask++);
 		deleteOnEmpty();
-		
+
 		CommonSuite.commonProgramEnd(theTester);
-
 	}
-
 }
