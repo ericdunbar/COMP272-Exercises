@@ -2,17 +2,20 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 /**
- * Demonstrates operation of RandomQueue Queue Interface for assignment 1,
- * question 4 in COMP272. RandomQueue expectations: 1. remove() removes and
- * returns an element, uniformly at random; 2. add(x) and remove() run in
- * constant time per operation.
- * 
  * @author Eric Dunbar
+ * @date 7/7/2016
+ * @assignment 1
+ * @question 5
+ * @title Reversible DLL
+ * @description Demonstrates operation of RandomQueue Queue Interface for
+ *              assignment 1, question 4 in COMP272. RandomQueue expectations:
+ *              1. remove() removes and returns an element, uniformly at random;
+ *              2. add(x) and remove() run in constant time per operation.
  */
-public class RandomQueueDemo {
+public class A1Q4RandomQueueDemo {
 
 	// Class variables
-	static TestSuite theTester;
+	static TestSuite theTester; // track and display test and program info
 
 	/**
 	 * Test the randomness of RandomQueue.remove(). This test removes one item
@@ -123,8 +126,8 @@ public class RandomQueueDemo {
 
 		if (list.getClass().toString().equals("class ArrayQueue")) {
 			expected = "Bin counts: 0 or " + (tries / numBins);
-			//all in one bin is maxRatio == numBins
-			uniformRemove = (minRatio == 0) && ((int)maxRatio == numBins); 
+			// all in one bin is maxRatio == numBins
+			uniformRemove = (minRatio == 0) && ((int) maxRatio == numBins);
 		} else {
 			expected = "Bin counts: within 10% of " + expectedPerBin;
 			uniformRemove = (minRatio > 0.9) && (maxRatio < 1.1);
@@ -183,13 +186,24 @@ public class RandomQueueDemo {
 			}
 	}
 
+	/**
+	 * Provides methods to track and report elapsed time.
+	 */
 	private static class StopWatch {
-		private static long startTime;
+		private static long startTime; // when was the stopwatch started?
 
+		/**
+		 * Start the timer
+		 */
 		public static void start() {
 			startTime = System.currentTimeMillis();
 		}
 
+		/**
+		 * Stop the timer and report the time elapsed since it was started
+		 * 
+		 * @return elapsed time in milliseconds
+		 */
 		public static long stop() {
 			return (System.currentTimeMillis() - startTime);
 		}
@@ -200,6 +214,9 @@ public class RandomQueueDemo {
 	 * RandomQueue.
 	 */
 
+	/**
+	 * Do add(x) and remove() work for random queues of size = {0, 1, 2}?
+	 */
 	private static void taskSmallSizes() {
 		RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
 
@@ -251,8 +268,6 @@ public class RandomQueueDemo {
 
 			int removed = (list.remove());
 
-			// System.out.print(outerIdx + ": " + removed + "; ");
-
 			StringBuilder sB = new StringBuilder();
 			for (int i = 0; i < listSize - 1; i++) {
 				sB.append(list.get(i));
@@ -260,10 +275,8 @@ public class RandomQueueDemo {
 			sB.append(", remove() = " + removed);
 			remainder = sB.toString();
 
-			// System.out.print(remainder);
 			// could simplify the following with || instead of &&
 			if (removed != 9 && remainder.charAt(removed) == '9') {
-				// System.out.print("***");
 				hits++;
 			}
 			// System.out.println();
@@ -359,10 +372,9 @@ public class RandomQueueDemo {
 				!theTester.isTesting(), TestSuite.TestStage.Stage2);
 	}
 
-	private static void doDemo() {
-
-	}
-
+	/**
+	 * Performs all the testing for the RandomQueue class.
+	 */
 	private static void doTesting() {
 		// Are we testing?
 		boolean testing = true;
@@ -422,11 +434,8 @@ public class RandomQueueDemo {
 
 	public static void main(String[] args) {
 
-		boolean demo = false;
-		if (demo)
-			doDemo();
-		else
-			doTesting();
+		// perform the demonstration
+		doTesting();
 
 	}
 

@@ -1,23 +1,20 @@
 /**
- * A reversible doubly-linked list. Implements the method reverse() in exercise
- * 3.12 from Open Data Structures by Pat Morin.
- * 
  * @author Eric Dunbar
+ * @date 7/7/2016
+ * @assignment 1
+ * @question 5
+ * @title Reversible DLL
+ * @description Exercise 3.12. A method, reverse(), that reverses the order of
+ *              elements in a DLList.
  *
- * @param <T> the data type stored by the DLList
+ * @param <T>
+ *            the data type of the DLList
  */
 public class ReversibleDLList<T> extends DLList<T> {
-	/*
-	 * 5. Exercise 3.12. Write a method, reverse(), that reverses the order of
-	 * elements in a DLList.
-	 * 
-	 * @author Eric Dunbar
-	 *
-	 */
 
 	/*
-	 * How to extend DLList. The previous construction <T extends Comparable<T>>
-	 * wasn't working. extends works for DLList.
+	 * Problem: How to extend DLList? The previous construction <T extends
+	 * Comparable<T>> wasn't working. 'extends' works for DLList<T>.
 	 * 
 	 * Inferred type is not a valid substitute for a Comparable generic type.
 	 * (2013, July 19). Retrieved May 28, 2016, from
@@ -26,7 +23,7 @@ public class ReversibleDLList<T> extends DLList<T> {
 	 */
 
 	/**
-	 * Reverses the order of elements in a DLList.
+	 * Reverses the order of elements by adjusting links.
 	 */
 	public void reverse() {
 		Node curNode = dummy.next;
