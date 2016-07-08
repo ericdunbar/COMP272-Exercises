@@ -186,28 +186,6 @@ public class A1Q4RandomQueueDemo {
 			}
 	}
 
-	/**
-	 * Provides methods to track and report elapsed time.
-	 */
-	private static class StopWatch {
-		private static long startTime; // when was the stopwatch started?
-
-		/**
-		 * Start the timer
-		 */
-		public static void start() {
-			startTime = System.currentTimeMillis();
-		}
-
-		/**
-		 * Stop the timer and report the time elapsed since it was started
-		 * 
-		 * @return elapsed time in milliseconds
-		 */
-		public static long stop() {
-			return (System.currentTimeMillis() - startTime);
-		}
-	}
 
 	/**
 	 * Tests size(), add(x) and remove() for n = 0, n = 1 and n = 2 for
@@ -311,14 +289,14 @@ public class A1Q4RandomQueueDemo {
 	 * Generates statistics to determine whether remove() and add(x) run in
 	 * constant time.
 	 * 
-	 * @param list2
+	 * @param list
 	 *            an ArrayQueue of type Integer
 	 * @param incrementR
 	 *            increment for each round
 	 * @param reps
 	 *            number of repetitions
 	 */
-	private static void runsInConstantTime(ArrayQueue<Integer> list2, int incrementR, int reps) {
+	private static void runsInConstantTime(ArrayQueue<Integer> list, int incrementR, int reps) {
 		// track time taken to perform a sequence of operations
 		int[][] removeTimeBins = new int[10][reps];
 		int[][] addTimeBins = new int[10][reps];
@@ -334,16 +312,16 @@ public class A1Q4RandomQueueDemo {
 			System.out.print(CommonSuite.indentString(String.format("*           %7d", r)));
 
 			for (int i = 0; i < reps; i++) {
-				StopWatch.start();
-				fillQueueSequentially(list2, r);
-				int aStop = (int) StopWatch.stop();
+				CommonSuite.StopWatch.start();
+				fillQueueSequentially(list, r);
+				int aStop = (int) CommonSuite.StopWatch.stop();
 
 				// record time for add(x) operations
 				addTimeBins[(int) (r / incrementR - 1)][i] = aStop;
 
-				StopWatch.start();
-				removeTest(list2, 1, true);
-				int bStop = (int) StopWatch.stop();
+				CommonSuite.StopWatch.start();
+				removeTest(list, 1, true);
+				int bStop = (int) CommonSuite.StopWatch.stop();
 
 				// record time for remove() operations
 				removeTimeBins[(int) (r / incrementR - 1)][i] = bStop;

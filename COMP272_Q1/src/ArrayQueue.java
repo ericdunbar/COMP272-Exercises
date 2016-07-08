@@ -34,7 +34,7 @@ public class ArrayQueue<T> {
 	 *            type of elements stored in the ArrayQueue
 	 */
 	public ArrayQueue(Class<T> theQT) {// added from Factory.java
-		TestingSupport.methodInfo("Class<T> " + theQT);
+		TestingSupport.TQSMethodInfo("Class<T> " + theQT);
 		theType = theQT;
 		array = this.newArray(1);
 	}
@@ -45,6 +45,7 @@ public class ArrayQueue<T> {
 	 * @return Number of elements in the ArrayQueue
 	 */
 	int size() {
+		TestingSupport.TQSMethodInfo(Integer.toString(n));
 		return n;
 	}
 
@@ -86,7 +87,7 @@ public class ArrayQueue<T> {
 	 * @param x
 	 */
 	public void add(int i, T x) {
-		TestingSupport.methodInfo(x.toString());
+		TestingSupport.TQSMethodInfo(x.toString());
 		if (n + 1 > array.length)
 			resize();
 		for (int j = n; j > i; j--)
@@ -115,7 +116,7 @@ public class ArrayQueue<T> {
 		n--;
 		if (array.length >= 3 * n)
 			resize();
-		TestingSupport.methodInfo("[i = " + i + ", x = " + x.toString() + "]");
+		TestingSupport.TQSMethodInfo("[i = " + i + ", x = " + x.toString() + "]");
 		return x;
 	}
 
@@ -148,12 +149,14 @@ public class ArrayQueue<T> {
 	private T[] newArray(int n) {
 		// Modify protected as the access level
 		// https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
-		TestingSupport.methodInfo(String.format("n = %d", n));
+		TestingSupport.TQSMethodInfo(String.format("n = %d", n));
 		return (T[]) Array.newInstance(theType, n);
 	}
 
 	public void resize() {
 		// modified by adding code from Factory.java
+		TestingSupport.TQSMethodInfo(String.format("%d", n));
+
 		T[] b = newArray(Math.max(n * 2, 1));
 		for (int i = 0; i < n; i++) {
 			b[i] = array[i];

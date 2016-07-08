@@ -36,7 +36,8 @@ public class A1Q1BTwoQueueStackDemo {
 		try {
 			int size = mine.size();
 			for (int i = 0; i < size / 2 + 1; i++) {
-				System.out.printf("removeLast() = %d, removeFirst() = %d%n", mine.removeLast(), mine.removeFirst());
+				System.out.printf("removeLast() = %d, removeFirst() = %d%n", mine.removeLast(),
+						mine.removeFirst());
 			}
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -55,19 +56,45 @@ public class A1Q1BTwoQueueStackDemo {
 		System.out.println("BEGIN: Demonstration of push(x).");
 
 		System.out.println();
-		System.out.println("Show implementation details? i.e. all add(), remove(), and resize() operations? y/n?");
-		TestingSupport.setTesting(CommonSuite.getBooleanInput());
+		System.out.println("Perform timing tests? y/n?");
+
+		boolean showTimer = CommonSuite.getBooleanInput();
+		int arraySize = 6;
+		boolean testing = false;
+		if (showTimer) {
+			System.out.println("  Run for how many rounds (100 to 1000 suggested)?");
+			arraySize = CommonSuite.getIntegerInput();
+		} else {
+			System.out.println("  Display detailed testing results? y/n?");
+			testing = CommonSuite.getBooleanInput();
+		}
+		TestingSupport.setTesting(!showTimer);
 
 		System.out.println();
 		System.out.println("qUnused and qUsed are the two queues used inside the stack.");
+		System.out.println();
+		System.out.println("Task: Create stack");
 
 		TwoQueueStack<Integer> demoStack = new TwoQueueStack<>(Integer.class);
+		System.out.println();
 
-		int arraySize = 6;
 		for (int i = 0; i < arraySize; i++) {
-			System.out.printf("Round %3d ", i);
-			TestingSupport.methodInfo("push(" + demoStack.push(88 * i) + ");");
-			System.out.println(demoStack.toString());
+			if (showTimer) {
+				CommonSuite.StopWatch.start();
+				TestingSupport.resetCounter();
+			} else
+				System.out.printf("Task: push(), round %3d %n", i);
+
+			int pushReturn = demoStack.push(88 * i);
+
+			if (showTimer) {
+				if (i % (arraySize / 50) == 0) {
+					System.out.println(i + ", " + CommonSuite.StopWatch.stop());
+				}
+			} else {
+				System.out.println("   completed push(" + pushReturn + ");");
+				System.out.println(demoStack.toString());
+			}
 		}
 
 		System.out.println();
@@ -75,7 +102,7 @@ public class A1Q1BTwoQueueStackDemo {
 		System.out.println();
 		System.out.println("This is the full stack as returned by a sequence of pop() operations:");
 
-		String prepend = "";
+		String prepend = "**";
 		System.out.print("{");
 		for (int i = 0; i < arraySize; i++) {
 			try {
@@ -83,7 +110,7 @@ public class A1Q1BTwoQueueStackDemo {
 			} catch (Exception e) {
 				System.out.println(e.toString());
 			}
-			prepend = ", ";
+			prepend = ", **";
 		}
 		System.out.println("}");
 		System.out.println("END   PushPop Testing");
@@ -94,7 +121,8 @@ public class A1Q1BTwoQueueStackDemo {
 		boolean testing = false;
 
 		// Display programmer info and create testing object
-		theTester = CommonSuite.commonProgramStart("1", "1b", "Two Queue-backed Stack Demo", testing);
+		theTester = CommonSuite.commonProgramStart("1", "1b", "Two Queue-backed Stack Demo",
+				testing);
 		theTester.setSilentRecording(false); // report results immediately
 
 		// Display tasks

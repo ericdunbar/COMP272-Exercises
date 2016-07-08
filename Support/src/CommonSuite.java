@@ -410,16 +410,26 @@ public class CommonSuite {
 			System.out.println("  " + stackTraceElements[2].getMethodName() + " " + methodDetail);
 		}
 	}
-
+	/**
+	 * Provides methods to track and report elapsed time.
+	 */
 	public static class StopWatch {
-		private static long startTime;
+		private static long startTime; // when was the stopwatch started?
 
+		/**
+		 * Start the timer
+		 */
 		public static void start() {
 			startTime = System.currentTimeMillis();
 		}
 
-		public static int stop() {
-			return (int) (System.currentTimeMillis() - startTime);
+		/**
+		 * Stop the timer and report the time elapsed since it was started
+		 * 
+		 * @return elapsed time in milliseconds
+		 */
+		public static long stop() {
+			return (System.currentTimeMillis() - startTime);
 		}
 	}
 

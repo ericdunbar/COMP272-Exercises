@@ -38,8 +38,9 @@ public class TwoQueueStack<T> {
 
 
 	public T push(T dataElement) {
+		
 		// Last element in needs to be at the tail of the queue (i.e. first out)
-		TestingSupport.methodInfo("(" + dataElement + ")");
+		//TestingSupport.methodInfo("(" + dataElement + ")");
 		qUnused.add(dataElement);
 
 		// Move tail element from one queue to the head of another queue
