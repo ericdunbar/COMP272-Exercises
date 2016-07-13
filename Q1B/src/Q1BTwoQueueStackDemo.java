@@ -7,7 +7,7 @@
  * @description Demonstrate the implementation of a two queue-backed stack for
  *              assignment 1, question 1 b.
  */
-public class A1Q1BTwoQueueStackDemo {
+public class Q1BTwoQueueStackDemo {
 	static TestSuite theTester;
 
 	/**

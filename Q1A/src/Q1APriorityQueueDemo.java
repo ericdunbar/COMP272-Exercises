@@ -7,7 +7,7 @@
  * @description Demonstrate the implementation of a priority queue for
  *              assignment 1, question 1 a.
  */
-public class A1Q1APriorityQueueDemo {
+public class Q1APriorityQueueDemo {
 
 	static SLList<String> myPriorityQueue = new SLList<>();
 	static TestSuite theTester;
