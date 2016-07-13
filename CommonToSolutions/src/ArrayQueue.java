@@ -1,11 +1,14 @@
 import java.lang.reflect.Array;
 
 /**
- * Class: ArrayQueue Purpose: To implement a simple, unoptimized FIFO queue using an
- * array. Source: Open Data Structures, Chapter 2
- * 
  * @author Eric Dunbar
- *
+ * @date 28/4/2016
+ * @assignment 1
+ * @question 1
+ * @title Array Queue
+ * @description   To implement a simple, unoptimized FIFO queue using an
+ * array. Source: Open Data Structures, Chapter 2
+
  * @param <T>
  */
 public class ArrayQueue<T> {

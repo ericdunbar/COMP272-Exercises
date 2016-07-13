@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
  *              1. remove() removes and returns an element, uniformly at random;
  *              2. add(x) and remove() run in constant time per operation.
  */
-public class A1Q4RandomQueueDemo {
+public class Q4RandomQueueDemo {
 
 	// Class variables
 	static TestSuite theTester; // track and display test and program info
