@@ -7,7 +7,7 @@
  * @description  Demonstrates the node swapping operation for a singly-linked list.
  * 
  */
-public class A1A2SLListSwappingDemo {
+public class Q2ASLListSwappingDemo {
 	static TestSuite theTester;
 
 	/**

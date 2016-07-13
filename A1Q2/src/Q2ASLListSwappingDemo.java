@@ -2,20 +2,19 @@
  * @author Eric Dunbar
  * @date 7/7/2016
  * @assignment 1
- * @question 2B
- * @title DLList Node Swapping Demo
- * @description Demonstrates the node swapping operation for a doubly-linked
- *              list.
- *
+ * @question 2A
+ * @title Demonstrates SLList node swapping
+ * @description  Demonstrates the node swapping operation for a singly-linked list.
+ * 
  */
-public class A1A2BDLListSwappingDemo {
-	static TestSuite theTester; // track testing data
+public class Q2ASLListSwappingDemo {
+	static TestSuite theTester;
 
 	/**
 	 * Swap the nodes in a singly-linked-list in a forward or reverse direction
 	 * (starting at node 0 or the last node) and proceeding until all nodes have
 	 * been swapped. The starting node should be moved to the other end of the
-	 * linked list if the DLList is implemented correctly.
+	 * linked list if the SLList is implemented correctly.
 	 * 
 	 * @param forward
 	 *            true if swapping happens left(node 0)-to-right(tail node)
@@ -24,12 +23,12 @@ public class A1A2BDLListSwappingDemo {
 	 *            IndexOutOfBoundException
 	 */
 	private static void swapNodeDemo(boolean forward, int errorOffset) {
-		DLList<String> mySwapQueue = new DLList<>();
+		SLList<String> mySwapQueue = new SLList<>();
 
 		String[] ordinals = { "Ten", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
 
 		String[] description = { "",
-				"Initial list: The 'Ten' is out of logical order when initially added to DLList." };
+				"Initial list: The 'Ten' is out of logical order when initially added to SLList." };
 
 		for (String string : description) {
 			System.out.println(string);
@@ -42,8 +41,6 @@ public class A1A2BDLListSwappingDemo {
 					2 - errorOffset);
 
 		System.out.println();
-
-		// Create the DLList
 		for (int j = 0; j < 1; j++) {
 			for (int i = 0; i < ordinals.length; i++) {
 				String s = ordinals[i];// + (1 - j);
@@ -51,18 +48,12 @@ public class A1A2BDLListSwappingDemo {
 			}
 		}
 
-		DLList<String>.Node someNode = mySwapQueue.getNode(0);
-		String beforeElement = someNode.elementData;
-		String beforeNodePointer = "" + someNode;
-
-		// Display legend
-		System.out.print("  Index:");
+		System.out.print("   Node:");
 		for (int idx = 0; idx < mySwapQueue.size(); idx++) {
 			System.out.printf("%5d ", idx);
 		}
 		System.out.println();
 
-		// Display initial and final list contents
 		System.out.print("Initial: ");
 		for (int idx = 0; idx < mySwapQueue.size(); idx++) {
 			System.out.printf("%5s ", mySwapQueue.getNode(idx).elementData);
@@ -70,7 +61,6 @@ public class A1A2BDLListSwappingDemo {
 
 		System.out.println();
 
-		// Swap elements
 		if (forward) {
 			for (int i = 0; i < mySwapQueue.size() - 1 + errorOffset; i++) {
 				mySwapQueue.swapWithNextNode(mySwapQueue.getNode(i));
@@ -86,16 +76,6 @@ public class A1A2BDLListSwappingDemo {
 			System.out.printf("%5s ", mySwapQueue.getNode(idx).elementData);
 		}
 
-		// Display a node to confirm that the node was moved and not the element
-		System.out.println();
-		System.out.println();
-		System.out.println("Mini test: Does swapping change the node or the element? If the element changes,");
-		System.out.println("           the before and after element ought to be different.");
-		System.out.println();
-		System.out.println(
-				"    Before swapping: Node element = " + beforeElement + "; Node pointer = " + beforeNodePointer);
-		System.out.println(
-				"     After swapping: Node element = " + someNode.elementData + "; Node pointer = " + someNode);
 		System.out.println();
 
 	}
@@ -105,7 +85,7 @@ public class A1A2BDLListSwappingDemo {
 		boolean testing = false;
 
 		// Display programmer info and create testing object
-		theTester = CommonSuite.commonProgramStart("1", "2b", "Doubly-linked List Swap Demo", testing);
+		theTester = CommonSuite.commonProgramStart("1", "2a", "Singly-linked List Swap Demo", testing);
 		theTester.setSilentRecording(false); // report results immediately
 
 		// Display tasks
@@ -135,12 +115,15 @@ public class A1A2BDLListSwappingDemo {
 		CommonSuite.headerPrint(tasksList, currentTask++);
 		try {
 			swapNodeDemo(true, 1);
-			System.out.println("ERROR. Exception expected. Code did not perform as expected");
+			System.out.println("ERROR. Exception expected. Code did not perform as expected.");
+
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("Success. Exception expected. Code performs as expected");
 			System.out.println("         " + e);
 		}
 
 		CommonSuite.commonProgramEnd(theTester);
+
 	}
+
 }
