@@ -118,7 +118,5 @@ public class A1Q1BTwoQueueStackDemo {
 		PushPopTest();
 
 		CommonSuite.commonProgramEnd(theTester);
-
 	}
-
 }
