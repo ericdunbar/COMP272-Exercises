@@ -382,10 +382,11 @@ public class TestSuite {
 	}
 
 	/**
-	 * Prints test results for one of the TestStage stages.
+	 * Prints test results for one of the TestStage stages. Code is to be re-introduced.
 	 * 
 	 * @param currentStage the stage for which results must be printed
 	 */
+	@SuppressWarnings("unused")
 	private void printTestStageResults(TestStage currentStage) {
 		// Print the test information for this particular stage of testing
 		String indentS = CommonSuite.stringRepeat(" ", CommonSuite.indentAmount);
@@ -448,7 +449,6 @@ public class TestSuite {
 					theStage + " - end of test -- stage passes -- test performed as expected.");
 		}
 		System.out.println();
-
 	}
 
 	/**
