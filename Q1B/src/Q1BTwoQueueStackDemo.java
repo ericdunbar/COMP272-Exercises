@@ -22,7 +22,7 @@ public class Q1BTwoQueueStackDemo {
 		TestingSupport.setTesting(false);
 		System.out.println();
 
-		ArrayQueue<Integer> mine = new ArrayQueue<Integer>(Integer.class);
+		ArrayQueueTQS<Integer> mine = new ArrayQueueTQS<Integer>(Integer.class);
 
 		Integer[] integers = { 5, 10, 15, 20, 25, 30, 45 };
 
@@ -78,10 +78,10 @@ public class Q1BTwoQueueStackDemo {
 		TwoQueueStack<Integer> demoStack = new TwoQueueStack<>(Integer.class);
 		System.out.println();
 
+		CommonSuite.StopWatch.start();
+		TestingSupport.resetCounter();
 		for (int i = 0; i < arraySize; i++) {
 			if (showTimer) {
-				CommonSuite.StopWatch.start();
-				TestingSupport.resetCounter();
 			} else
 				System.out.printf("Task: push(), round %3d %n", i);
 
@@ -90,6 +90,8 @@ public class Q1BTwoQueueStackDemo {
 			if (showTimer) {
 				if (i % (arraySize / 50) == 0) {
 					System.out.println(i + ", " + CommonSuite.StopWatch.stop());
+					CommonSuite.StopWatch.start();
+					TestingSupport.resetCounter();
 				}
 			} else {
 				System.out.println("   completed push(" + pushReturn + ");");

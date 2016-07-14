@@ -6,12 +6,13 @@ import java.lang.reflect.Array;
  * @assignment 1
  * @question 1
  * @title Array Queue
- * @description   To implement a simple, unoptimized FIFO queue using an
- * array. Source: Open Data Structures, Chapter 2
-
+ * @description To implement a simple, optimized FIFO queue using an array.
+ *              Source: Open Data Structures, Chapter 2
+ * 
  * @param <T>
  */
-public class ArrayQueue<T> {
+public class ArrayQueueQuickTQS<T> {
+	boolean grows = true; // is the size fixed?
 	T[] array; // the backing array
 	int n = 0; // the number of elements in the array
 	Class<T> theType; // added from Factory.java
@@ -36,10 +37,27 @@ public class ArrayQueue<T> {
 	 * @param theQT
 	 *            type of elements stored in the ArrayQueue
 	 */
-	public ArrayQueue(Class<T> theQT) {// added from Factory.java
+//	public ArrayQueueQuickTQS(Class<T> theQT) {// added from Factory.java
+//		TestingSupport.methodInfo("Class<T> " + theQT);
+//		theType = theQT;
+//		array = this.newArray(1);
+//	}
+
+	/**
+	 * Constructs a new ArrayQueue of the type passed to it with a fixed queue
+	 * size.
+	 * 
+	 * @param theQT
+	 *            type of elements stored in the ArrayQueue
+	 * @param size
+	 *            size of the ArrayQueue
+	 */
+	public ArrayQueueQuickTQS(Class<T> theQT, int size) {// added from
+															// Factory.java
 		TestingSupport.methodInfo("Class<T> " + theQT);
 		theType = theQT;
-		array = this.newArray(1);
+		array = this.newArray(size);
+		grows = false; // the size has been fixed
 	}
 
 	/**
@@ -52,8 +70,8 @@ public class ArrayQueue<T> {
 	}
 
 	/**
-	 * Returns the element at the index requested. Ought to throw an exception if
-	 * IndexOutOfBounds
+	 * Returns the element at the index requested. Ought to throw an exception
+	 * if IndexOutOfBounds
 	 * 
 	 * @param i
 	 *            index position
@@ -67,7 +85,8 @@ public class ArrayQueue<T> {
 	}
 
 	/**
-	 * Sets the element at the index. Returns the old element stored at that index.
+	 * Sets the element at the index. Returns the old element stored at that
+	 * index.
 	 * 
 	 * @param i
 	 *            index in ArrayQueue
@@ -91,7 +110,10 @@ public class ArrayQueue<T> {
 	public void add(int i, T x) {
 		TestingSupport.methodInfo(x.toString());
 		if (n + 1 > array.length)
-			resize();
+			if (grows)
+				resize();
+			else
+				throw new IllegalStateException("Max array length set to " + array.length);
 		for (int j = n; j > i; j--)
 			array[j] = array[j - 1];
 		array[i] = x;
@@ -117,7 +139,8 @@ public class ArrayQueue<T> {
 			array[j] = array[j + 1];
 		n--;
 		if (array.length >= 3 * n)
-			resize();
+			if (grows)
+				resize();
 		TestingSupport.methodInfo("[i = " + i + ", x = " + x.toString() + "]");
 		return x;
 	}
@@ -163,5 +186,4 @@ public class ArrayQueue<T> {
 		}
 		array = b;
 	}
-
 }

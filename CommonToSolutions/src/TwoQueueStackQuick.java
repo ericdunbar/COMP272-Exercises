@@ -25,41 +25,32 @@
  * @param <T>
  * @formatter:on
  */
-public class TwoQueueStack<T> {
-	private ArrayQueueTQS<T> qUnused;
-	private ArrayQueueTQS<T> qUsed;
+public class TwoQueueStackQuick<T> {
+	private ArrayQueueQuickTQS<T> qUnused;
+	private ArrayQueueQuickTQS<T> qUsed;
 	private Class<T> theType; // added from Factory.java
 
-	public TwoQueueStack(Class<T> theQT) {
+	public TwoQueueStackQuick(Class<T> theQT) {
 		theType = theQT;
-		qUnused = new ArrayQueueTQS<T>(theType);
-		qUsed = new ArrayQueueTQS<T>(theType);
+		qUnused = new ArrayQueueQuickTQS<T>(theType, 0);
+		qUsed = new ArrayQueueQuickTQS<T>(theType, 0);
 	}
 
 
 	public T push(T dataElement) {
 		// Last element in needs to be at the tail of the queue (i.e. first out)
 		TestingSupport.methodInfo("(" + dataElement + ")");
+		qUnused = new ArrayQueueQuickTQS<T>(theType, qUsed.size()+1);
 		qUnused.add(dataElement);
 
 		// Move tail element from one queue to the head of another queue
 		int elementsToRemove = qUsed.size();
-		//Fix: was using qUsed.size() directly but qUsed.size() changes each iteration!
 		for (int i = 0; i < elementsToRemove; i++) {
-			// note: since remove will resize the backing array many times this
-			// is a highly inefficient way of using the backing array
 			qUnused.add(qUsed.remove());
 		}
 
-		ArrayQueueTQS<T> qTemp = qUsed;
-
-		/*
-		 * figure it's faster and uses less memory to copy a pointer to an
-		 * existing ArrayQueue object than to create and allocate the memory for
-		 * a new one
-		 */
 		qUsed = qUnused;
-		qUnused = qTemp;
+		qUnused = null;
 		
 		return dataElement;
 	}
