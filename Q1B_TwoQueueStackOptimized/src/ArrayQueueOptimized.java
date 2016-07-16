@@ -8,11 +8,11 @@ import java.util.NoSuchElementException;
  * @assignment 1
  * @question 4
  * @title Array Queue
- * @description A FIFO queue that extends the Queue<T> interface, based largely on sample code from
- *              Open Data Structures by Pat Morin. This data structure implements a FIFO
- *              (first-in-first-out) queue with add(x) and remove() operations that perform in
- *              constant amortized time; elements are removed from the queue in the same order they
- *              are added.
+ * @description A minimial implementation of a FIFO queue that extends the Queue<T> interface, based
+ *              largely on sample code from Open Data Structures by Pat Morin. This data structure
+ *              implements a FIFO (first-in-first-out) queue with add(x) and remove() operations
+ *              that perform in constant amortized time; elements are removed from the queue in the
+ *              same order they are added. This queue functions strictly as a FIFO queue.
  * 
  *              THIS CLASS SUPPORTS RandomQueue.
  * 
@@ -22,7 +22,7 @@ import java.util.NoSuchElementException;
  * @param <T>
  *
  */
-public class ArrayQueue<T> extends AbstractQueue<T> {
+public class ArrayQueueOptimized<T> extends AbstractQueue<T> {
 	// INSTANCE VARIABLES
 
 	// number of elements in queue
@@ -74,7 +74,7 @@ public class ArrayQueue<T> extends AbstractQueue<T> {
 	 * 
 	 * @param t object type
 	 */
-	public ArrayQueue(Class<T> t) {
+	public ArrayQueueOptimized(Class<T> t) {
 		arrayFactory = new FactoryODS<T>(t); // used for generic arrays
 		backArray = arrayFactory.newArray(1); // assume min size of 1
 		head = 0;

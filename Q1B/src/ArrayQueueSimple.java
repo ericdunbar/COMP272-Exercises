@@ -6,12 +6,12 @@ import java.lang.reflect.Array;
  * @assignment 1
  * @question 1
  * @title Array Queue
- * @description To implement a simple, unoptimized FIFO queue using an array.
- *              Source: Open Data Structures, Chapter 2
+ * @description To implement a simple, unoptimized FIFO queue using an array. Source: Open Data
+ *              Structures, Chapter 2
  * 
  * @param <T>
  */
-public class ArrayQueueTQS<T> {
+public class ArrayQueueSimple<T> {
 	T[] array; // the backing array
 	int n = 0; // the number of elements in the array
 	Class<T> theType; // added from Factory.java
@@ -33,11 +33,10 @@ public class ArrayQueueTQS<T> {
 	/**
 	 * Constructs a new ArrayQueue of the type passed to it.
 	 * 
-	 * @param theQT
-	 *            type of elements stored in the ArrayQueue
+	 * @param theQT type of elements stored in the ArrayQueue
 	 */
-	public ArrayQueueTQS(Class<T> theQT) {// added from Factory.java
-		TestingSupport.methodInfo("Class<T> " + theQT);
+	public ArrayQueueSimple(Class<T> theQT) {// added from Factory.java
+		CollectMethodInfo.methodInfo("Class<T> " + theQT);
 		theType = theQT;
 		array = this.newArray(1);
 	}
@@ -52,11 +51,9 @@ public class ArrayQueueTQS<T> {
 	}
 
 	/**
-	 * Returns the element at the index requested. Ought to throw an exception
-	 * if IndexOutOfBounds
+	 * Returns the element at the index requested. Ought to throw an exception if IndexOutOfBounds
 	 * 
-	 * @param i
-	 *            index position
+	 * @param i index position
 	 * @return element at index position
 	 */
 	public T get(int i) {
@@ -67,13 +64,10 @@ public class ArrayQueueTQS<T> {
 	}
 
 	/**
-	 * Sets the element at the index. Returns the old element stored at that
-	 * index.
+	 * Sets the element at the index. Returns the old element stored at that index.
 	 * 
-	 * @param i
-	 *            index in ArrayQueue
-	 * @param x
-	 *            element to store in ArrayQueue
+	 * @param i index in ArrayQueue
+	 * @param x element to store in ArrayQueue
 	 * @return old element stored at the index position
 	 */
 	public T set(int i, T x) {
@@ -86,13 +80,11 @@ public class ArrayQueueTQS<T> {
 	/**
 	 * Inserts the element at the requested index position.
 	 * 
-	 * @param i
-	 *            index position
-	 * @param x
-	 *            element
+	 * @param i index position
+	 * @param x element
 	 */
 	public void add(int i, T x) {
-		TestingSupport.methodInfo(x.toString());
+		CollectMethodInfo.methodInfo(x.toString());
 		if (n + 1 > array.length)
 			resize();
 		for (int j = n; j > i; j--)
@@ -121,7 +113,7 @@ public class ArrayQueueTQS<T> {
 		n--;
 		if (array.length >= 3 * n)
 			resize();
-		TestingSupport.methodInfo("[i = " + i + ", x = " + x.toString() + "]");
+		CollectMethodInfo.methodInfo("[i = " + i + ", x = " + x.toString() + "]");
 		return x;
 	}
 
@@ -156,15 +148,14 @@ public class ArrayQueueTQS<T> {
 	/**
 	 * Allocate a new array of objects of type T.
 	 * 
-	 * @param n
-	 *            the size of the array to allocate
+	 * @param n the size of the array to allocate
 	 * @return the array allocated
 	 */
 	@SuppressWarnings({ "unchecked" })
 	private T[] newArray(int n) {
 		// Modify protected as the access level
 		// https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
-		TestingSupport.methodInfo(String.format("n = %d", n));
+		CollectMethodInfo.methodInfo(String.format("n = %d", n));
 		return (T[]) Array.newInstance(theType, n);
 	}
 
@@ -179,5 +170,4 @@ public class ArrayQueueTQS<T> {
 		}
 		array = b;
 	}
-
 }

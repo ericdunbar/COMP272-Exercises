@@ -7,7 +7,7 @@
  * @description Demonstrate the implementation of a two queue-backed stack for
  *              assignment 1, question 1 b.
  */
-public class Q1BTwoQueueStackDemo {
+public class Q1BTwoQueueStackOptimizedDemo {
 	static TestSuite theTester;
 
 	/**
@@ -22,7 +22,7 @@ public class Q1BTwoQueueStackDemo {
 		CollectMethodInfo.setTesting(false);
 		System.out.println();
 
-		ArrayQueueSimple<Integer> mine = new ArrayQueueSimple<Integer>(Integer.class);
+		ArrayQueueOptimized<Integer> mine = new ArrayQueueOptimized<Integer>(Integer.class);
 
 		Integer[] integers = { 5, 10, 15, 20, 25, 30, 45 };
 
@@ -72,7 +72,7 @@ public class Q1BTwoQueueStackDemo {
 		System.out.println();
 		System.out.println("Task: Create stack");
 
-		TwoQueueStack<Integer> demoStack = new TwoQueueStack<>(Integer.class);
+		TwoQueueStackOptimized<Integer> demoStack = new TwoQueueStackOptimized<>(Integer.class);
 		System.out.println();
 
 		CommonSuite.StopWatch.start();

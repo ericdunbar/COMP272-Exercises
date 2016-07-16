@@ -10,9 +10,9 @@
  * @param <T>
  * @formatter:on
  */
-public class TwoQueueStack<T> {
-	private ArrayQueueSimple<T> qUnused;
-	private ArrayQueueSimple<T> qUsed;
+public class TwoQueueStackOptimized<T> {
+	private ArrayQueueOptimized<T> qUnused;
+	private ArrayQueueOptimized<T> qUsed;
 	private Class<T> theType; // added from Factory.java
 
 	/*
@@ -22,10 +22,10 @@ public class TwoQueueStack<T> {
 	 * @formatter:on
 	 */
 
-	public TwoQueueStack(Class<T> theQT) {
+	public TwoQueueStackOptimized(Class<T> theQT) {
 		theType = theQT;
-		qUnused = new ArrayQueueSimple<T>(theType);
-		qUsed = new ArrayQueueSimple<T>(theType);
+		qUnused = new ArrayQueueOptimized<T>(theType);
+		qUsed = new ArrayQueueOptimized<T>(theType);
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class TwoQueueStack<T> {
 			qUnused.add(qUsed.remove());
 		}
 
-		ArrayQueueSimple<T> qTemp = qUsed;
+		ArrayQueueOptimized<T> qTemp = qUsed;
 
 		/*
 		 * figure it's faster and uses less memory to copy a pointer to an
