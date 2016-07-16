@@ -4,23 +4,19 @@
  * @assignment 1
  * @question 2A
  * @title Demonstrates SLList node swapping
- * @description  Demonstrates the node swapping operation for a singly-linked list.
+ * @description Demonstrates the node swapping operation for a singly-linked list.
  * 
  */
 public class Q2ASLListSwappingDemo {
 	static TestSuite theTester;
 
 	/**
-	 * Swap the nodes in a singly-linked-list in a forward or reverse direction
-	 * (starting at node 0 or the last node) and proceeding until all nodes have
-	 * been swapped. The starting node should be moved to the other end of the
-	 * linked list if the SLList is implemented correctly.
+	 * Swap the nodes in a singly-linked-list in a forward or reverse direction (starting at node 0
+	 * or the last node) and proceeding until all nodes have been swapped. The starting node should
+	 * be moved to the other end of the linked list if the SLList is implemented correctly.
 	 * 
-	 * @param forward
-	 *            true if swapping happens left(node 0)-to-right(tail node)
-	 * @param errorOffset
-	 *            0, error free operation, +1 should cause
-	 *            IndexOutOfBoundException
+	 * @param forward true if swapping happens left(node 0)-to-right(tail node)
+	 * @param errorOffset 0, error free operation, +1 should cause IndexOutOfBoundException
 	 */
 	private static void swapNodeDemo(boolean forward, int errorOffset) {
 		SLList<String> mySwapQueue = new SLList<>();
@@ -52,6 +48,7 @@ public class Q2ASLListSwappingDemo {
 		for (int idx = 0; idx < mySwapQueue.size(); idx++) {
 			System.out.printf("%5d ", idx);
 		}
+
 		System.out.println();
 
 		System.out.print("Initial: ");
@@ -77,7 +74,6 @@ public class Q2ASLListSwappingDemo {
 		}
 
 		System.out.println();
-
 	}
 
 	public static void main(String[] args) {
@@ -116,14 +112,11 @@ public class Q2ASLListSwappingDemo {
 		try {
 			swapNodeDemo(true, 1);
 			System.out.println("ERROR. Exception expected. Code did not perform as expected.");
-
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("Success. Exception expected. Code performs as expected");
 			System.out.println("         " + e);
 		}
 
 		CommonSuite.commonProgramEnd(theTester);
-
 	}
-
 }

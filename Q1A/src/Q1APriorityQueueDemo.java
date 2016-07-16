@@ -4,17 +4,15 @@
  * @assignment 1
  * @question 1A
  * @title Priority Queue Demonstration
- * @description Demonstrate the implementation of a priority queue for
- *              assignment 1, question 1 a.
+ * @description Demonstrate the implementation of a priority queue for assignment 1, question 1 a.
  */
 public class Q1APriorityQueueDemo {
-
-	static SLList<String> myPriorityQueue = new SLList<>();
+	static PriorityQueue<String> myPriorityQueue = new PriorityQueue<>();
 	static TestSuite theTester;
 
 	/**
-	 * Demo the add() and size() methods for a PriorityQueue based on a
-	 * singly-linked list for assignment 1, question 1 a in COMP272.
+	 * Demo the add() and size() methods for a PriorityQueue based on a singly-linked list for
+	 * assignment 1, question 1 a in COMP272.
 	 */
 	private static void addElementsDemo() {
 		String[] ordinals = { "First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth",
@@ -37,8 +35,8 @@ public class Q1APriorityQueueDemo {
 	}
 
 	/**
-	 * Demo the deleteMin() method for a PriorityQueue based on a singly-linked
-	 * list for assignment 1, question 1 b in COMP272.
+	 * Demo the deleteMin() method for a PriorityQueue based on a singly-linked list for assignment
+	 * 1, question 1 b in COMP272.
 	 */
 	private static void deleteMinDemo() {
 
@@ -56,8 +54,8 @@ public class Q1APriorityQueueDemo {
 	}
 
 	/**
-	 * Demo what happens when deleteMin() method is performed on a PriorityQueue
-	 * that's been emptied and one that's been newly declared.
+	 * Demo what happens when deleteMin() method is performed on a PriorityQueue that's been emptied
+	 * and one that's been newly declared.
 	 */
 	private static void deleteOnEmpty() {
 		String[] description = { "", "deleteMin() on empty PriorityQueue:", "" };
@@ -74,7 +72,7 @@ public class Q1APriorityQueueDemo {
 		for (String string : description) {
 			System.out.println(string);
 		}
-		SLList<String> novel = new SLList<>();
+		PriorityQueue<String> novel = new PriorityQueue<>();
 		System.out.printf("size = %5d;  deleteMin() = %s; size = %5d;%n", novel.size(), novel.deleteMin(),
 				novel.size());
 	}

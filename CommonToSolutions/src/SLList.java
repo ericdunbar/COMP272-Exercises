@@ -1,16 +1,14 @@
-import java.util.EmptyStackException;
-import java.util.NoSuchElementException;
-
 /**
  * @author Eric Dunbar
  * @date 15/5/2016
  * @assignment 1
- * @question 2A & 1A (need to confirm 1A)
- * @title SLList node swapping
- * @description  2. Swap two adjacent elements in a list by adjusting only the links (and not the data) using...
- * a singly-linked list (6 marks). Description: An SLList (singly-linked list) is a sequence of Nodes. Each node
- * u stores a data value u.x and a reference u.next to the next node in the sequence. For the last node w in the 
- * sequence, w.next = null
+ * @question 2A & 1A
+ * @title SLList, includes node swapping
+ * @description Implementation of a SLList. Includes code for question 2, swap two adjacent elements
+ *              in a list by adjusting only the links (and not the data) using... a singly-linked
+ *              list (6 marks). Description: An SLList (singly-linked list) is a sequence of Nodes.
+ *              Each node u stores a data value u.x and a reference u.next to the next node in the
+ *              sequence. For the last node w in the sequence, w.next = null
  * 
  * @param <E>
  *
@@ -40,35 +38,30 @@ public class SLList<T extends Comparable<T>> {
 	}
 
 	/*
-	 * For efficiency, an SLList uses variables head and tail to keep track of
-	 * the first and last node in the sequence, as well as an integer n to keep
-	 * track of the length of the sequence:
+	 * For efficiency, an SLList uses variables head and tail to keep track of the first and last
+	 * node in the sequence, as well as an integer n to keep track of the length of the list:
 	 */
-
 	Node head; // first node in sequence
 	Node tail; // last node in sequence
 	int n; // length of sequence
 
 	// STACK OPERATIONS
 	/*
-	 * An SLList can efficiently implement the Stack operations push() and pop()
-	 * by adding and removing elements at the head of the sequence.
+	 * An SLList can efficiently implement the Stack operations push() and pop() by adding and
+	 * removing elements at the head of the sequence.
 	 * 
-	 * The push() operation simply creates a new node u with data value element,
-	 * sets u.next to the old head of the list and makes u the new HEAD of the
-	 * list. Finally, it increments n since the size of the SLList has increased
-	 * by one.
+	 * The push() operation simply creates a new node u with data value element, sets u.next to the
+	 * old head of the list and makes u the new HEAD of the list. Finally, it increments n since the
+	 * size of the SLList has increased by one.
 	 * 
-	 * Sources\:
-	 * http://crunchify.com/how-to-implement-a-linkedlist-class-from-scratch-in-
-	 * java/ and Morin
+	 * Sources\: http://crunchify.com/how-to-implement-a-linkedlist-class-from-scratch-in- java/ and
+	 * Morin
 	 */
 
 	/**
 	 * Implement push operation. Adds element to the stack.
 	 * 
-	 * @param element
-	 *            data
+	 * @param element data
 	 * @return element data given to method
 	 */
 	public T push(T element) {
@@ -84,10 +77,9 @@ public class SLList<T extends Comparable<T>> {
 	}
 
 	/*
-	 * The pop() operation, after checking that the SLList is not empty, removes
-	 * the HEAD by setting head = head.next and decrementing n. A special case
-	 * occurs when the last element is being removed, in which case tail is set
-	 * to null.
+	 * The pop() operation, after checking that the SLList is not empty, removes the HEAD by setting
+	 * head = head.next and decrementing n. A special case occurs when the last element is being
+	 * removed, in which case tail is set to null.
 	 */
 	public T pop() {
 		if (n == 0)
@@ -104,8 +96,7 @@ public class SLList<T extends Comparable<T>> {
 	// QUEUE OPERATIONS
 
 	/*
-	 * Removals are done from the HEAD of the list, and are identical to the
-	 * pop() operation.
+	 * Removals are done from the HEAD of the list, and are identical to the pop() operation.
 	 */
 
 	public T remove() {
@@ -113,10 +104,9 @@ public class SLList<T extends Comparable<T>> {
 	}
 
 	/*
-	 * Additions are done at the TAIL of the list. In most cases, this is done
-	 * by setting tail.next = u, where u is the newly created node that contains
-	 * x. However, a special case occurs when n = 0, in which case tail = head =
-	 * null. In this case, both tail and head are set to u.
+	 * Additions are done at the TAIL of the list. In most cases, this is done by setting tail.next
+	 * = u, where u is the newly created node that contains x. However, a special case occurs when n
+	 * = 0, in which case tail = head = null. In this case, both tail and head are set to u.
 	 */
 
 	/**
@@ -141,22 +131,20 @@ public class SLList<T extends Comparable<T>> {
 	}
 
 	/**
-	 * Swap two adjacent elements in a list by adjusting only the links (and not
-	 * the data) using a singly-linked list (6 marks).
+	 * Swap two adjacent elements in a list by adjusting only the links (and not the data) using a
+	 * singly-linked list (6 marks).
 	 * 
-	 * @param index
-	 *            Index of first of two nodes
+	 * @param index Index of first of two nodes
 	 */
 	public void swapWithNextNode(int index) {
 		swapWithNextNode(getNode(index));
 	}
 
 	/**
-	 * Swap two adjacent elements in a list by adjusting only the links (and not
-	 * the data) using a singly-linked list (6 marks).
+	 * Swap two adjacent elements in a list by adjusting only the links (and not the data) using a
+	 * singly-linked list (6 marks).
 	 * 
-	 * @param swapNextNode
-	 *            the node that is to be swapped with the following node
+	 * @param swapNextNode the node that is to be swapped with the following node
 	 */
 	public void swapWithNextNode(Node swapNextNode) {
 		// throw an exception if list is empty?
@@ -193,97 +181,6 @@ public class SLList<T extends Comparable<T>> {
 			}
 			base = base.next;
 		}
-	}
-
-	/**
-	 * Search for, removes and returns the smallest element in the singly-linked
-	 * list. Ties are arbitrarily broken by removing the "oldest" or "first in"
-	 * element.
-	 * 
-	 * @param <T>
-	 * 
-	 * @return T representing the smallest element
-	 */
-	public T deleteMin() {
-		if (n == 0)
-			return null; // nothing to delete
-		// this should throw an error, don't you think?
-		else if (n == 1)
-			return pop(); // one item to delete
-
-		Node currentNode = head;
-		Node minimumIsNext = new Node();
-		minimumIsNext.next = head; // start by assuming head is minimum
-		Node tailInTwoNodes = new Node();
-
-		// find the minimum element
-		for (int i = 0; i < n - 1; i++) {
-			if (minimumIsNext.next.elementData.compareTo(currentNode.next.elementData) > 0) {
-				// we've found a new smallest element
-				minimumIsNext = currentNode;
-			}
-			if (n - 2 == i)
-				tailInTwoNodes = currentNode; // record node two back from TAIL
-
-			currentNode = currentNode.next; // advance to the next node
-		}
-
-		if (minimumIsNext.next == head)
-			return remove(); // the HEAD element is the minimum
-		else if (minimumIsNext.next == tail) {
-			// TAIL is minimum
-			T element = minimumIsNext.next.elementData;
-
-			// remove tail from the list
-			tail = minimumIsNext;
-
-			if (n == 2) {
-				head = tail;
-				tail.next = head;
-			} else {
-				tail.next = tailInTwoNodes;
-				tailInTwoNodes.next = tail;
-			}
-
-			n--;
-			return element;
-		} else if (minimumIsNext.next.next == tail) {
-			// TAIL comes after minimum
-			T element = minimumIsNext.next.elementData;
-
-			// remove node n-2 from the list
-			tail.next = minimumIsNext;
-			minimumIsNext.next = tail;
-
-			n--;
-			return element;
-		} else
-			return removeNextNode(minimumIsNext);
-	}
-
-	/**
-	 * DO the actual removing to the node
-	 * 
-	 * @param removeNextNode node before node to remove
-	 * @return element of removed node
-	 */
-	private T removeNextNode(SLList<T>.Node removeNextNode) {
-		if (removeNextNode == tail || removeNextNode.next == tail) {
-			throw new NoSuchElementException("Cannot remove nodes at size()-1 or size()-2 using this method.");
-		} else if (n == 0) {
-			throw new EmptyStackException(); // should be
-												// EmptyLinkedListException but
-												// close enough
-		}
-
-		T element = removeNextNode.next.elementData; // get the element to be
-														// returned
-
-		removeNextNode.next = removeNextNode.next.next; // remove the next node
-
-		n--; // decrement size of the SLList
-
-		return element; // return the Object
 	}
 
 	/**

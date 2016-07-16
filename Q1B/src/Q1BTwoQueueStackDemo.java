@@ -36,8 +36,7 @@ public class Q1BTwoQueueStackDemo {
 		try {
 			int size = mine.size();
 			for (int i = 0; i < size / 2 + 1; i++) {
-				System.out.printf("removeLast() = %d, removeFirst() = %d%n", mine.removeLast(),
-						mine.removeFirst());
+				System.out.printf("removeLast() = %d, removeFirst() = %d%n", mine.removeLast(), mine.removeFirst());
 			}
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -60,13 +59,11 @@ public class Q1BTwoQueueStackDemo {
 
 		boolean showTimer = CommonSuite.getBooleanInput();
 		int arraySize = 6;
-		boolean testing = false;
 		if (showTimer) {
 			System.out.println("  Run for how many rounds (100 to 1000 suggested)?");
 			arraySize = CommonSuite.getIntegerInput();
 		} else {
 			System.out.println("  Display detailed testing results? y/n?");
-			testing = CommonSuite.getBooleanInput();
 		}
 		TestingSupport.setTesting(!showTimer);
 
@@ -123,8 +120,7 @@ public class Q1BTwoQueueStackDemo {
 		boolean testing = false;
 
 		// Display programmer info and create testing object
-		theTester = CommonSuite.commonProgramStart("1", "1b", "Two Queue-backed Stack Demo",
-				testing);
+		theTester = CommonSuite.commonProgramStart("1", "1b", "Two Queue-backed Stack Demo", testing);
 		theTester.setSilentRecording(false); // report results immediately
 
 		// Display tasks
@@ -148,7 +144,5 @@ public class Q1BTwoQueueStackDemo {
 		PushPopTest();
 
 		CommonSuite.commonProgramEnd(theTester);
-
 	}
-
 }

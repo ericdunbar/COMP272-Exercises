@@ -6,9 +6,9 @@ import java.lang.reflect.Array;
  * @assignment 1
  * @question 1
  * @title Array Queue
- * @description   To implement a simple, unoptimized FIFO queue using an
- * array. Source: Open Data Structures, Chapter 2
-
+ * @description To implement a simple, unoptimized FIFO queue using an array.
+ *              Source: Open Data Structures, Chapter 2
+ * 
  * @param <T>
  */
 public class ArrayQueueTQS<T> {
@@ -52,8 +52,8 @@ public class ArrayQueueTQS<T> {
 	}
 
 	/**
-	 * Returns the element at the index requested. Ought to throw an exception if
-	 * IndexOutOfBounds
+	 * Returns the element at the index requested. Ought to throw an exception
+	 * if IndexOutOfBounds
 	 * 
 	 * @param i
 	 *            index position
@@ -67,7 +67,8 @@ public class ArrayQueueTQS<T> {
 	}
 
 	/**
-	 * Sets the element at the index. Returns the old element stored at that index.
+	 * Sets the element at the index. Returns the old element stored at that
+	 * index.
 	 * 
 	 * @param i
 	 *            index in ArrayQueue
@@ -86,7 +87,9 @@ public class ArrayQueueTQS<T> {
 	 * Inserts the element at the requested index position.
 	 * 
 	 * @param i
+	 *            index position
 	 * @param x
+	 *            element
 	 */
 	public void add(int i, T x) {
 		TestingSupport.methodInfo(x.toString());
@@ -131,10 +134,20 @@ public class ArrayQueueTQS<T> {
 		return removeLast();
 	}
 
+	/**
+	 * Removes the last (tail) element of a queue.
+	 * 
+	 * @return element
+	 */
 	public T removeLast() {
 		return remove(n - 1);
 	}
 
+	/**
+	 * Removes the first (head) element of a queue.
+	 * 
+	 * @return element
+	 */
 	public T removeFirst() {
 		return remove(0);
 	}
@@ -155,6 +168,9 @@ public class ArrayQueueTQS<T> {
 		return (T[]) Array.newInstance(theType, n);
 	}
 
+	/**
+	 * Resizes the backing array
+	 */
 	public void resize() {
 		// modified by adding code from Factory.java
 		T[] b = newArray(Math.max(n * 2, 1));
