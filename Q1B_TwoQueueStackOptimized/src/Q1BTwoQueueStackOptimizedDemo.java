@@ -62,11 +62,9 @@ public class Q1BTwoQueueStackOptimizedDemo {
 
 		boolean showTimer = CommonSuite.getBooleanInput();
 
-		int arraySize = 6;
-		if (showTimer) {
-			System.out.println("  Run for how many rounds (100+ to 50000 suggested)?");
-			arraySize = CommonSuite.getIntegerInput();
-		}
+		System.out.println();
+		System.out.println("  Run for how many rounds (100+ to 50000 suggested)?");
+		int arraySize = CommonSuite.getIntegerInput();
 
 		System.out.println();
 		System.out.println("qUnused and qUsed are the two queues used inside the stack.");
@@ -76,23 +74,17 @@ public class Q1BTwoQueueStackOptimizedDemo {
 		TwoQueueStackFlexible<Integer> demoStack = new TwoQueueStackFlexible<>(Integer.class, optimizedArray);
 		System.out.println();
 
-		CommonSuite.StopWatch.start();
-		CollectMethodInfo.resetCounter();
-		for (int i = 0; i < arraySize; i++) {
-			if (showTimer) {
-			} else
-				System.out.printf("Task: push(), round %3d %n", i);
+		if (showTimer) {
+			CommonSuite.StopWatch.start();
+			for (int i = 0; i < arraySize; i++) {
+				if (i % (arraySize / 50) == 0)
+					System.out.println(i + ", " + CommonSuite.StopWatch.lap());
+				demoStack.push(88 * i);
+			}
+		} else {
+			for (int i = 0; i < arraySize; i++) {
+				System.out.printf("%4d: push(%s) ", i, "" + demoStack.push(88 * i));
 
-			int pushReturn = demoStack.push(88 * i);
-
-			if (showTimer) {
-				if (i % (arraySize / 50) == 0) {
-					System.out.println(i + ", " + CommonSuite.StopWatch.stop());
-					CommonSuite.StopWatch.start();
-					CollectMethodInfo.resetCounter();
-				}
-			} else {
-				System.out.println("   completed push(" + pushReturn + ");");
 				System.out.println(demoStack.toString());
 			}
 		}
@@ -102,7 +94,7 @@ public class Q1BTwoQueueStackOptimizedDemo {
 		System.out.println();
 		System.out.println("This is the full stack as returned by a sequence of pop() operations:");
 
-		String prepend = "**";
+		String prepend = "";
 		System.out.print("{");
 		for (int i = 0; i < arraySize; i++) {
 			try {
@@ -110,7 +102,7 @@ public class Q1BTwoQueueStackOptimizedDemo {
 			} catch (Exception e) {
 				System.out.println(e.toString());
 			}
-			prepend = ", **";
+			prepend = ", ";
 		}
 		System.out.println("}");
 		System.out.println("END   PushPop Testing");

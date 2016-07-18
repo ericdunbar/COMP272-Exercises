@@ -131,8 +131,8 @@ public class CommonSuite {
 	}
 
 	/**
-	 * Returns a string with numRepetitions repeats of stringToRepeat. A value
-	 * lower than 1 numRepetitions results in an empty String "".
+	 * Returns a string with numRepetitions repeats of stringToRepeat. A value lower than 1
+	 * numRepetitions results in an empty String "".
 	 * 
 	 * @param stringToRepeat The string to repeat
 	 * @param numRepetitions The number of times to repeat the string
@@ -206,8 +206,8 @@ public class CommonSuite {
 	}
 
 	/**
-	 * Converts an ArrayList of type String to String. A newline character is
-	 * inserted after each item in the ArrayList.
+	 * Converts an ArrayList of type String to String. A newline character is inserted after each
+	 * item in the ArrayList.
 	 * 
 	 * @param theArray <i>ArrayList</i> of type <i>String</i>
 	 */
@@ -216,8 +216,8 @@ public class CommonSuite {
 	}
 
 	/**
-	 * Converts an ArrayList of type String to String. Separator is a String
-	 * that separates each item in the ArrayList.
+	 * Converts an ArrayList of type String to String. Separator is a String that separates each
+	 * item in the ArrayList.
 	 * 
 	 * @param theArray <i>ArrayList</i> of type <i>String</i>
 	 */
@@ -246,7 +246,6 @@ public class CommonSuite {
 		System.out.println(tasksList[currentTask]);
 		System.out.println("============================================================");
 	}
-
 
 	/**
 	 * Prints programmer details
@@ -280,8 +279,8 @@ public class CommonSuite {
 	}
 
 	/**
-	 * Prints program details using the parameters passed as author, student
-	 * number, assignment number and question number
+	 * Prints program details using the parameters passed as author, student number, assignment
+	 * number and question number
 	 * 
 	 * @param author Name of the author
 	 * @param studentNumber Student number of the author, as String
@@ -289,8 +288,8 @@ public class CommonSuite {
 	 * @param question Question number, as int
 	 * @param questionTitle Title of the question, as String
 	 */
-	public static void printProgrammerInfo(String author, String studentNumber, String assignment,
-			String question, String questionTitle) {
+	public static void printProgrammerInfo(String author, String studentNumber, String assignment, String question,
+			String questionTitle) {
 
 		authorData = author;
 		studentNumberData = studentNumber;
@@ -301,9 +300,9 @@ public class CommonSuite {
 	}
 
 	/**
-	 * Prints program details using the parameters passed as author, student
-	 * number, assignment number and question number. The boolean isTesting sets
-	 * whether the TestSuite object ought to be testing.
+	 * Prints program details using the parameters passed as author, student number, assignment
+	 * number and question number. The boolean isTesting sets whether the TestSuite object ought to
+	 * be testing.
 	 * 
 	 * @param author Name of the author
 	 * @param studentNumber Student number of the author, as String
@@ -312,24 +311,23 @@ public class CommonSuite {
 	 * @param questionTitle Title of the question, as String
 	 * @param isTesting Whether the TestSuite should be testing, as boolean
 	 */
-	public static TestSuite commonProgramStart(String author, String studentNumber, int assignment,
-			int question, String questionTitle, boolean isTesting) {
-		return commonProgramStart(Integer.toString(assignment),
-				Integer.toString(question), questionTitle, isTesting);
+	public static TestSuite commonProgramStart(String author, String studentNumber, int assignment, int question,
+			String questionTitle, boolean isTesting) {
+		return commonProgramStart(Integer.toString(assignment), Integer.toString(question), questionTitle, isTesting);
 	}
-	
+
 	/**
-	 * Prints program details using the parameters passed as author, student
-	 * number, assignment number and question number. The boolean isTesting sets
-	 * whether the TestSuite object ought to be testing.
+	 * Prints program details using the parameters passed as author, student number, assignment
+	 * number and question number. The boolean isTesting sets whether the TestSuite object ought to
+	 * be testing.
 	 * 
 	 * @param assignment Assignment number, as String
 	 * @param question Question number, as String
 	 * @param questionTitle Title of the question, as String
 	 * @param isTesting Whether the TestSuite should be testing, as boolean
 	 */
-	public static TestSuite commonProgramStart(String assignment,
-			String question, String questionTitle, boolean isTesting) {
+	public static TestSuite commonProgramStart(String assignment, String question, String questionTitle,
+			boolean isTesting) {
 		String author = "Eric Dunbar";
 		String studentNumber = "3243614";
 
@@ -343,9 +341,9 @@ public class CommonSuite {
 	}
 
 	/**
-	 * Prints program details using the parameters passed as author, student
-	 * number, assignment number and question number. The boolean isTesting sets
-	 * whether the TestSuite object ought to be testing.
+	 * Prints program details using the parameters passed as author, student number, assignment
+	 * number and question number. The boolean isTesting sets whether the TestSuite object ought to
+	 * be testing.
 	 * 
 	 * author = "Eric Dunbar" studentNumber = "3243614"
 	 * 
@@ -354,12 +352,10 @@ public class CommonSuite {
 	 * @param questionTitle Title of the question, as String
 	 * @param isTesting Whether the TestSuite should be testing, as boolean
 	 */
-	public static TestSuite commonProgramStart(int assignment, int question, String questionTitle,
-			boolean isTesting) {
+	public static TestSuite commonProgramStart(int assignment, int question, String questionTitle, boolean isTesting) {
 		String author = "Eric Dunbar";
 		String studentNumber = "3243614";
-		return commonProgramStart(author, studentNumber, assignment, question, questionTitle,
-				isTesting);
+		return commonProgramStart(author, studentNumber, assignment, question, questionTitle, isTesting);
 	}
 
 	/**
@@ -387,28 +383,10 @@ public class CommonSuite {
 		}
 	}
 
-	// TODO This is unnecessary code. Covered by TestSuite. Delete when
-	// confident nothing relies on it.
-	// public static boolean isTesting() {
-	// return isTesting;
-	// }
-
-	// TODO This is unnecessary code. Covered by TestSuite. Delete when
-	// confident nothing relies on it.
-	// public static void setTesting(boolean isTesting) {
-	// CommonSuite.isTesting = isTesting;
-	// }
-
 	public static void methodInfo(String methodDetail) {
 		// http://stackoverflow.com/questions/421280/how-do-i-find-the-caller-of-a-method-using-stacktrace-or-reflection
-
-		// TODO This is unnecessary code. Covered by TestSuite. Delete when
-		// confident nothing relies on it.
-		// if (isTesting)
-		{
-			StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
-			System.out.println("  " + stackTraceElements[2].getMethodName() + " " + methodDetail);
-		}
+		StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+		System.out.println("  " + stackTraceElements[2].getMethodName() + " " + methodDetail);
 	}
 
 	public static class StopWatch {
@@ -420,6 +398,12 @@ public class CommonSuite {
 
 		public static int stop() {
 			return (int) (System.currentTimeMillis() - startTime);
+		}
+
+		public static int lap() {
+			int lapTime = (int) (System.currentTimeMillis() - startTime);
+			startTime = System.currentTimeMillis();
+			return lapTime;
 		}
 	}
 
