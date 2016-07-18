@@ -54,20 +54,17 @@ public class TwoQueueStackFlexible<T> {
 	/**
 	 * Adds a given element of the specified data type to the stack.
 	 * 
-	 * @param dataElement
+	 * @param x element
 	 * @return the given element
 	 */
-	public T push(T dataElement) {
-		// Last element in needs to be at the tail of the queue (i.e. first out)
-		qUnused.add(dataElement);
+	public T push(T x) {
+		// Last element in needs to be at the head of the queue (i.e. first out) since queues
+		// operate on an addLast(x) and removeFirst() basis (ODS pg. 6)
+		qUnused.add(x);
 
-		// Move tail element from one queue to the head of another queue
+		// Move head element from one queue to the tail of another queue
 		int elementsToRemove = qUsed.size();
-		// Fix: was using qUsed.size() directly but qUsed.size() changes each
-		// iteration!
 		for (int i = 0; i < elementsToRemove; i++) {
-			// note: since remove will resize the backing array many times this
-			// is a highly inefficient way of using the backing array
 			qUnused.add(qUsed.remove());
 		}
 
@@ -75,12 +72,13 @@ public class TwoQueueStackFlexible<T> {
 		qUsed = qUnused;
 		qUnused = qTemp;
 
-		return dataElement;
+		return x;
 	}
 
 	@Override
 	public String toString() {
-		return "TwoQueueStack [qUnused=" + qUnused.toString() + ", qUsed=" + qUsed.toString() + ", theType=" + theType + "]";
+		return "TwoQueueStack [qUnused=" + qUnused.toString() + ", qUsed=" + qUsed.toString() + ", theType=" + theType
+				+ "]";
 	}
 
 	/**
