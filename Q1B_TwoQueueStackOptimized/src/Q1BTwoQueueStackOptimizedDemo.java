@@ -3,9 +3,9 @@
  * @date 7/7/2016
  * @assignment 1
  * @question 1b
- * @title Two Queue Stack Demonstration
- * @description Demonstrate the implementation of a two queue-backed stack for
- *              assignment 1, question 1 b.
+ * @title Optimized Two Queue Stack Demonstration
+ * @description Demonstrate the implementation of a two queue-backed stack for assignment 1,
+ *              question 1 b.
  */
 public class Q1BTwoQueueStackOptimizedDemo {
 	static TestSuite theTester;
@@ -16,7 +16,7 @@ public class Q1BTwoQueueStackOptimizedDemo {
 	private static void OneQueueTest() {
 		System.out.println("START One queue only");
 		System.out.println();
-		System.out.println("Confirm operation of a single queue and");
+		System.out.println("Confirm operation of an optimized single queue and");
 		System.out.println("check error handling of remove() from empty queue.");
 
 		CollectMethodInfo.setTesting(false);
@@ -55,12 +55,17 @@ public class Q1BTwoQueueStackOptimizedDemo {
 		System.out.println("BEGIN: Demonstration of push(x).");
 
 		System.out.println();
+		System.out.println("Use an optimized backing array queue? y/n?");
+
+		boolean optimizedArray = CommonSuite.getBooleanInput();
+		System.out.println();
 		System.out.println("Perform timing tests? y/n?");
 
 		boolean showTimer = CommonSuite.getBooleanInput();
+		
 		int arraySize = 6;
 		if (showTimer) {
-			System.out.println("  Run for how many rounds (100 to 1000 suggested)?");
+			System.out.println("  Run for how many rounds (100+ to 50000 suggested)?");
 			arraySize = CommonSuite.getIntegerInput();
 		} else {
 			System.out.println("  Display detailed testing results? y/n?");
@@ -72,7 +77,7 @@ public class Q1BTwoQueueStackOptimizedDemo {
 		System.out.println();
 		System.out.println("Task: Create stack");
 
-		TwoQueueStackOptimized<Integer> demoStack = new TwoQueueStackOptimized<>(Integer.class);
+		TwoQueueStackFlexible<Integer> demoStack = new TwoQueueStackFlexible<>(Integer.class, optimizedArray);
 		System.out.println();
 
 		CommonSuite.StopWatch.start();

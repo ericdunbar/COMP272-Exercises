@@ -4,21 +4,20 @@ import java.util.NoSuchElementException;
 
 /**
  * @author Eric Dunbar
- * @date 7/7/2016
+ * @date 17/7/2016
  * @assignment 1
  * @question 4
  * @title Array Queue
- * @description A minimial implementation of a FIFO queue that extends the Queue<T> interface, based
+ * @description A minimal implementation of a FIFO queue that extends the Queue<T> interface, based
  *              largely on sample code from Open Data Structures by Pat Morin. This data structure
- *              implements a FIFO (first-in-first-out) queue with add(x) and remove() operations
- *              that perform in constant amortized time; elements are removed from the queue in the
- *              same order they are added. This queue functions strictly as a FIFO queue.
+ *              implements a FIFO (first-in-first-out) queue with add(x) or addLast(x) and remove()
+ *              or removeFirst() operations that perform in constant amortized time; elements are
+ *              removed from the queue in the same order they are added. This queue functions
+ *              strictly as a FIFO queue.
  * 
  *              THIS CLASS SUPPORTS RandomQueue.
  * 
  *              See also: https://docs.oracle.com/javase/8/docs/api/java/util/AbstractQueue.html
- * 
- * @author Eric Dunbar
  * @param <T>
  *
  */
@@ -97,10 +96,9 @@ public class ArrayQueueOptimized<T> extends AbstractQueue<T> {
 	}
 
 	/**
-	 * Removes and returns the first (oldest) element added to the queue.
+	 * Remove and return the head of the queue in O(1) time.
 	 * 
-	 * @throws NoSuchElementException if queue is empty
-	 * @return oldest element
+	 * @return element
 	 */
 	@Override
 	public T remove() {
@@ -112,6 +110,44 @@ public class ArrayQueueOptimized<T> extends AbstractQueue<T> {
 		if (backArray.length >= 3 * n)
 			resize();
 		return x;
+	}
+
+	/**
+	 * Remove and return the element at the index position in O(n-i) time.
+	 * 
+	 * @param i
+	 * @return element
+	 */
+	public T remove(int i) {
+		if (n == 0)
+			throw new NoSuchElementException();
+		int removedIndex = (head + i) % backArray.length;
+		T x = backArray[removedIndex];
+		for (int j = removedIndex; j < n - 1; j++)
+			backArray[j % backArray.length] = backArray[(j + 1) % backArray.length];
+		n--;
+		if (backArray.length >= 3 * n)
+			resize();
+		CollectMethodInfo.methodInfo("[i = " + i + ", x = " + x.toString() + "]");
+		return x;
+	}
+
+	/**
+	 * Removes the last (tail) element of a queue in O(i) time.
+	 * 
+	 * @return element
+	 */
+	public T removeLast() {
+		return remove(n - 1);
+	}
+
+	/**
+	 * Removes the first (head) element of a queue in O(1) time.
+	 * 
+	 * @return element
+	 */
+	public T removeFirst() {
+		return remove();
 	}
 
 	/**

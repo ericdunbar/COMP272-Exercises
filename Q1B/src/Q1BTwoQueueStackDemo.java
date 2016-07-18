@@ -4,8 +4,8 @@
  * @assignment 1
  * @question 1b
  * @title Two Queue Stack Demonstration
- * @description Demonstrate the implementation of a two queue-backed stack for
- *              assignment 1, question 1 b.
+ * @description Demonstrate the implementation of a two queue-backed stack for assignment 1,
+ *              question 1 b.
  */
 public class Q1BTwoQueueStackDemo {
 	static TestSuite theTester;
@@ -120,7 +120,7 @@ public class Q1BTwoQueueStackDemo {
 		boolean testing = false;
 
 		// Display programmer info and create testing object
-		theTester = CommonSuite.commonProgramStart("1", "1b", "Two Queue-backed Stack Demo", testing);
+		theTester = CommonSuite.commonProgramStart("1", "1b", "Simple Two Queue-backed Stack Demo", testing);
 		theTester.setSilentRecording(false); // report results immediately
 
 		// Display tasks

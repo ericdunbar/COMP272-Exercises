@@ -1,31 +1,51 @@
+import java.util.AbstractQueue;
+
 /**
- * @formatter:off Class: TwoQueueStack. Purpose: A stack of objects.
+ * Class: TwoQueueStack. Purpose: A stack of objects.
  * 
- *                Details: Its implementation a stack using two queues. To call
- *                it use the syntax, new TwoQueueStack <T>(T.class). This stack
- *                implements push(x) and pop().
+ * Details: Its implementation a stack using two queues. To call it use the syntax, new
+ * TwoQueueStack <T>(T.class). This stack implements push(x) and pop().
  * 
  * @author Eric Dunbar
- * @date 2016.05.04.1
+ * @date 2016.07.18
  * @param <T>
- * @formatter:on
  */
-public class TwoQueueStackOptimized<T> {
-	private ArrayQueueOptimized<T> qUnused;
-	private ArrayQueueOptimized<T> qUsed;
+public class TwoQueueStackFlexible<T> {
+	private AbstractQueue<T> qUnused;
+	private AbstractQueue<T> qUsed;
 	private Class<T> theType; // added from Factory.java
 
 	/*
-	 * @formatter:off Citations: Hirondelle Systems. 2016. Use javadoc
-	 * liberally. http://www.javapractices.com/topic/TopicAction.do?Id=60
-	 * 
-	 * @formatter:on
+	 * Citations: Hirondelle Systems. 2016. Use javadoc liberally.
+	 * http://www.javapractices.com/topic/TopicAction.do?Id=60
 	 */
 
-	public TwoQueueStackOptimized(Class<T> theQT) {
+	/**
+	 * Create instance of a stack backed by two optimized array queues.
+	 * 
+	 * @param theQT
+	 */
+	public TwoQueueStackFlexible(Class<T> theQT) {
 		theType = theQT;
 		qUnused = new ArrayQueueOptimized<T>(theType);
 		qUsed = new ArrayQueueOptimized<T>(theType);
+	}
+
+	/**
+	 * Create instance of a stack backed by two queues.
+	 * 
+	 * @param theQT
+	 * @param optimized true for optimized backing array queues, false for simple backing array queues
+	 */
+	public TwoQueueStackFlexible(Class<T> theQT, boolean optimized) {
+		theType = theQT;
+		if (!optimized) {
+			qUnused = new ArrayQueueSimple<T>(theType);
+			qUsed = new ArrayQueueSimple<T>(theType);
+		} else {
+			qUnused = new ArrayQueueOptimized<T>(theType);
+			qUsed = new ArrayQueueOptimized<T>(theType);
+		}
 	}
 
 	/**
@@ -49,12 +69,11 @@ public class TwoQueueStackOptimized<T> {
 			qUnused.add(qUsed.remove());
 		}
 
-		ArrayQueueOptimized<T> qTemp = qUsed;
+		AbstractQueue<T> qTemp = qUsed;
 
 		/*
-		 * figure it's faster and uses less memory to copy a pointer to an
-		 * existing ArrayQueue object than to create and allocate the memory for
-		 * a new one
+		 * figure it's faster and uses less memory to copy a pointer to an existing ArrayQueue
+		 * object than to create and allocate the memory for a new one
 		 */
 		qUsed = qUnused;
 		qUnused = qTemp;

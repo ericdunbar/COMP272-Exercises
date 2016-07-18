@@ -1,4 +1,6 @@
 import java.lang.reflect.Array;
+import java.util.AbstractQueue;
+import java.util.Iterator;
 
 /**
  * @author Eric Dunbar
@@ -11,7 +13,7 @@ import java.lang.reflect.Array;
  * 
  * @param <T>
  */
-public class ArrayQueueSimple<T> {
+public class ArrayQueueSimple<T> extends AbstractQueue<T> {
 	T[] array; // the backing array
 	int n = 0; // the number of elements in the array
 	Class<T> theType; // added from Factory.java
@@ -46,7 +48,7 @@ public class ArrayQueueSimple<T> {
 	 * 
 	 * @return Number of elements in the ArrayQueue
 	 */
-	int size() {
+	public int size() {
 		return n;
 	}
 
@@ -97,9 +99,12 @@ public class ArrayQueueSimple<T> {
 	 * In a queue adds an item to the head of the queue.
 	 * 
 	 * @param x
+	 * @return 
 	 */
-	public void add(T x) {
+	@Override
+	public boolean add(T x) {
 		addLast(x);
+		return true;
 	}
 
 	public void addFirst(T x) {
@@ -126,6 +131,7 @@ public class ArrayQueueSimple<T> {
 	 * 
 	 * @return
 	 */
+	@Override
 	public T remove() {
 		return removeFirst();
 	}
@@ -173,5 +179,29 @@ public class ArrayQueueSimple<T> {
 			b[i] = array[i];
 		}
 		array = b;
+	}
+
+	@Override
+	public boolean offer(T e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public T peek() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public T poll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Iterator<T> iterator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
