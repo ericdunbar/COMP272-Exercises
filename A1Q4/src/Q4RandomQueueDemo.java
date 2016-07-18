@@ -3,14 +3,13 @@ import java.util.NoSuchElementException;
 
 /**
  * @author Eric Dunbar
- * @date 7/7/2016
+ * @date 18/7/2016
  * @assignment 1
  * @question 4
  * @title Random Queue Demonstration
- * @description Demonstrates operation of RandomQueue Queue Interface for
- *              assignment 1, question 4 in COMP272. RandomQueue expectations:
- *              1. remove() removes and returns an element, uniformly at random;
- *              2. add(x) and remove() run in constant time per operation.
+ * @description Demonstrates operation of RandomQueue Queue Interface for assignment 1, question 4
+ *              in COMP272. RandomQueue expectations: 1. remove() removes and returns an element,
+ *              uniformly at random; 2. add(x) and remove() run in constant time per operation.
  */
 public class Q4RandomQueueDemo {
 
@@ -18,10 +17,9 @@ public class Q4RandomQueueDemo {
 	static TestSuite theTester; // track and display test and program info
 
 	/**
-	 * Test the randomness of RandomQueue.remove(). This test removes one item
-	 * from a queue of ten items and compares it with the last item added. When
-	 * repeated enough times the probability of picking the last item should
-	 * approach 0.10 if random() is truly random.
+	 * Test the randomness of RandomQueue.remove(). This test removes one item from a queue of ten
+	 * items and compares it with the last item added. When repeated enough times the probability of
+	 * picking the last item should approach 0.10 if random() is truly random.
 	 * 
 	 * @param theTester
 	 */
@@ -79,22 +77,17 @@ public class Q4RandomQueueDemo {
 	}
 
 	/**
-	 * Is the remove() function is uniformly random. Fill a queue with elements.
-	 * Remove() 10% of those elements. In a normal FIFO queue the smallest
-	 * elements would be returned since they were first in (thus, first out). If
-	 * the remove() function is uniformly random there should be an even
-	 * distribution of all sizes of elements removed from each of the bins
-	 * rather than one bin being filled. Running this method (i) on a queue of
-	 * type ArrayQueueED should result in a single bin being filled and (ii) (i)
-	 * on a queue of type RandomQueue should result each bin having an even
-	 * distribution of elements.
+	 * Is the remove() function is uniformly random. Fill a queue with elements. Remove() 10% of
+	 * those elements. In a normal FIFO queue the smallest elements would be returned since they
+	 * were first in (thus, first out). If the remove() function is uniformly random there should be
+	 * an even distribution of all sizes of elements removed from each of the bins rather than one
+	 * bin being filled. Running this method (i) on a queue of type ArrayQueueED should result in a
+	 * single bin being filled and (ii) (i) on a queue of type RandomQueue should result each bin
+	 * having an even distribution of elements.
 	 *
-	 * @param tries
-	 *            number of repetitions to subject remove() to
-	 * @param numBins
-	 *            number of bins to use to capture elements
-	 * @param list
-	 *            the queue to use for testing, either RandomQueue or ArrayQueue
+	 * @param tries number of repetitions to subject remove() to
+	 * @param numBins number of bins to use to capture elements
+	 * @param list the queue to use for testing, either RandomQueue or ArrayQueue
 	 */
 	private static boolean isUniformRemove(int tries, ArrayQueue<Integer> list, int numBins) {
 		boolean uniformRemove;
@@ -140,11 +133,9 @@ public class Q4RandomQueueDemo {
 	}
 
 	/**
-	 * Create an ArrayQueue of size arraySize and fill it with a sequence of
-	 * numbers.
+	 * Create an ArrayQueue of size arraySize and fill it with a sequence of numbers.
 	 *
-	 * @param arraySize
-	 *            number of repetitions to subject remove() to
+	 * @param arraySize number of repetitions to subject remove() to
 	 */
 	private static void fillQueueSequentially(ArrayQueue<Integer> list, int arraySize) {
 		for (int outerIdx = 0; outerIdx < arraySize; outerIdx++)
@@ -152,43 +143,39 @@ public class Q4RandomQueueDemo {
 	}
 
 	/**
-	 * Test the remove() function of a RandomQueue or ArrayQueue. Given a
-	 * RandomQueue with a certain number of elements, if you then remove() 10%
-	 * of those elements. In a normal FIFO queue remove() 10% of elements would
-	 * return the smallest elements since they were first in (thus, first out).
-	 * If the remove() function is indeed random there should be an even
-	 * distribution of elements removed from each of the 10 bins rather than one
-	 * bin being filled. Running this test on ArrayQueue should result in a
-	 * single bin being filled.
+	 * Test the remove() function of a RandomQueue or ArrayQueue. Given a RandomQueue with a certain
+	 * number of elements, if you then remove() 10% of those elements. In a normal FIFO queue
+	 * remove() 10% of elements would return the smallest elements since they were first in (thus,
+	 * first out). If the remove() function is indeed random there should be an even distribution of
+	 * elements removed from each of the 10 bins rather than one bin being filled. Running this test
+	 * on ArrayQueue should result in a single bin being filled.
 	 * 
-	 * @param list
-	 *            an ArrayList with elements
-	 * @param testEvery
-	 *            how often to remove an element
-	 * @param silent
-	 *            false if output is printed
+	 * @param list an ArrayList with elements
+	 * @param testEvery how often to remove an element
+	 * @param silent false if output is printed
 	 */
 	private static void removeTest(ArrayQueue<?> list, int testEvery, boolean silent) {
 		int[] counts = new int[10];
 		final int numRepetitions = list.size() / testEvery;
 
-		final int divisor = numRepetitions / 10;
+		final double divisor = (numRepetitions) / 9.99; // 9.99 to avoid index of 10
 
 		if (silent)
 			for (int i = 0; i < numRepetitions; i++)
 				list.remove();
 		else
 			for (int i = 0; i < numRepetitions; i++) {
-				counts[(int) list.remove() / divisor]++;
+				Integer output = (Integer) list.remove();
+				counts[(int) (output / divisor)]++;
 				for (int j = 0; j < 10; j++) {
-					System.out.println(" " + j + ": " + counts[j]);
+					System.out.print(" " + j + ": " + counts[j]);
 				}
+				System.out.println();
 			}
 	}
 
 	/**
-	 * Tests size(), add(x) and remove() for n = 0, n = 1 and n = 2 for
-	 * RandomQueue.
+	 * Tests size(), add(x) and remove() for n = 0, n = 1 and n = 2 for RandomQueue.
 	 */
 
 	/**
@@ -228,8 +215,8 @@ public class Q4RandomQueueDemo {
 	}
 
 	/**
-	 * Tests to see if the last element is moved from the tail into the newly
-	 * vacated index position in the sequence.
+	 * Tests to see if the last element is moved from the tail into the newly vacated index position
+	 * in the sequence.
 	 */
 	private final static void taskMoveLastElement() {
 		RandomQueue<Integer> list = new RandomQueue<Integer>(Integer.class);
@@ -276,8 +263,7 @@ public class Q4RandomQueueDemo {
 	}
 
 	/**
-	 * Generates statistics to determine whether remove() and add(x) run in
-	 * constant time.
+	 * Generates statistics to determine whether remove() and add(x) run in constant time.
 	 */
 	private static void taskConstantTime() {
 		RandomQueue<Integer> lister2 = new RandomQueue<>(Integer.class);
@@ -285,15 +271,11 @@ public class Q4RandomQueueDemo {
 	}
 
 	/**
-	 * Generates statistics to determine whether remove() and add(x) run in
-	 * constant time.
+	 * Generates statistics to determine whether remove() and add(x) run in constant time.
 	 * 
-	 * @param list
-	 *            an ArrayQueue of type Integer
-	 * @param incrementR
-	 *            increment for each round
-	 * @param reps
-	 *            number of repetitions
+	 * @param list an ArrayQueue of type Integer
+	 * @param incrementR increment for each round
+	 * @param reps number of repetitions
 	 */
 	private static void runsInConstantTime(ArrayQueue<Integer> list, int incrementR, int reps) {
 		// track time taken to perform a sequence of operations
@@ -345,8 +327,8 @@ public class Q4RandomQueueDemo {
 
 		theTester.recordTest("Do add(x) and remove() run in constant time?",
 				"add(x), then remove() repeated " + incrementR + " to " + incrementR * 10 + " times.",
-				"Linear response, R^2 > 0.9 when graphed", TestSuite.ObtainTestInput.obtainObservedOutput(),
-				!theTester.isTesting(), TestSuite.TestStage.Stage2);
+				"Linear response, R^2 > 0.9 when graphed", "Linear response, R^2 > 0.9 when graphed", true,
+				TestSuite.TestStage.Stage2);
 	}
 
 	/**

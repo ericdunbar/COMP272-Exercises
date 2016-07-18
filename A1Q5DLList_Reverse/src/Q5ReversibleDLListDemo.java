@@ -8,13 +8,13 @@
  * @description Demonstrates the reversal of a DLList
  *
  */
-public class A1Q5ReversibleDLListDemo {
+public class Q5ReversibleDLListDemo {
 	final static boolean testing = false; // only used if testing
 	static TestSuite theTester; // track demo and test information
 
 	/**
-	 * Demonstrate basic ReversibleDLList functionality by performing a number
-	 * of reversals of a DLList.
+	 * Demonstrate basic ReversibleDLList functionality by performing a number of reversals of a
+	 * DLList.
 	 */
 	private static void reversibleDLListDemo() {
 		System.out.println("START REVERSIBLE DLL TESTING");
@@ -83,8 +83,7 @@ public class A1Q5ReversibleDLListDemo {
 		CommonSuite.headerPrint(tasksList, currentTask++);
 		reversibleDLListDemo();
 
-		CommonSuite.commonProgramEnd(theTester); // provide summary, if
-													// requested
+		CommonSuite.commonProgramEnd(theTester); // provide summary, if requested
 
 	}
 
