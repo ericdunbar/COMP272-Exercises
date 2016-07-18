@@ -1,6 +1,6 @@
 /**
  * @author Eric Dunbar
- * @date 7/7/2016
+ * @date 18/7/2016
  * @assignment 1
  * @question 1b
  * @title Optimized Two Queue Stack Demonstration
@@ -19,7 +19,6 @@ public class Q1BTwoQueueStackOptimizedDemo {
 		System.out.println("Confirm operation of an optimized single queue and");
 		System.out.println("check error handling of remove() from empty queue.");
 
-		CollectMethodInfo.setTesting(false);
 		System.out.println();
 
 		ArrayQueueOptimized<Integer> mine = new ArrayQueueOptimized<Integer>(Integer.class);
@@ -62,15 +61,12 @@ public class Q1BTwoQueueStackOptimizedDemo {
 		System.out.println("Perform timing tests? y/n?");
 
 		boolean showTimer = CommonSuite.getBooleanInput();
-		
+
 		int arraySize = 6;
 		if (showTimer) {
 			System.out.println("  Run for how many rounds (100+ to 50000 suggested)?");
 			arraySize = CommonSuite.getIntegerInput();
-		} else {
-			System.out.println("  Display detailed testing results? y/n?");
 		}
-		CollectMethodInfo.setTesting(!showTimer);
 
 		System.out.println();
 		System.out.println("qUnused and qUsed are the two queues used inside the stack.");
@@ -120,6 +116,10 @@ public class Q1BTwoQueueStackOptimizedDemo {
 		System.out.println("END   PushPop Testing");
 	}
 
+	/**
+	 * Perform testing of two queue-backed stacks.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		// Are we testing?
 		boolean testing = false;

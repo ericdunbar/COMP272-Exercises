@@ -128,6 +128,7 @@ public class ArrayQueueOptimized<T> extends AbstractQueue<T> {
 		n--;
 		if (backArray.length >= 3 * n)
 			resize();
+		CollectMethodInfo.methodInfo("[i = " + i + ", x = " + x.toString() + "]");
 		return x;
 	}
 
@@ -222,20 +223,5 @@ public class ArrayQueueOptimized<T> extends AbstractQueue<T> {
 	@Override
 	public int size() {
 		return n;
-	}
-	
-	/**
-	 * Returns the contents of the ArrayQueue as a String
-	 */
-	@Override
-	public String toString() {
-		String toReturn = "{";
-		String comma = "";
-		for (int i = 0; i < n; i++) {
-			toReturn += comma + backArray[i].toString();
-			comma = ",";
-		}
-		toReturn += "}";
-		return toReturn;
 	}
 }

@@ -59,6 +59,7 @@ public class TwoQueueStackFlexible<T> {
 	 */
 	public T push(T dataElement) {
 		// Last element in needs to be at the tail of the queue (i.e. first out)
+		CollectMethodInfo.methodInfo("(" + dataElement + ")");
 		qUnused.add(dataElement);
 
 		// Move tail element from one queue to the head of another queue
@@ -80,7 +81,7 @@ public class TwoQueueStackFlexible<T> {
 
 	@Override
 	public String toString() {
-		return "TwoQueueStack [qUnused=" + qUnused.toString() + ", qUsed=" + qUsed.toString() + ", theType=" + theType + "]";
+		return "TwoQueueStack [qUnused=" + qUnused + ", qUsed=" + qUsed + ", theType=" + theType + "]";
 	}
 
 	/**

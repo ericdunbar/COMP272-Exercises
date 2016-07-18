@@ -1,6 +1,7 @@
 import java.lang.reflect.Array;
 import java.util.AbstractQueue;
 import java.util.Iterator;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * @author Eric Dunbar
@@ -21,6 +22,7 @@ public class ArrayQueueSimple<T> extends AbstractQueue<T> {
 	/**
 	 * Returns the contents of the ArrayQueue as a String
 	 */
+	@Override
 	public String toString() {
 		String toReturn = "{";
 		String comma = "";
@@ -38,7 +40,6 @@ public class ArrayQueueSimple<T> extends AbstractQueue<T> {
 	 * @param theQT type of elements stored in the ArrayQueue
 	 */
 	public ArrayQueueSimple(Class<T> theQT) {// added from Factory.java
-		CollectMethodInfo.methodInfo("Class<T> " + theQT);
 		theType = theQT;
 		array = this.newArray(1);
 	}
@@ -59,9 +60,9 @@ public class ArrayQueueSimple<T> extends AbstractQueue<T> {
 	 * @return element at index position
 	 */
 	public T get(int i) {
-
-		// TODO check range
-		// TODO throw exception IndexOutOfBounds?
+		if (i < 0 || i > n - 1) {
+			throw new IndexOutOfBoundsException();
+		}
 		return array[i];
 	}
 
@@ -73,7 +74,9 @@ public class ArrayQueueSimple<T> extends AbstractQueue<T> {
 	 * @return old element stored at the index position
 	 */
 	public T set(int i, T x) {
-		// TODO check range
+		if (i < 0 || i > n - 1) {
+			throw new IndexOutOfBoundsException();
+		}
 		T y = array[i];
 		array[i] = x;
 		return y;
@@ -86,7 +89,6 @@ public class ArrayQueueSimple<T> extends AbstractQueue<T> {
 	 * @param x element
 	 */
 	public void add(int i, T x) {
-		CollectMethodInfo.methodInfo(x.toString());
 		if (n + 1 > array.length)
 			resize();
 		for (int j = n; j > i; j--)
@@ -99,7 +101,7 @@ public class ArrayQueueSimple<T> extends AbstractQueue<T> {
 	 * In a queue adds an item to the head of the queue.
 	 * 
 	 * @param x
-	 * @return 
+	 * @return
 	 */
 	@Override
 	public boolean add(T x) {
@@ -122,7 +124,6 @@ public class ArrayQueueSimple<T> extends AbstractQueue<T> {
 		n--;
 		if (array.length >= 3 * n)
 			resize();
-		CollectMethodInfo.methodInfo("[i = " + i + ", x = " + x.toString() + "]");
 		return x;
 	}
 
@@ -165,7 +166,6 @@ public class ArrayQueueSimple<T> extends AbstractQueue<T> {
 	private T[] newArray(int n) {
 		// Modify protected as the access level
 		// https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
-		CollectMethodInfo.methodInfo(String.format("n = %d", n));
 		return (T[]) Array.newInstance(theType, n);
 	}
 
@@ -183,25 +183,21 @@ public class ArrayQueueSimple<T> extends AbstractQueue<T> {
 
 	@Override
 	public boolean offer(T e) {
-		// TODO Auto-generated method stub
-		return false;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public T peek() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public T poll() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public Iterator<T> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		throw new NotImplementedException();
 	}
 }

@@ -1,4 +1,7 @@
 import java.lang.reflect.Array;
+import java.util.AbstractQueue;
+import java.util.Iterator;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * @author Eric Dunbar
@@ -11,7 +14,7 @@ import java.lang.reflect.Array;
  * 
  * @param <T>
  */
-public class ArrayQueueSimple<T> {
+public class ArrayQueueSimple<T> extends AbstractQueue<T> {
 	T[] array; // the backing array
 	int n = 0; // the number of elements in the array
 	Class<T> theType; // added from Factory.java
@@ -46,7 +49,7 @@ public class ArrayQueueSimple<T> {
 	 * 
 	 * @return Number of elements in the ArrayQueue
 	 */
-	int size() {
+	public int size() {
 		return n;
 	}
 
@@ -57,9 +60,9 @@ public class ArrayQueueSimple<T> {
 	 * @return element at index position
 	 */
 	public T get(int i) {
-
-		// TODO check range
-		// TODO throw exception IndexOutOfBounds?
+		if (i < 0 || i > n - 1) {
+			throw new IndexOutOfBoundsException();
+		}
 		return array[i];
 	}
 
@@ -71,7 +74,9 @@ public class ArrayQueueSimple<T> {
 	 * @return old element stored at the index position
 	 */
 	public T set(int i, T x) {
-		// TODO check range
+		if (i < 0 || i > n - 1) {
+			throw new IndexOutOfBoundsException();
+		}
 		T y = array[i];
 		array[i] = x;
 		return y;
@@ -97,9 +102,12 @@ public class ArrayQueueSimple<T> {
 	 * In a queue adds an item to the head of the queue.
 	 * 
 	 * @param x
+	 * @return
 	 */
-	public void add(T x) {
+	@Override
+	public boolean add(T x) {
 		addLast(x);
+		return true;
 	}
 
 	public void addFirst(T x) {
@@ -126,6 +134,7 @@ public class ArrayQueueSimple<T> {
 	 * 
 	 * @return
 	 */
+	@Override
 	public T remove() {
 		return removeFirst();
 	}
@@ -173,5 +182,25 @@ public class ArrayQueueSimple<T> {
 			b[i] = array[i];
 		}
 		array = b;
+	}
+
+	@Override
+	public boolean offer(T e) {
+		throw new NotImplementedException();
+	}
+
+	@Override
+	public T peek() {
+		throw new NotImplementedException();
+	}
+
+	@Override
+	public T poll() {
+		throw new NotImplementedException();
+	}
+
+	@Override
+	public Iterator<T> iterator() {
+		throw new NotImplementedException();
 	}
 }
